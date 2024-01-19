@@ -1,0 +1,238 @@
+.setting{
+    margin-left: 15em;
+    margin-bottom: -27em
+  }
+  .app-search {
+    width: 210px;
+    float: right;
+    margin-top: 4px;
+  }
+  .make_btn {
+    text-align: right;
+  }
+  .tableScroll{
+    width: 100% !important;
+  }
+  .tble {
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100% !important;
+  } 
+  .eight-col{
+    border-left: 0;
+    left: 90% ;
+    position: absolute;
+    background-color: white;
+    width: 8%;
+  } 
+  .red {
+  color: #dd5a43 !important;
+  }
+  .green {
+  color: #ff9b44 !important;
+  }
+  .orange2 {
+  color: #feb902 !important;
+  }
+  @media screen and (max-width: 577px) {
+  .search_text {
+    text-align: center;
+  }
+  .app-search {
+    width: 170px;
+    float: none;
+    margin-top: 5px !important;
+    margin-bottom: 14px !important;
+    margin: 0px auto;
+  }
+  }
+  @media screen and (max-width: 890px) {
+    table {
+      border: 0;
+    }
+    
+    table caption {
+      font-size: 1.3em;
+    }
+  
+    .showby li {
+      float: none;
+    }
+    .showby {
+      text-align: center;
+    }
+   
+    
+  }
+  
+  input[type=checkbox]{
+    height: 0;
+    width: 0;
+    visibility: hidden;
+  }
+  
+  
+  .switch label {
+  cursor: pointer;
+  text-indent: 40px;
+  width: 100px;
+  height: 25px;
+  background: #bada55;
+  display: block;
+  border-radius: 0px;
+    position: relative;
+    color: #fff;
+    padding-top: 3px;
+  }
+  
+  .switch label:after {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 30px;
+  height: 25px;
+  background: #fff;
+  border-radius: 0px;
+    transition: 0.3s;
+    border: 1px solid #cfcfcf;
+  }
+  
+  input:checked + label {
+    background: grey;
+    text-indent: 10px;
+    }
+    
+    input:checked + label:after {
+    left: calc(100% - 0px);
+    transform: translateX(-100%);
+    }
+    .active
+    {
+      background: #ff9b44 !important;color: #fff;margin-bottom: 4px;
+    }
+    
+    .nav > li > a:focus, .nav > li > a:hover {
+      background-color: #ff9b44 !important;
+      border-color: #ff9b44 !important;
+      color: white;
+  }
+  
+  
+  .page-link
+  {
+    background: #ff9b44;color: #fff;
+    cursor:pointer;
+  
+  }
+  .add{
+      background-color: #ff9b44;
+  }
+  .pen{
+      color:black;
+  }
+  .con_icons{
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .dust{
+    margin-top:4px;
+    color: #dd5a43
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 19px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: -5px;
+    top: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #ff9b44;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #ff9b44;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  
+  .slider.round:before {
+      border-radius: 50%;
+    }
+    .add{
+      border: 1px solid gray;
+      color:white;
+      /* margin-left: 30em; */
+    }  
+    .icon{
+      background-color: white;
+    border: none;
+    position: relative;
+    bottom: 2.1em;
+    left: 11em;
+    }
+    .clr{
+      color:#f5f1f1;
+      background-color:rgb(161, 160, 160);
+       }
+@media only screen and (max-width:1024px){
+  .tble {
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100% !important;
+  } 
+  .eight-col{
+    left: 86% ;
+    position: absolute;
+    background-color: white;
+    width: 12%;
+  } 
+} 
+@media only screen and (max-width: 890px){
+  .tble {
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100% !important;
+  } 
+}

@@ -1,0 +1,27 @@
+>
+<div class="page-wrapper" >
+    <div class="content container-fluid setwidthcon5" >
+        <div>
+            <div  routerLink="/notifications/news"><i class="fa fa-angle-double-left" style=""  aria-hidden="true"></i>&nbsp;Back</div>
+            <div class="row" >
+                <div class="col-lg-12" >
+                    <div class="card my-2">
+                        <div class="card-body">
+                            <a  class="card-heading"><h6 class="font-weight-bold"><i class="fa fa-flag" aria-hidden="true"></i> &nbsp; <span>{{getNews.title}}</span></h6></a>
+                            <div class="news-div">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;
+                                <span class="date"><b>{{getNews.date |date:'dd-MM-yy'}}</b> </span>
+                                <span class="divider"></span>
+                                <span>{{getNews.ref.createdBy.name}}</span>
+                            </div>
+                        </div>
+                        <div style="margin-left: 20px;font-size:small; "innerHtml="{{getNews.message}}"></div>
+                    </div>
+                </div>
+      
+                
+            </div>
+        </div>
+    </div>
+</div>
+

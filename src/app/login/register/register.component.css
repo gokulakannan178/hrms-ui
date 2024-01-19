@@ -1,0 +1,90 @@
+.account-title {
+  margin-top: -65px;
+  margin-bottom: 0px;
+}
+
+.account-content {
+  margin: 139px 0px 103px -700px !important;
+
+}
+.login-img{
+  display: none;
+}
+.account-box {
+  border-radius: 18px;
+}
+
+.logo-img {
+  background: #ff96471a;
+  padding: 13px;
+  border-radius: 51px;
+}
+
+.account-box .account-btn {
+  border-radius: 30px;
+}
+
+.account-box .form-control {
+  border-radius: 34px;
+}
+
+.input-group-text {
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #fa6371;
+  background-color: #fbfbfb;
+  border: 1px solid #e3e3e3;
+  border-radius: 50px;
+  margin-left: 4px;
+}
+
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+@media only screen and (max-width: 550px){
+  .account-content {
+    margin: 130px 0 120px !important;
+}
+.main-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100% !important;
+}
+.login-img{
+  display: block;
+}
+}
+@media only screen and (max-width: 900px) and (min-width: 560px){
+.main-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 218% !important;
+}
+.account-content{
+  margin: 130px 0px 103px -852px !important;
+}
+.login-img{
+  display: block;
+}
+}
+@media only screen and (max-width: 1100px) and (min-width: 901px){
+  .main-wrapper{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 218% !important;
+  }
+  .account-content{
+    margin: 130px 0px 103px -1050px !important;
+  }
+  .login-img{
+    display: block;
+  }
+  }

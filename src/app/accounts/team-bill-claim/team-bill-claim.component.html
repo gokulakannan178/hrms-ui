@@ -1,0 +1,595 @@
+<div class="page-wrapper">
+    <!-- Page Content -->
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col-xl-9 col-lg-6">
+                    <h3 class="page-title">Accounts</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/dashboard">Home</a></li>
+                        <li class="breadcrumb-item active1">Team Bill Claim</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <div class="page-body">
+            <div class="">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"><i class="fa-regular fa-hourglass-half"></i> Pending</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="profile-tab" data-toggle="tab" data-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><i class="fa-regular fa-circle-check"></i> Approved</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="contact-tab" data-toggle="tab" data-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false"><i class="fa-regular fa-circle-xmark"></i> Rejected</button>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="main-card mb-3 card">
+                            <div class="card-body tableScroll" style="overflow-x: scroll; overflow-y: auto;">
+                                <div class="tble">
+                                    <table class="table table-hover table-striped table-bordered">
+                                        <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th scope="col">Employee Name</th>
+                                      <th scope="col">Applied Date</th>
+                                      <th scope="col">Applied Amount</th>
+                                      <th scope="col">Uploaded File</th>
+                                      <th scope="col">Status</th>
+                                      <th scope="col" >Controls</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td data-label="#">1</td>
+                                      <td data-label="name">Gokul</td>
+                                      <td data-label="date">10-10-2023</td>
+                                      <td data-label="amount">2000</td>
+                                      <td data-label="file" class="bill-upload">
+                                        <a data-toggle="modal" data-target="#uploadedModal"><i class="fa-regular fa-eye"></i> Bill.png</a>
+                                      </td>
+                                      <td data-label="status" class="pending-status"><i class="fa-solid fa-circle"></i> Pending</td>
+                                      <td data-label="Controls">
+                                          <div class="controls desktop_control con_icons" style=" display: flex;
+                                          justify-content: space-around;">
+                                         
+                                              
+                                         
+                                          <div class="dropdown-action">
+                                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                              aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                          <div class="dropdown-menu dropdown-menu-right">
+              
+                                         
+                                               <a class="dropdown-item" data-toggle="modal" data-target="#editModal">
+                                              <i class="fa fa-pencil pen mr-2" aria-hidden="true"></i>Edit Bill</a> &nbsp;
+                                              
+              
+                                              <a class="dropdown-item" data-toggle="modal" data-target="#viewModal" class="text-dark">
+                                                    <i class="fa fa-eye mr-2 green" aria-hidden="true"></i>View Bill</a> &nbsp;
+                                                 
+                                             
+                                               <a class="dropdown-item" data-toggle="modal" data-target="#deleteModal">
+                                                      <i class="fa fa-trash dust mr-2" aria-hidden="true" ></i>Delete Bill</a> 
+              
+                                                      
+                                              <a  class="dropdown-item approve-arrow"  data-toggle="modal" data-target="#approvedModal">
+                                                  <i class="fa fa-arrow-right m-r-5 "  aria-hidden="true"></i>Approve Bill</a>
+                                                  
+                                                  <a class="dropdown-item reject-arrow"  data-toggle="modal" data-target="#rejectedModal">
+                                                      <i class="fa fa-arrow-right m-r-5 "  aria-hidden="true" ></i>Reject Bill</a>
+                                             
+                                             
+                                           </div>
+                                           </div>
+                                          </div>
+                                      </td> 
+                                  
+                                  </tr>
+                              </tbody>
+                                      </table>
+                                </div>
+                                <div class="row" style="    justify-content: space-between;
+                                padding: 0px 17px 0px 15px;">
+                                    <div>
+                                        <ul class="pagination mt-5">
+                                            <li class="page-item">
+                                                <a class="page-link">First</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link">Previous</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link" >1</a>
+                                            </li>
+                                            <li class="page-item"
+                                                >
+                                                <a class="page-link">Next</a>
+                                            </li>
+                                            <li class="page-item"
+                                                >
+                                                <a class="page-link">Last</a>
+                                            </li>
+                                        </ul>
+                                        <label  style="color: black;">Total Record- 1</label>
+                                    </div>
+                                    <div>
+                                        <ul class="pagination mt-5 pull-right" >
+                                            <li class="page-item">
+                                                <a class="page-link">10</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link">50</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link">100</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="main-card mb-3 card">
+                            <div class="card-body tableScroll" style="overflow-x: scroll; overflow-y: auto;">
+                                <div class="tble">
+                                    <table class="table table-hover table-striped table-bordered">
+                                        <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th scope="col">Employee Name</th>
+                                      <th scope="col">Applied Date</th>
+                                      <th scope="col">Applied Amount</th>
+                                      <th scope="col">Uploaded File</th>
+                                      <th scope="col">Status</th>
+                                      <th scope="col" >Controls</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td data-label="#">1</td>
+                                      <td data-label="name">Gokul</td>
+                                      <td data-label="date">10-10-2023</td>
+                                      <td data-label="amount">2000</td>
+                                      <td data-label="file" class="bill-upload">
+                                        <a data-toggle="modal" data-target="#uploadedModal"><i class="fa-regular fa-eye"></i> Bill.png</a> 
+                                      </td>
+                                      <td data-label="status" class="approve-status"><i class="fa-solid fa-circle"></i> Approved</td>
+                                      <td data-label="Controls">
+                                          <div class="controls desktop_control con_icons" style=" display: flex;
+                                          justify-content: space-around;">
+                                         
+                                              
+                                         
+                                          <div class="dropdown-action">
+                                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                              aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                          <div class="dropdown-menu dropdown-menu-right">
+                                             <a class="dropdown-item" data-toggle="modal" data-target="#viewModal" class="text-dark">
+                                                      <i class="fa fa-eye mr-2 green" aria-hidden="true"></i>View Bill</a> &nbsp;
+                                                   
+                                               
+                                                 <a class="dropdown-item" data-toggle="modal" data-target="#deleteModal">
+                                                        <i class="fa fa-trash dust mr-2" aria-hidden="true" ></i>Delete Bill</a> 
+                
+                                           </div>
+                                           </div>
+                                          </div>
+                                      </td> 
+                                  
+                                  </tr>
+                              </tbody>
+                                      </table>
+                                </div>
+                                <div class="row" style="    justify-content: space-between;
+                                padding: 0px 17px 0px 15px;">
+                                    <div>
+                                        <ul class="pagination mt-5">
+                                            <li class="page-item">
+                                                <a class="page-link">First</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link">Previous</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link" >1</a>
+                                            </li>
+                                            <li class="page-item"
+                                                >
+                                                <a class="page-link">Next</a>
+                                            </li>
+                                            <li class="page-item"
+                                                >
+                                                <a class="page-link">Last</a>
+                                            </li>
+                                        </ul>
+                                        <label  style="color: black;">Total Record- 1</label>
+                                    </div>
+                                    <div>
+                                        <ul class="pagination mt-5 pull-right" >
+                                            <li class="page-item">
+                                                <a class="page-link">10</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link">50</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link">100</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="main-card mb-3 card">
+                            <div class="card-body tableScroll" style="overflow-x: scroll; overflow-y: auto;">
+                                <div class="tble">
+                                    <table class="table table-hover table-striped table-bordered">
+                                        <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th scope="col">Employee Name</th>
+                                      <th scope="col">Applied Date</th>
+                                      <th scope="col">Applied Amount</th>
+                                      <th scope="col">Uploaded File</th>
+                                      <th scope="col">Status</th>
+                                      <th scope="col" >Controls</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td data-label="#">1</td>
+                                      <td data-label="name">Gokul</td>
+                                      <td data-label="date">10-10-2023</td>
+                                      <td data-label="amount">2000</td>
+                                      <td data-label="file" class="bill-upload">
+                                        <a data-toggle="modal" data-target="#uploadedModal"><i class="fa-regular fa-eye"></i> Bill.png</a>
+                                      </td>
+                                      <td data-label="status" class="reject-status"><i class="fa-solid fa-circle"></i> Reject</td>
+                                      <td data-label="Controls">
+                                          <div class="controls desktop_control con_icons" style=" display: flex;
+                                          justify-content: space-around;">
+                                         
+                                              
+                                         
+                                          <div class="dropdown-action">
+                                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                              aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                          <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#editModal">
+                                                <i class="fa fa-pencil pen mr-2" aria-hidden="true"></i>Edit Bill</a> &nbsp;
+                                                
+                
+                                                <a class="dropdown-item" data-toggle="modal" data-target="#viewModal" class="text-dark">
+                                                      <i class="fa fa-eye mr-2 green" aria-hidden="true"></i>View Bill</a> &nbsp;
+                                                   
+                                               
+                                                 <a class="dropdown-item" data-toggle="modal" data-target="#deleteModal">
+                                                        <i class="fa fa-trash dust mr-2" aria-hidden="true" ></i>Delete Bill</a> 
+                
+                                           </div>
+                                           </div>
+                                          </div>
+                                      </td> 
+                                  
+                                  </tr>
+                              </tbody>
+                                      </table>
+                                </div>
+                                <div class="row" style="    justify-content: space-between;
+                                padding: 0px 17px 0px 15px;">
+                                    <div>
+                                        <ul class="pagination mt-5">
+                                            <li class="page-item">
+                                                <a class="page-link">First</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link">Previous</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link" >1</a>
+                                            </li>
+                                            <li class="page-item"
+                                                >
+                                                <a class="page-link">Next</a>
+                                            </li>
+                                            <li class="page-item"
+                                                >
+                                                <a class="page-link">Last</a>
+                                            </li>
+                                        </ul>
+                                        <label  style="color: black;">Total Record- 1</label>
+                                    </div>
+                                    <div>
+                                        <ul class="pagination mt-5 pull-right" >
+                                            <li class="page-item">
+                                                <a class="page-link">10</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link">50</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link">100</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page content  -->
+    <!-- edit modal  -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+           aria-hidden="true">
+           <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                   <div class="modal-header" style="background: #ff9b44;color: #fff;">
+                       <h5 class="modal-title mt-0" id="langModalLabel">Edit Bill</h5>
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                       </button>
+                   </div>
+                   <div class="modal-body">
+                    <form>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="inputEmployee">Employee Name</label>
+                            <input type="text" class="form-control" id="inputEmployee" value="Gokul">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="inputDate">Applied Date</label>
+                            <input type="date" class="form-control" id="inputDate" value="2023-10-10">
+                          </div>
+                        </div>
+                        <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="inputAmount">Applied Amount</label>
+                          <input type="text" class="form-control" id="inputAmount" value="2000">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputStatus">Status</label>
+                            <select id="inputStatus" class="form-control">
+                              <option>Choose Status</option>
+                              <option selected>Pending</option>
+                              <option value="">Approved</option>
+                              <option value="">Reject</option>
+                            </select>
+                        </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="inputFile">Uploaded File</label>
+                              <input type="file" class="form-control" id="inputFile">
+                              <img src="/assets/img/bill-image.png" width="100%" alt="">
+                            </div>
+                        </div>
+                     </form>
+                   </div>
+                   <div class="modal-footer">
+                    <button type="button" class="btn btn-primary prim" data-dismiss="modal">
+                        &nbsp;Edit</button>
+                      <button type="button" class="btn btn-danger clos" data-dismiss="modal">
+                           &nbsp;Close</button>
+                     
+          
+                   </div>
+               </div>
+           </div>
+          </div>
+    <!-- view modal  -->
+    <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+           aria-hidden="true">
+           <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                   <div class="modal-header" style="background: #ff9b44;color: #fff;">
+                       <h5 class="modal-title mt-0" id="langModalLabel">View Bill</h5>
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                       </button>
+                   </div>
+                   <div class="modal-body">
+                    <form>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="inputEmployee">Employee Name</label>
+                            <input type="text" class="form-control" id="inputEmployee" value="Gokul" disabled>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="inputDate">Applied Date</label>
+                            <input type="date" class="form-control" id="inputDate" value="2023-10-10" disabled>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label for="inputAmount">Applied Amount</label>
+                          <input type="text" class="form-control" id="inputAmount" value="2000" disabled>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputStatus">Status</label>
+                            <select id="inputStatus" class="form-control" disabled>
+                              <option>Choose Status</option>
+                              <option selected>Pending</option>
+                              <option value="">Approved</option>
+                              <option value="">Reject</option>
+                            </select>
+                        </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="inputFile">Uploaded File</label>
+                              <img src="/assets/img/bill-image.png" width="100%" alt="">
+                            </div>
+                        </div>
+                     </form>
+                   </div>
+                   <div class="modal-footer">
+                    <button type="button" class="btn btn-danger clos" data-dismiss="modal">
+                           &nbsp;Close</button>
+                     
+          
+                   </div>
+               </div>
+           </div>
+          </div>
+    <!-- delete modal  -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+           aria-hidden="true">
+           <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                   <div class="modal-header" style="background: #ff9b44;color: #fff;">
+                       <h5 class="modal-title mt-0" id="langModalLabel">Delete Bill</h5>
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                       </button>
+                   </div>
+                   <div class="modal-body">
+                       <form>
+                           <div class="form-group">
+                               <label class="control-label">Are you sure want to delete this item ?<span class="required"></span> </label>
+                           </div>
+                       </form>
+                   </div>
+                   <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary prim">OK</button>
+                       <button type="button" class="btn btn-danger clos" data-dismiss="modal">
+                           &nbsp;Close</button>
+                     
+          
+                   </div>
+               </div>
+           </div>
+          </div>
+    <!-- upload file modal  -->
+    <div class="modal fade" id="uploadedModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+           aria-hidden="true">
+           <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                   <div class="modal-header" style="background: #ff9b44;color: #fff;">
+                       <h5 class="modal-title mt-0" id="langModalLabel">Uploaded File</h5>
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                       </button>
+                   </div>
+                   <div class="modal-body">
+                       <img src="/assets/img/bill-image.png" width="100%" alt="">
+                   </div>
+                   <div class="modal-footer">
+                      <button type="button" class="btn btn-danger clos" data-dismiss="modal">
+                           &nbsp;Close</button>
+                     
+          
+                   </div>
+               </div>
+           </div>
+          </div>
+    <!-- approved modal  -->
+    <div class="modal fade" id="approvedModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+           aria-hidden="true">
+           <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                   <div class="modal-header" style="background: #ff9b44;color: #fff;">
+                       <h5 class="modal-title mt-0" id="langModalLabel">Approve Bill</h5>
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                       </button>
+                   </div>
+                   <div class="modal-body">
+                    <div class="row">
+                        <table class="table table-bordered mx-2">
+                            <tbody>
+                                <tr>
+                                    <th>Employee Name</th>
+                                    <td>Gokul</td>
+                                </tr>
+                                <tr>
+                                    <th>Applied Date</th>
+                                    <td>10-10-2023</td>
+                                </tr>
+                                <tr>
+                                    <th>Amount</th>
+                                    <td>2000</td>
+                                </tr>
+                                <tr>
+                                    <th>Uploaded File</th>
+                                    <td>
+                                        <img src="/assets/img/bill-image.png" width="200" alt="">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                       
+                   </div>
+                   <div class="modal-footer">
+                    <button type="button" class="btn btn-primary prim" data-dismiss="modal">
+                        &nbsp;Approve</button>
+                      <button type="button" class="btn btn-danger clos" data-dismiss="modal">
+                           &nbsp;Close</button>
+                     
+          
+                   </div>
+               </div>
+           </div>
+          </div>
+    <!-- reject modal  -->
+    <div class="modal fade" id="rejectedModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+           aria-hidden="true">
+           <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                   <div class="modal-header" style="background: #ff9b44;color: #fff;">
+                       <h5 class="modal-title mt-0" id="langModalLabel">Reject Bill</h5>
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                       </button>
+                   </div>
+                   <div class="modal-body">
+                    <div class="row">
+                        <table class="table table-bordered mx-2">
+                            <tbody>
+                                <tr>
+                                    <th>Employee Name</th>
+                                    <td>Gokul</td>
+                                </tr>
+                                <tr>
+                                    <th>Applied Date</th>
+                                    <td>10-10-2023</td>
+                                </tr>
+                                <tr>
+                                    <th>Amount</th>
+                                    <td>2000</td>
+                                </tr>
+                                <tr>
+                                    <th>Uploaded File</th>
+                                    <td>
+                                        <img src="/assets/img/bill-image.png" width="200" alt="">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                       
+                   </div>
+                   <div class="modal-footer">
+                    <button type="button" class="btn btn-primary prim" data-dismiss="modal">
+                        &nbsp;Reject</button>
+                      <button type="button" class="btn btn-danger clos" data-dismiss="modal">
+                           &nbsp;Close</button>
+                     
+          
+                   </div>
+               </div>
+           </div>
+          </div>
+</div>

@@ -1,0 +1,67 @@
+<!-- Created by Riddhi Omar on 27/04/2022 -->
+<body>
+    <div class=" page-details">
+      <div class="container-fluid card pl-5 py-5">
+        <div class="back">
+          <button type="button" class="btn btn-light back" onclick="history.back()"><i class="mr-2 fa fa-arrow-left" aria-hidden="true"></i>Back</button>
+        </div>
+        <!-- page header start -->
+        <div class="page-header">
+          <div class="row align-items-center">
+            <h3 class="page-title">Leave Policy</h3>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/dashboard/employee_dashbaord">Home</a></li>
+                <li class="breadcrumb-item active1">Edit Leave Policy</li>
+              </ul>
+          </div>
+        </div>
+        <!-- page header end -->
+        <!-- page-card start -->
+        <div class="">
+          <form [formGroup]="leavePolicyforms">
+           
+            <div class="form-group">
+              <label for="InputName" class="text-bold">Name<span class="required">*</span> </label>
+                <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter Name"
+                formControlName="name"
+                [ngClass]="{'red-border-class': Submitted && fr.name.errors}" required>
+            </div>
+  
+         
+            <div class="form-group">
+              <label for="InputDescription">Description<span class="required">*</span> </label>
+              <textarea class="form-control" name=" Description" id="InputDescription" placeholder="Enter Description" 
+              formControlName="desp"
+              [ngClass]="{'red-border-class': Submitted && fr.desp.errors}" required></textarea>
+            </div> 
+  
+            <div class="form-group">
+              <label for="InputOrganization">Organization<span class="required">*</span> </label>
+                <select class="form-select form-control dd" aria-label="Default select " formControlName="orgdrop" (change)="leavetypeval($event)" 
+                [ngClass]="{'red-border-class': Submitted && fr.orgdrop.errors}" required>
+                 
+    
+                        <option value="">Select Your Option</option>
+    
+                        <option value="{{i}}" placeholder="Select Organization" *ngFor='let data of org_dd;let i=index'>{{data.name}}</option>
+  
+                 
+                </select>
+            </div>
+  
+            <h6><u>Leave List</u></h6>
+            <div *ngFor="let lt of leavetype_properties">
+              <label >{{lt.name}} <span class="required">*</span></label>
+              <input class="form-control" (change)="getLeavePropertyValues(lt.uniqueId,$event)"  type="text" id="InputName" value ="{{lt.value}}" size="50" placeholder="Enter Value">
+    
+            </div>
+  
+          <button type="submit" (click)="updateleavepolicy()"class="btn mb-5">Update Leave Policy</button>
+          </form>
+        </div>
+        
+        <!-- page-card end -->
+      </div>
+    </div>
+  </body>
+  

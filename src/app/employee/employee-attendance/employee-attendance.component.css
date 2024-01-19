@@ -1,0 +1,295 @@
+.status-button{
+    float: right;
+    line-height: 6;
+}
+.select-focus{
+    padding-right: 6px !important;
+    padding-left: 6px !important;
+}
+.icon1{
+    background-color: grey;
+    /* margin-left:10em; */
+    font-size: 20px;
+    width: 33px;
+    border: none;
+    border-radius: 6px;
+  }
+  .searc{
+    color:white;
+    font-size:17px;
+  }
+  .notification-row{
+    background: #c5c5c547;
+    border: 1px solid #aba9a947;
+    margin: 0 5px;
+    padding: 5px 10px;
+  }
+  .notification-row p{
+    line-height: 2;
+    margin-bottom: 0 !important;
+  }
+  .eight-col{
+    left: 91%;
+    position: absolute;
+}
+.three-dots:after {
+    cursor: pointer;
+    color: black;
+    background-color: gainsboro;
+    border-radius: 5px;
+    content: '\2807';
+    font-size: 20px;
+    padding: 5px 7px 5px 12px;
+    
+  }
+  
+  a {
+    text-decoration: none;
+    color: black;
+    background-color: white;
+  }
+  
+  a div {
+    padding: 2px;
+  }
+  .edit{
+      display: block;
+      width: 150px;
+  }
+  
+  .dropdown {
+      background-color: white;
+    position: relative;
+    right: 18px;
+    box-shadow: 0px 0px 3px 3px rgb(252, 248, 248);
+    outline: none;
+    opacity: 0;
+    z-index: -1;
+    max-height: 0;
+    transition: opacity 0.1s, z-index 0.1s, max-height 5s;
+  }
+  .dropdown a{
+    color: black !important;
+  }
+  
+  .dropdown-container:focus {
+    outline: none;
+  }
+  
+  .dropdown-container:focus .dropdown {
+    opacity: 1;
+    z-index: 100;
+    max-height: 100vh;
+    transition: opacity 0.2s, z-index 0.2s, max-height 0.2s;
+  }
+  .tble2 td:last-child{
+    padding: 0.6rem 0.75rem;
+  }
+  .table-row td{
+    color: #ff9b44 ;
+    line-height: 2.19;
+    border-top: 2px solid #dee2e6 !important;
+  }
+  .table thead th {
+    vertical-align: top !important;
+    border-bottom: 2px solid #dee2e6;
+}
+th, td {
+    text-align: left !important;
+}
+.page-link {
+    background: #ff9b44;
+    color: #fff !important;
+    cursor: pointer;
+}
+@media only screen and (max-width: 2000px) and (min-width:1599px) {
+    .tble1{
+        width: 40%;
+    }
+    .tble2 {
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 60% ;
+    } 
+    .tble2 .table{
+        margin-right: 8%;
+    }
+    .eight-col{
+        left: 95% ;
+        position: absolute;
+        background-color: white;
+        width: 5%;
+    } 
+    .dropdown {
+        background-color: white;
+      position: relative;
+      right: 155px;
+      top: -35px;
+      box-shadow: 0px 0px 3px 3px rgb(252, 248, 248);
+      outline: none;
+      opacity: 0;
+      z-index: -1;
+      max-height: 0;
+      transition: opacity 0.1s, z-index 0.1s, max-height 5s;
+    }
+    #myProgress {
+        width: 47%;
+        background-color: #ddd;
+      }
+      
+      #myBar {
+        height: 6px;
+        background: orange;
+      }
+}
+  @media only screen and (max-width: 1600px) and (min-width:1441px) {
+    .tble1{
+        width: 60%;
+    }
+    .tble2 {
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 35% ;
+    } 
+    .eight-col{
+        left: 95% ;
+        position: absolute;
+        background-color: white;
+        width: 5%;
+        margin-top: -1px;
+    } 
+    .dropdown {
+        background-color: white;
+      position: relative;
+      right: 155px;
+      top: -35px;
+      box-shadow: 0px 0px 3px 3px rgb(252, 248, 248);
+      outline: none;
+      opacity: 0;
+      z-index: -1;
+      max-height: 0;
+      transition: opacity 0.1s, z-index 0.1s, max-height 5s;
+    }
+    #myProgress {
+        width: 47%;
+        background-color: #ddd;
+      }
+      
+      #myBar {
+        height: 6px;
+        background: orange;
+      }
+}
+@media only screen and (max-width: 1440px) and (min-width:1367px) {
+    .tble2 {
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 45% !important;
+    }  
+    .tble1{
+        width: 50% !important;
+    }
+    .eight-col{
+        left: 93% !important;
+        position: absolute;
+        background-color: white;
+        width: 5%;
+    }
+}
+@media only screen and (max-width: 1366px) and (min-width:1291px) {
+    .tble2 {
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 43% !important;
+    }  
+    .tble1{
+        width: 50% !important;
+        white-space: nowrap;
+    overflow-x: auto;
+    }
+    .eight-col{
+        left: 91% !important;
+        position: absolute;
+        background-color: white;
+        width: 5%;
+    }
+}
+@media only screen and (max-width: 1290px) and (min-width:1025px) {
+    .tble2 {
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 42% !important;
+    }  
+    .tble1{
+        width: 50% !important;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    .eight-col{
+        left: 90% !important;
+        position: absolute;
+        background-color: white;
+        width: 10%;
+    }
+    
+}
+@media only screen and (max-width: 1024px) and (min-width:769px) {
+    .page-wrapper{
+        width: calc(100% - 230px);
+    }
+    .tble2 {
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 41% !important;
+    }  
+    .tble1{
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 50% !important;
+    }
+    .eight-col{
+        left: 88% !important;
+        position: absolute;
+        background-color: white;
+        width: 12%;
+    }
+}
+@media only screen and (max-width: 768px) and (min-width:426px) {
+    .page-wrapper{
+        width: 100% !important;
+    }
+    .tble2 {
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 40% !important;
+    }  
+    .tble1{
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 50% !important;
+    }
+    .eight-col{
+        left: 92% !important;
+        position: absolute;
+        background-color: white;
+        width: 12%;
+    }
+}
+@media only screen and (max-width: 425px){
+    
+    .tble2 {
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 45% !important;
+    }  
+    .tble1{
+        width: 40% !important;
+    }
+    .eight-col{
+        left: 85% !important;
+        position: absolute;
+        background-color: white;
+        width: 15%;
+    }
+    
+}

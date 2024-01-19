@@ -1,0 +1,625 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+			
+    <!-- Page Content -->
+    <div class="content container-fluid">
+    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Employee Salary</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/Dashboard">Home</a></li>
+                        <li class="breadcrumb-item active">Salary</li>
+                    </ul>
+                </div>
+                <!-- <div class="col-auto float-right ml-auto">
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_salary"><i class="fa fa-plus"></i> Add Salary</a>
+                </div> -->
+            </div>
+        </div>
+        <!-- /Page Header -->
+        
+        <!-- Search Filter -->
+        <form [formGroup]="searchForms">
+        <div class="row filter-row" >
+           
+           <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12"> 
+            <label class="focus-label">Employee Name</label>
+
+                <div class="form-group form-focus">
+                    <input type="text" class="form-control floating" formControlName="name">
+                    <!-- <label class="focus-label">Employee Name</label> -->
+                </div>
+           </div>
+           <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">  
+            <label class="focus-label">Role</label>
+                 <div class="form-group form-focus select-focus">
+                    <select class="select floating form-control" formControlName="role_id"> 
+                        <option value="" > -- Select -- </option>
+                        <option value="{{data.uniqueId}}" *ngFor="let data of roledata" >{{data.name}}</option>
+                        
+                    </select>
+                </div>
+           </div>
+           <!-- <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12"> 
+            <label class="focus-label">Leave Status</label>
+                 <div class="form-group form-focus select-focus">
+                    <select class="select floating form-control"> 
+                        <option> -- Select -- </option>
+                        <option> Pending </option>
+                        <option> Approved </option>
+                        <option> Rejected </option>
+                    </select>
+                </div>
+           </div> -->
+           <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">  
+            <label class="focus-label">Start Date </label>
+                 <div class="form-group form-focus">
+                    <div class="cal">
+                        <input class="form-control" type="date" formControlName="sdate" >
+                    </div>
+                  
+                </div>
+            </div>
+           <!-- <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12"> 
+            <label class="focus-label">To</label>
+                 <div class="form-group form-focus">
+                    <div class="cal">
+                        <input class="form-control" type="date">
+                    </div>
+                  
+                </div>
+            </div> -->
+            <div style="margin-top:25px !important" class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">  
+                <button   class="btn btn-success btn-block" (click)="search()"> Search </button>  
+            </div> 
+            <div style="margin-top:25px !important" class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">  
+                <button   class="btn btn-success btn-block" (click)="reset()"> Reset </button>  
+            </div> 
+        </div>
+    </form>  
+        <!-- /Search Filter -->
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-striped custom-table datatable">
+                        <thead>
+                            <tr>
+                                <th>Employee</th>
+                                <th>Employee ID</th>
+                                <th>Email</th>
+                                <th>Join Date</th>
+                                <th>Role</th>
+                                <th>Salary</th>
+                                <th>Payslip</th>
+                                <th class="text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let data of activeDetails">
+                            <tr >
+                                <td data-label="Employee" >
+                                    <h2  class="table-avatar">
+                                        <div >
+                                            <div>
+                                        <a routerLink="/employee/employee_profile" (click)="useraction('view',employee.uniqueId)" class="avatar"><img alt="image" src="assets/img/profiles/avatar-02.jpg" width="" height="" *ngIf="data.ref.employeeId.profileImg ==''">
+                                          <img alt="image" src="{{apiUrl+data.ref.employeeId.profileImg}}"  width="40" height="40" *ngIf="data.ref.employeeId.profileImg !=''"></a>
+                                        
+                                    </div>
+                                            <div>
+                                        <a href="javascript:void(0);">{{data.ref.employeeId.name}} <span>{{data.ref.designationId.name}}</span></a></div>
+                                            </div>
+                                    </h2>
+                                </td>
+                                <td data-label="Employee ID">{{data.employeeId}}</td>
+                                <td data-label="Email">{{data.ref.employeeId.email}}</td>
+                                <td data-label="Join Date">{{apiService.getDate1(data.ref.employeeId.joiningDate)}}</td>
+                                <td data-label="Role">{{data.ref.designationId.name}}</td>
+                                    <!-- <div class="dropdown">
+                                        <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Web Designer </a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Software Engineer</a>
+                                            <a class="dropdown-item" href="#">Software Tester</a>
+                                            <a class="dropdown-item" href="#">Frontend Developer</a>
+                                            <a class="dropdown-item" href="#">UI/UX Developer</a>
+                                        </div>
+                                    </div> -->
+                               
+                                <td data-label="Salary">Rs.{{data.netAmount.toFixed(2)}}</td>
+                                <td data-label="Payslip"><a class="btn btn-sm btn-primary" routerLink="/reports/payslip" (click)="generate(data)">Generate Slip</a></td>
+                                <td data-label="Action" class="text-right">
+                                    <div class="dropdown dropdown-action">
+                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons" >more_vert</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_salary"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_salary"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- <tr>
+                                <td>
+                                    <h2 class="table-avatar">
+                                        <a href="javascript:void(0);" class="avatar"><img src="assets/img/profiles/avatar-09.jpg" alt=""></a>
+                                        <a href="javascript:void(0);">Richard Miles <span>Web Developer</span></a>
+                                    </h2>
+                                </td>
+                                <td>FT-0002</td>
+                                <td>richardmiles@example.com</td>
+                                <td>1 Jan 2018</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Web Developer </a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Software Engineer</a>
+                                            <a class="dropdown-item" href="#">Software Tester</a>
+                                            <a class="dropdown-item" href="#">Frontend Developer</a>
+                                            <a class="dropdown-item" href="#">UI/UX Developer</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Rs 72000</td>
+                                <td><a class="btn btn-sm btn-primary" routerLink="/reports/payslip">Generate Slip</a></td>
+                                <td class="text-right">
+                                    <div class="dropdown dropdown-action">
+                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_salary"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_salary"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h2 class="table-avatar">
+                                        <a href="javascript:void(0);" class="avatar"><img src="assets/img/profiles/avatar-10.jpg" alt=""></a>
+                                        <a href="javascript:void(0);">John Smith <span>Android Developer</span></a>
+                                    </h2>
+                                </td>
+                                <td>FT-0003</td>
+                                <td>johnsmith@example.com</td>
+                                <td>1 Jan 2018</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Android Developer </a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Software Engineer</a>
+                                            <a class="dropdown-item" href="#">Software Tester</a>
+                                            <a class="dropdown-item" href="#">Frontend Developer</a>
+                                            <a class="dropdown-item" href="#">UI/UX Developer</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Rs 48200</td>
+                                <td><a class="btn btn-sm btn-primary" href="/reports/payslip">Generate Slip</a></td>
+                                <td class="text-right">
+                                    <div class="dropdown dropdown-action">
+                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_salary"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_salary"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h2 class="table-avatar">
+                                        <a href="javascript:void(0);" class="avatar"><img src="assets/img/profiles/avatar-05.jpg" alt=""></a>
+                                        <a href="javascript:void(0);">Mike Litorus <span>IOS Developer</span></a>
+                                    </h2>
+                                </td>
+                                <td>FT-0004</td>
+                                <td>mikelitorus@example.com</td>
+                                <td>1 Jan 2018</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false">IOS Developer </a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Software Engineer</a>
+                                            <a class="dropdown-item" href="#">Software Tester</a>
+                                            <a class="dropdown-item" href="#">Frontend Developer</a>
+                                            <a class="dropdown-item" href="#">UI/UX Developer</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Rs 59698</td>
+                                <td><a class="btn btn-sm btn-primary" href="/reports/payslip">Generate Slip</a></td>
+                                <td class="text-right">
+                                    <div class="dropdown dropdown-action">
+                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_salary"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_salary"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h2 class="table-avatar">
+                                        <a href="javascript:void(0);" class="avatar"><img src="assets/img/profiles/avatar-11.jpg" alt=""></a>
+                                        <a href="javascript:void(0);">Wilmer Deluna <span>Team Leader</span></a>
+                                    </h2>
+                                </td>
+                                <td>FT-0005</td>
+                                <td>wilmerdeluna@example.com</td>
+                                <td>1 Jan 2018</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Team Leader </a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Software Engineer</a>
+                                            <a class="dropdown-item" href="#">Software Tester</a>
+                                            <a class="dropdown-item" href="#">Frontend Developer</a>
+                                            <a class="dropdown-item" href="#">UI/UX Developer</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Rs 43000</td>
+                                <td><a class="btn btn-sm btn-primary" href="/reports/payslip">Generate Slip</a></td>
+                                <td class="text-right">
+                                    <div class="dropdown dropdown-action">
+                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_salary"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_salary"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h2 class="table-avatar">
+                                        <a href="javascript:void(0);" class="avatar"><img src="assets/img/profiles/avatar-12.jpg" alt=""></a>
+                                        <a href="javascript:void(0);">Jeffrey Warden <span>Web Developer</span></a>
+                                    </h2>
+                                </td>
+                                <td>FT-0006</td>
+                                <td>jeffreywarden@example.com</td>
+                                <td>1 Jan 2018</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Web Developer</a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Software Engineer</a>
+                                            <a class="dropdown-item" href="#">Software Tester</a>
+                                            <a class="dropdown-item" href="#">Frontend Developer</a>
+                                            <a class="dropdown-item" href="#">UI/UX Developer</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Rs 45000</td>
+                                <td><a class="btn btn-sm btn-primary" href="/reports/payslip">Generate Slip</a></td>
+                                <td class="text-right">
+                                    <div class="dropdown dropdown-action">
+                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_salary"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_salary"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h2 class="table-avatar">
+                                        <a href="javascript:void(0);" class="avatar"><img src="assets/img/profiles/avatar-13.jpg" alt=""></a>
+                                        <a href="javascript:void(0);">Bernardo Galaviz <span>Web Developer</span></a>
+                                    </h2>
+                                </td>
+                                <td>FT-0007</td>
+                                <td>bernardogalaviz@example.com</td>
+                                <td>1 Jan 2014</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Web Developer </a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Software Engineer</a>
+                                            <a class="dropdown-item" href="#">Software Tester</a>
+                                            <a class="dropdown-item" href="#">Frontend Developer</a>
+                                            <a class="dropdown-item" href="#">UI/UX Developer</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Rs 38400</td>
+                                <td><a class="btn btn-sm btn-primary" href="/reports/payslip">Generate Slip</a></td>
+                                <td class="text-right">
+                                    <div class="dropdown dropdown-action">
+                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_salary"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_salary"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row" style="    justify-content: space-between;
+                padding: 0px 17px 0px 15px;">
+                        <div>
+                            <ul class="pagination mt-5">
+                                <li class="page-item">
+                                    <a class="page-link" (click)="setPagepayrolleemp(1)">First</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link"
+                                        (click)="setPagepayrolleemp(pageractiveemp.currentPage - 1)">Previous</a>
+                                </li>
+                                <li class="page-item" *ngFor="let page of pageractiveemp.pages">
+                                    <a class="page-link" (click)="setPagepayrolleemp(page)">{{page}}</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link"
+                                        (click)="setPagepayrolleemp(pageractiveemp.currentPage + 1)">Next</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link"
+                                        (click)="setPagepayrolleemp(pageractiveemp.totalPages)">Last</a>
+                                </li>
+                            </ul>
+                            <label style="color: black;">Total Record- {{activeemp_count}}</label>
+                        </div>
+                        <div>
+                            <ul class="pagination mt-5 pull-right">
+                                <li class="page-item">
+                                    <a class="page-link" (click)="saveactiveempItems(10)">10</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" (click)="saveactiveempItems(50)">50</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" (click)="saveactiveempItems(100)">100</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Content -->
+    
+    <!-- Add Salary Modal -->
+    <div id="add_salary" class="modal custom-modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Staff Salary</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row"> 
+                            <div class="col-sm-6"> 
+                                <div class="form-group">
+                                    <label>Select Staff</label>
+                                    <select class="select form-control"> 
+                                        <option>Abhishek</option>
+                                        <option>Nishant</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6"> 
+                                <label>Net Salary</label>
+                                <input class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="row"> 
+                            <div class="col-sm-6"> 
+                                <h4 class="text-primary">Earnings</h4>
+                                <div class="form-group">
+                                    <label>Basic</label>
+                                    <input class="form-control" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label>DA(40%)</label>
+                                    <input class="form-control" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label>HRA(15%)</label>
+                                    <input class="form-control" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label>Conveyance</label>
+                                    <input class="form-control" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label>Allowance</label>
+                                    <input class="form-control" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label>Medical  Allowance</label>
+                                    <input class="form-control" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label>Others</label>
+                                    <input class="form-control" type="text">
+                                </div>
+                                <div class="add-more">
+                                    <a href="#"><i class="fa fa-plus-circle"></i> Add More</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">  
+                                <h4 class="text-primary">Deductions</h4>
+                                <div class="form-group">
+                                    <label>TDS</label>
+                                    <input class="form-control" type="text">
+                                </div> 
+                                <div class="form-group">
+                                    <label>ESI</label>
+                                    <input class="form-control" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label>PF</label>
+                                    <input class="form-control" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label>Leave</label>
+                                    <input class="form-control" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label>Prof. Tax</label>
+                                    <input class="form-control" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label>Employee Welfare</label>
+                                    <input class="form-control" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label>Others</label>
+                                    <input class="form-control" type="text">
+                                </div>
+                                <div class="add-more">
+                                    <a href="#"><i class="fa fa-plus-circle"></i> Add More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="submit-section">
+                            <button class="btn btn-primary submit-btn">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Add Salary Modal -->
+    
+    <!-- Edit Salary Modal -->
+    <div id="edit_salary" class="modal custom-modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Staff Salary</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row"> 
+                            <div class="col-sm-6"> 
+                                <div class="form-group">
+                                    <label>Select Staff</label>
+                                    <select class="select form-control"> 
+                                        <option>Nishant</option>
+                                        <option>Abhishek</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6"> 
+                                <label>Net Salary</label>
+                                <input class="form-control" type="text" value="Rs 50000">
+                            </div>
+                        </div>
+                        <div class="row"> 
+                            <div class="col-sm-6"> 
+                                <h4 class="text-primary">Earnings</h4>
+                                <div class="form-group">
+                                    <label>Basic</label>
+                                    <input class="form-control" type="text" value="Rs 4500">
+                                </div>
+                                <div class="form-group">
+                                    <label>DA(40%)</label>
+                                    <input class="form-control" type="text" value="Rs 500">
+                                </div>
+                                <div class="form-group">
+                                    <label>HRA(15%)</label>
+                                    <input class="form-control" type="text" value="Rs 200">
+                                </div>
+                                <div class="form-group">
+                                    <label>Conveyance</label>
+                                    <input class="form-control" type="text" value="Rs 170">
+                                </div>
+                                <div class="form-group">
+                                    <label>Allowance</label>
+                                    <input class="form-control" type="text" value="Rs 3030">
+                                </div>
+                                <div class="form-group">
+                                    <label>Medical  Allowance</label>
+                                    <input class="form-control" type="text" value="Rs 150000">
+                                </div>
+                                <div class="form-group">
+                                    <label>Others</label>
+                                    <input class="form-control" type="text">
+                                </div>  
+                            </div>
+                            <div class="col-sm-6">  
+                                <h4 class="text-primary">Deductions</h4>
+                                <div class="form-group">
+                                    <label>TDS</label>
+                                    <input class="form-control" type="text" value="Rs 300">
+                                </div> 
+                                <div class="form-group">
+                                    <label>ESI</label>
+                                    <input class="form-control" type="text" value="Rs 1520">
+                                </div>
+                                <div class="form-group">
+                                    <label>PF</label>
+                                    <input class="form-control" type="text" value="Rs 1220">
+                                </div>
+                                <div class="form-group">
+                                    <label>Leave</label>
+                                    <input class="form-control" type="text" value="Rs 250">
+                                </div>
+                                <div class="form-group">
+                                    <label>Prof. Tax</label>
+                                    <input class="form-control" type="text" value="Rs 110">
+                                </div>
+                                <div class="form-group">
+                                    <label>Employee Welfare</label>
+                                    <input class="form-control" type="text" value="Rs 10">
+                                </div>
+                                <div class="form-group">
+                                    <label>Fund</label>
+                                    <input class="form-control" type="text" value="Rs 40">
+                                </div>
+                                <div class="form-group">
+                                    <label>Others</label>
+                                    <input class="form-control" type="text" value="Rs 15">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="submit-section">
+                            <button class="btn btn-primary submit-btn">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Edit Salary Modal -->
+    
+    <!-- Delete Salary Modal -->
+    <div class="modal custom-modal fade" id="delete_salary" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="form-header">
+                        <h3>Delete Salary</h3>
+                        <p>Are you sure want to delete?</p>
+                    </div>
+                    <div class="modal-btn delete-action">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
+                            </div>
+                            <div class="col-6">
+                                <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Delete Salary Modal -->
+    
+</div>
+<!-- /Page Wrapper -->

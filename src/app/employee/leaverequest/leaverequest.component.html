@@ -1,0 +1,337 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+
+    <!-- Page Content -->
+    <div class="content container-fluid setwidthcon7">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Leaves</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/dashboard/employee_dashbaord">Home</a></li>
+                        <li class="breadcrumb-item active">Leaves</li>
+                    </ul>
+                </div>
+                <div class="col-auto float-right ml-auto">
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_leave"><i
+                            class="fa fa-plus"></i> Add Leave</a>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <!-- Leave Statistics -->
+        <div class="row">
+            <div class="col-md-6 col-xl-4" *ngFor="let data of employeedashoard">
+                <div class="stats-info">
+                    <img src="/assets/img/leave-icon.png" alt="leave-icon" width="40">
+                    <h6>{{data?.name}}</h6>
+                    <h4>{{data?.value}}</h4>
+                </div>
+            </div>
+          
+        </div>
+        <!-- /Leave Statistics -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-striped custom-table mb-0 datatable">
+                        <thead>
+                            <tr>
+                                <th>Leave Type</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>No of Days</th>
+                                <th>Reason</th>
+                                <th class="text-center">Status</th>
+                                <th>Approved by</th>
+                                <!-- <th>Cancel/Revoke by</th> -->
+                                <th class="text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of employeedata">
+                                <td data-label="Leave Type">{{data?.ref?.leaveType?.name}}</td>
+                                <td data-label="Form">{{apiService.getDate1(data?.startDate)}}</td>
+                                <td data-label="To">{{apiService.getDate1(data?.endDate)}}</td>
+                                <td data-label="no of days">{{data?.numberOfDays}}</td>
+                                <td data-label="Reason">{{data?.description}}</td>
+                                <td data-label="Status" class="text-center">
+                                    <div class="action-label" *ngIf="data?.status=='Request'">
+                                        <a class="btn btn-white btn-sm btn-rounded" href="javascript:void(0);">
+                                            <i class="fa fa-dot-circle-o text-purple"></i> {{data?.status}}
+                                        </a>
+                                    </div>
+                                    <div class="action-label" *ngIf="data?.status=='Rejected'">
+                                        <a class="btn btn-white btn-sm btn-rounded" href="javascript:void(0);">
+                                            <i class="fa fa-dot-circle-o" style="color: red;"></i> {{data?.status}}
+                                        </a>
+                                    </div>
+                                    <div class="action-label" *ngIf="data?.status=='Revoke'&&data?.revoke=='Revoke'">
+                                        <a class="btn btn-white btn-sm btn-rounded" href="javascript:void(0);">
+                                            <i class="fa fa-dot-circle-o" style="color: green;"></i> {{data?.status}}
+                                        </a>
+                                    </div>
+                                    <div class="action-label" *ngIf="data?.status=='Approved'&&data?.revoke=='Approved'">
+                                        <a class="btn btn-white btn-sm btn-rounded" href="javascript:void(0);">
+                                            <i class="fa fa-dot-circle-o" style="color: green;"></i> {{data?.status}}
+                                        </a>
+                                    </div>
+                                    <div class="action-label" *ngIf="data?.status=='Approved'&&data?.revoke=='Request'">
+                                        <a class="btn btn-white btn-sm btn-rounded" href="javascript:void(0);">
+                                            <i class="fa fa-dot-circle-o" style="color: green;"></i> {{data?.status}}
+                                        </a>
+                                    </div>
+                                    <div class="action-label" *ngIf="data?.status=='Approved'&&data?.revoke=='RevokeRequest'">
+                                        <a class="btn btn-white btn-sm btn-rounded" href="javascript:void(0);">
+                                            <i class="fa fa-dot-circle-o" style="color: rgb(252, 235, 8);"></i> {{data?.status}}
+                                        </a>
+                                    </div>
+                                    <div class="action-label" *ngIf="data?.status=='Cancel'">
+                                        <a class="btn btn-white btn-sm btn-rounded" href="javascript:void(0);">
+                                            <i class="fa fa-dot-circle-o" style="color: rgb(255, 85, 7);"></i> {{data?.status}}
+                                        </a>
+                                    </div>
+                                </td>
+                                <td >
+                                    <div *ngIf="data?.status=='Approved'" data-label="actions">
+                                        <h2  class="table-avatar" >
+                                            <a  class="avatar avatar-xs"><img
+                                                    src="{{apiUrl+data?.ref?.approvedUser?.profileImg}}" alt=""></a>
+                                            <a >{{data?.ref?.approvedUser?.name}}</a>
+                                        </h2>
+                                        <h2 *ngIf="data?.status=='Revoke'"  class="table-avatar">
+                                            <a class="avatar avatar-xs"><img
+                                                    src="{{apiUrl+data?.ref?.rejectedUser?.profileImg}}" alt=""></a>
+                                            <a >{{data?.ref?.rejectedUser?.name}}</a>
+                                        </h2>
+                                    </div>
+                                  
+                                </td>
+                                <td class="text-right">
+                                    <div *ngIf="data?.status!='Revoke'"class="dropdown dropdown-action">
+                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
+
+                                            <div  class="dropdown-menu dropdown-menu-right" *ngIf="data?.status=='Approved'">
+                                                <a class="dropdown-item" href="#" data-toggle="modal" 
+                                                    data-target="#revokemodal" (click)="status(data)"><i class="fa fa-pencil m-r-5"></i> Revoke Request</a>
+                                                    </div>
+                                       
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" (click)="getemployeelist(data?.uniqueId)"
+                                                data-target="#edit_leave"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                            <a *ngIf="data?.status!='Cancel'" class="dropdown-item" href="#" data-toggle="modal"
+                                                data-target="#deleteModal" (click)="status(data)"><i class="fa fa-trash-o m-r-5"></i>
+                                                Cancel</a>
+                                             
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                          
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Content -->
+
+    <!-- Add Leave Modal -->
+    <div id="add_leave" class="modal custom-modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <!--<div class="modal-header">
+                    <h5 class="modal-title">Add Leave</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>-->
+                <div class="modal-header" style="background: #ff9b44;color: #fff;">
+                    <h5 class="modal-title mt-0" id="add_leave">Add Leave</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="addleave">
+                        <div class="form-group">
+                            <label>Leave Type <span class="text-danger">*</span></label>
+                            <select class="select form-control" (change)="leavetype($event)" formControlName="leavetype">
+                                
+                                <option *ngFor="let data of employeedashoardadd" value="{{data.value}}_{{data.uniqueId}}_{{data.leaveType}}">{{data.name}}</option>
+
+                               
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>From <span class="text-danger">*</span></label>
+                            
+                                <input class="form-control" type="date" formControlName="fromdate" id="myDate"(change)="setEndDate()">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label>To <span class="text-danger">*</span></label>
+                            
+                                <input class="form-control"   type="date"  [max]="datePickerMax | date:'yyyy-MM-dd'" id="myDate" (change)="getDiffDays($event)" formControlName="todate" >
+                           
+                        </div>
+                        <div class="form-group">
+                            <label>Number of days <span class="text-danger">*</span></label>
+                            <input class="form-control" readonly  type="text" [(ngModel)]="noofdays" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group">
+                            <label>Remaining Leaves <span class="text-danger">*</span></label>
+                            <input class="form-control" readonly [(ngModel)]="remaninigleaves" [ngModelOptions]="{standalone: true}" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label>Leave Reason <span class="text-danger">*</span></label>
+                            <textarea rows="4" class="form-control" formControlName="desc"></textarea>
+                        </div>
+
+                        <div class="modal-footer"  style="display: flex;">
+                        <div  >
+                            <button class="btn btn-primary prim" (click)="addleavedata()">Send</button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-danger clos" (click)="cleardata()">
+                                Cancel</button>
+                            </div>
+                        </div>
+                       
+                       
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Add Leave Modal -->
+
+    <!-- Edit Leave Modal -->
+  <div id="edit_leave" class="modal custom-modal fade" role="dialog">
+        <!-- <div class="modal fade" id="edit_leave" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+        aria-hidden="true"> -->
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <!-- <div class="modal-header">
+                    <h5 class="modal-title">Edit Leave</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div> -->
+                <div class="modal-header" style="background: #ff9b44;color: #fff;">
+                    <h5 class="modal-title mt-0" id="langModalLabel">Edit Leave</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="editleave">
+                        <div class="form-group">
+                            <label>Leave Type <span class="text-danger">*</span></label>
+                            <select class="select form-control" (change)="leavetypeedit($event)" formControlName="leavetype">
+                                <option>Select Leave Type</option>
+                                <option *ngFor="let data of employeedashoardadd" value="{{data.uniqueId}}_{{data.value}}_{{data.leaveType}}">{{data.name}}</option>
+                               
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>From <span class="text-danger">*</span></label>
+                            
+                                <input class="form-control" type="date" formControlName="fromdate">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label>To <span class="text-danger">*</span></label>
+                            
+                                <input class="form-control" type="date" formControlName="todate" (change)="getupdateDiffDays()">
+                           
+                        </div>
+                        <div class="form-group">
+                            <label>Number of days <span class="text-danger">*</span></label>
+                            <input class="form-control" readonly [(ngModel)]="editnoofdays" type="text" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group">
+                            <label>Remaining Leaves <span class="text-danger">*</span></label>
+                            <input class="form-control" readonly [(ngModel)]="editremaninigleaves" [ngModelOptions]="{standalone: true}" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label>Leave Reason <span class="text-danger">*</span></label>
+                            <textarea rows="4" class="form-control" formControlName="desc"></textarea>
+                        </div>
+                        <div class="modal-footer" style="display: flex;">
+                        <div>
+                            <button class="btn btn-danger clos" (click)="updateleavedata()">Update leave</button>
+                        </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Edit Leave Modal -->
+
+    <!-- Delete Leave Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+ aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header" style="background: #ff9b44;color: #fff;">
+             <h5 class="modal-title mt-0" id="langModalLabel">Cancel</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <div class="modal-body">
+             <form>
+                 <div class="form-group">
+                     <label class="control-label">Are you sure want to cancel this item ?<span class="required"></span> </label>
+                 </div>
+             </form>
+         </div>
+         <div class="modal-footer">
+            <button type="submit" class="btn btn-primary prim"(click)="canceldata()" style="background: #ff9b44; border: none; color: #fff;">OK</button>
+             <button type="button" class="btn btn-danger clos" data-dismiss="modal">
+                 Close</button>
+           
+
+         </div>
+     </div>
+ </div>
+</div>
+    <!-- /Delete Leave Modal -->
+    <!-- Revoke req modal -->
+    <div class="modal fade" id="revokemodal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background: #ff9b44;color: #fff;">
+                <h5 class="modal-title mt-0" id="langModalLabel">Revoke Request</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">Are you sure want to Revoke this item ?<span class="required"></span> </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+               <button type="submit" class="btn btn-primary prim"(click)="revokedata()" style="background: #ff9b44; border: none; color: #fff;">YES</button>
+                <button type="button" class="btn btn-danger clos" data-dismiss="modal">
+                    Close</button>
+              
+   
+            </div>
+        </div>
+    </div>
+   </div>
+
+</div>
+<!-- /Page Wrapper -->

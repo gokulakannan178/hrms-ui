@@ -1,0 +1,301 @@
+<!-- Header -->
+<div class="header">
+
+    <!-- Logo -->
+    <div class="header-left">
+        <a routerLink="/dashboard" class="logo">
+            <img src="/assets/img/hrms-logo-dark.png" alt="" width="110px;" style="margin-left: 16px;">
+        </a>
+        <a routerLink="/dashboard" class="logo-small">
+            <img src="/assets/img/icon-dark.png" alt="" style="width: 40px;
+            margin-top: 8px;">
+        </a>
+    </div>
+    <!-- /Logo -->
+
+    <a id="toggle_btn" href="javascript:void(0);">
+        <span class="bar-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+    </a>
+
+    <!-- Header Menu -->
+    <ul class="nav user-menu">
+        <!-- Search -->
+        <li class="nav-item dropdown has-arrow main-drop">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                <i class="fa fa-link" aria-hidden="true"></i>
+                <span style="margin-left: 7px;">Important Links</span>
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" routerLink="/employee/add_employee" *ngIf="linmanagercheck =='true'"><i class="fa-solid fa-user"></i> Add
+                    Employee</a>
+                <a class="dropdown-item" routerLink="/employee/leaverequest"><i class="fa-solid fa-user-clock"></i> Leave Request</a>
+                <a class="dropdown-item" routerLink="/employee/attendance"><i class="fa-solid fa-user-check"></i> Attendence (Employee)</a>
+                <!-- <a class="dropdown-item" routerLink="/employee/attendance">GET APK</a> -->
+            </div>
+        </li>
+        <!-- /Search -->
+
+        <!-- Notifications -->
+        <li class="nav-item dropdown">
+            <!-- <a href="#" class="dropdown-toggle nav-link" 
+         data-toggle="dropdown" 
+        > -->
+            <a class="dropdown-toggle nav-link" data-toggle="dropdown">
+                <i class="fa fa-bell-o"></i> <span class="badge badge-pill">{{badge}}</span>
+            </a>
+            <div class="dropdown-menu notifications">
+                <div class="topnav-dropdown-header">
+                    <span class="notification-title">Notifications</span>
+                    <!-- <a href="javascript:void(0)" class="clear-noti"> Clear All </a> -->
+                </div>
+                <div class="noti-content">
+                    <ul class="notification-list">
+                        <li class="notification-message">
+                            <a *ngFor="let data of shownotification">
+                                <div class="media">
+                                    <!-- <span class="avatar">
+                                        <img alt="" src="/assets/img/profiles/avatar-03.jpg">
+                                    </span> -->
+                                    <div class="media-body">
+                                        <p class="noti-details"><span class="noti-title">{{data.tittle}}</span></p>
+                                        <p class="noti-time"><span class="notification-time">{{data.sentDate
+                                                |date:'dd-MM-yy' }}</span></p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+
+
+                    </ul>
+                </div>
+                <!-- <div class="topnav-dropdown-footer">
+                    <a href="#">View all Notifications</a>
+                </div> -->
+            </div>
+        </li>
+        <!-- /Notifications -->
+
+
+        <li class="nav-item dropdown has-arrow main-drop">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                <span class="user-img">
+                    <img src="{{profileimage.profileImg}}" style="height: 40px;
+                width: 40px;">
+                    <span class="status online"></span>
+                </span>
+                <span> {{emplyoee}}</span>
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" routerLink="/employee/my_profile"><i class="fa-solid fa-user"></i> My Profile</a>
+                <!-- <a class="dropdown-item" href="#">Settings</a> -->
+                <a class="dropdown-item" (click)="logoutFun()"><i class="fa-solid fa-power-off"></i> Logout</a>
+            </div>
+        </li>
+    </ul>
+    <!-- /Header Menu -->
+</div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-inner slimscroll">
+            <div class="menu-list">
+                <br>
+                <span class="menu-heading">Main</span>
+                <div class="row d-flex d-md-block flex-nowrap wrapper">
+                    <div class="col-md-12 float-left col-12 pl-0 pr-0 collapse width show" id="sidebar">
+                        <div class="list-group border-0 text-center text-md-left">
+                            <a href="#menu" class="list-group-item d-inline-block collapsed" data-toggle="collapse"
+                                aria-expanded="false"><i class="fa fa-tachometer fa-lg"></i> <span
+                                    class=" d-md-inline">Dashboard</span> </a>
+                            <div class="collapse" id="menu" data-parent="#sidebar">
+                                <a tabindex="1" *ngIf="apiService.chkUserACLAccess('adminAttendance_write')"
+                                    routerLink="/dashboard" class="list-group-item" data-parent="#menu"> <span
+                                        class=" d-md-inline">Admin Dashboard</span></a>
+                                <a routerLink="/dashboard/employee_dashbaord" class="list-group-item"
+                                    data-parent="#menu"> <span class=" d-md-inline">Employee Dashboard</span></a>
+                            </div>
+                            <span class="menu-heading">Employee Management</span>
+                            <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse"
+                                aria-expanded="false"><i class="fa fa-user fa-lg"></i> <span class=" d-md-inline">
+                                    Employees</span></a>
+                            <div class="collapse" id="menu1" data-parent="#sidebar">
+                                <a href="#menu1sub1" class="list-group-item" data-toggle="collapse"
+                                    aria-expanded="false"> <span class=" d-md-inline">Orgnisation</span></a>
+                                <div class="collapse" id="menu1sub1" data-parent="#menu1">
+                                    <a routerLink="/organisation/allorg" class="list-group-item newset"
+                                        data-parent="#menu1sub1"> <span class=" d-md-inline">Orgnisation</span></a>
+                                    <a routerLink="/organisation/orgbranch" class="list-group-item"
+                                        data-parent="#menu1sub1"><span class=" d-md-inline">Branch</span></a>
+                                    <a routerLink="/organisation/orgdept" class="list-group-item"
+                                        data-parent="#menu1sub1"><span class=" d-md-inline">Department</span></a>
+                                    <a routerLink="/organisation/designation" class="list-group-item"
+                                        data-parent="#menu1sub1"><span class=" d-md-inline">Designation</span></a>
+                                </div>
+                                <a href="#menu1sub2" class="list-group-item" data-toggle="collapse"
+                                    aria-expanded="false"><span class=" d-md-inline">Employees</span></a>
+                                <div class="collapse" id="menu1sub2" data-parent="#menu1">
+                                    <a *ngIf="apiService.chkUserACLAccess('adminAttendance_write')"
+                                        routerLink="/employee/allemployee" class="list-group-item"
+                                        data-parent="#menu1sub2"> <span class=" d-md-inline">All Employee</span></a>
+                                    <a routerLink="/employee/directory" class="list-group-item"
+                                        data-parent="#menu1sub2"><span class=" d-md-inline">Directory</span></a>
+                                    <a routerLink="/employee/org_chart" class="list-group-item"
+                                        data-parent="#menu1sub2"><span class=" d-md-inline">Org Chart</span></a>
+                                    <!-- <a routerLink="/employee/uploademployee" class="list-group-item" data-parent="#menu1sub2"><span class=" d-md-inline">Upload Employee</span></a> -->
+                                    <!-- <a routerLink="/employee/organisation-chart" class="list-group-item" data-parent="#menu1sub2"><span class=" d-md-inline">Organisation Chart</span></a> -->
+                                    <a routerLink="/employee/attendance" class="list-group-item"
+                                        data-parent="#menu1sub2"><span class=" d-md-inline">Attendance</span></a>
+                                    <a *ngIf="apiService.getlinemanagecheck()"
+                                        routerLink="/employee/employee-attendance" class="list-group-item"
+                                        data-parent="#menu1sub2"><span class=" d-md-inline">Employee
+                                            Attendance</span></a>
+                                    <a *ngIf="apiService.chkUserACLAccess('adminAttendance_write')"
+                                        routerLink="/employee/admin_attendance" class="list-group-item"
+                                        data-parent="#menu1sub2"><span class=" d-md-inline">Team Attendance</span></a>
+                                    <a routerLink="/employee/leaverequest" class="list-group-item"
+                                        data-parent="#menu1sub2"><span class=" d-md-inline">Leave Request</span></a>
+                                    <a *ngIf="apiService.getlinemanagecheck()" routerLink="/employee/leaverequest_admin"
+                                        class="list-group-item" data-parent="#menu1sub2"><span class=" d-md-inline">Team
+                                            Leaves</span></a>
+                                    <!-- <a routerLink="/employee/leave_settings" class="list-group-item" data-parent="#menu1sub2"><span class=" d-md-inline">Leave Setting</span></a> -->
+                                </div>
+                            </div>
+                            <span class="menu-heading" *ngIf="apiService.chkUserACLAccess('policy_write')">Portal
+                                Policies</span>
+                            <a *ngIf="apiService.chkUserACLAccess('policy_write')" href="#menu2"
+                                class="list-group-item d-inline-block collapsed" data-toggle="collapse"
+                                aria-expanded="false"><i class="fa fa-file fa-lg"></i> <span
+                                    class=" d-md-inline">Policy</span></a>
+                            <div class="collapse" id="menu2" data-parent="#sidebar">
+                                <a routerLink="/policy/noticepolicy" class="list-group-item" data-parent="#menu2"> <span
+                                        class=" d-md-inline">Notice Policy</span></a>
+                                <a routerLink="/policy/leavemaster" class="list-group-item" data-parent="#menu2"> <span
+                                        class=" d-md-inline">Leave Master</span></a>
+                                <a routerLink="/policy/leavepolicy" class="list-group-item" data-parent="#menu2"> <span
+                                        class=" d-md-inline">Leave Policy</span></a>
+                                <a routerLink="/organisation/probition" class="list-group-item" data-parent="#menu2">
+                                    <span class=" d-md-inline">Probation Policy</span></a>
+                                <a routerLink="/policy/workschedule" class="list-group-item" data-parent="#menu2"> <span
+                                        class=" d-md-inline">Work Schedule Policy</span></a>
+                                <a routerLink="/policy/documentmasterpolicy" class="list-group-item"
+                                    data-parent="#menu2"> <span class=" d-md-inline">Document Master</span></a>
+                                <a routerLink="/policy/documentpolicy" class="list-group-item" data-parent="#menu2">
+                                    <span class=" d-md-inline">Document Policy</span></a>
+                                <a routerLink="/policy/onboardpolicycheckmaster" class="list-group-item"
+                                    data-parent="#menu2"> <span class=" d-md-inline">Onboard Policy Checklist
+                                        Master</span></a>
+                                <a routerLink="/policy/onboardpolicy" class="list-group-item" data-parent="#menu2">
+                                    <span class=" d-md-inline">Onboarding Policy</span></a>
+                                <a routerLink="/policy/offboardcheckmaster" class="list-group-item"
+                                    data-parent="#menu2"> <span class=" d-md-inline">Offboard Policy Checklist
+                                        Master</span></a>
+                                <a routerLink="/policy/offboardpolicy" class="list-group-item" data-parent="#menu2">
+                                    <span class=" d-md-inline">Offboard Policy</span></a>
+                                <a routerLink="/policy/Earningmaster" class="list-group-item" data-parent="#menu2">
+                                    <span class=" d-md-inline">Earning Master</span></a>
+                                <a routerLink="/policy/detectionmaster" class="list-group-item" data-parent="#menu2">
+                                    <span class=" d-md-inline">Detection Master</span></a>
+                                <a routerLink="/policy/payroll" class="list-group-item" data-parent="#menu2"> <span
+                                        class=" d-md-inline">Payroll Policy</span></a>
+                            </div>
+                            <span *ngIf="apiService.chkUserACLAccess('news_write')" class="menu-heading">Notifications
+                                Management</span>
+                            <a *ngIf="apiService.chkUserACLAccess('news_write')" href="#menu3"
+                                class="list-group-item d-inline-block collapsed" data-toggle="collapse"
+                                aria-expanded="false"><i class="fa fa-info-circle fa-lg"></i> <span
+                                    class=" d-md-inline">Notification</span></a>
+                            <div class="collapse" id="menu3" data-parent="#sidebar">
+                                <!-- <a routerLink="/notifications/news_list" class="list-group-item"
+                                    data-parent="#menu3"><span class=" d-md-inline">News</span></a> -->
+                                    <a routerLink="/notifications/news" class="list-group-item"
+                                    data-parent="#menu3"><span class=" d-md-inline"> Create News</span></a>
+                            </div>
+                            <!-- *ngIf="bill?.file != '' " title="Download" target="_blank" -->
+                            <span *ngIf="usertype?.type == 'SuperAdmin'" class=" menu-heading">Access Module</span>
+                            <a *ngIf="usertype?.type == 'SuperAdmin'" href="#menu4"
+                                class="list-group-item d-inline-block collapsed" data-toggle="collapse"
+                                aria-expanded="false"><i class="fa fa-lock fa-lg"></i><span
+                                    class="d-none d-md-inline">ACL</span></a>
+                            <div class="collapse" id="menu4" data-parent="#sidebar">
+                                <a routerLink="/acl/modules" class="list-group-item" data-parent="#menu4"><span
+                                        class="d-none d-md-inline">Modules</span></a>
+                                <!-- <a routerLink="/acl/menus" class="list-group-item" data-parent="#menu4"><span class="d-none d-md-inline">Menus</span></a>
+                                <a routerLink="/acl/tabs" class="list-group-item" data-parent="#menu4"><span class="d-none d-md-inline">Tabs</span></a>
+                                <a routerLink="/acl/features" class="list-group-item" data-parent="#menu4"><span class="d-none d-md-inline">Features</span></a> -->
+                            </div>
+                            <span class="menu-heading" *ngIf="apiService.chkUserACLAccess('reports_write')">Reports
+                                Management</span>
+                            <a href="#menu5" class="list-group-item d-inline-block collapsed" data-toggle="collapse"
+                                aria-expanded="false" *ngIf="apiService.chkUserACLAccess('reports_write')"><i
+                                    class="fa fa-line-chart fa-lg"></i> <span class=" d-md-inline">HR</span></a>
+                            <div class="collapse" id="menu5" data-parent="#sidebar"
+                                *ngIf="apiService.chkUserACLAccess('reports_write')">
+                                <!-- <a href="#menu5sub3"  class="list-group-item" data-toggle="collapse" aria-expanded="false"> <span class=" d-md-inline">Reports</span></a>
+                                <div class="collapse" id="menu5sub3" data-parent="#menu5"> -->
+                                <a routerLink="/reports/holidays" class="list-group-item" data-parent="#menu5"> <span
+                                        class=" d-md-inline">Holidays</span></a>
+                                <!-- <a routerLink="/reports/departments" class="list-group-item" data-parent="#menu5sub3"><span class=" d-md-inline">Departments</span></a>
+                                    <a routerLink="/reports/designation" class="list-group-item" data-parent="#menu5sub3"><span class=" d-md-inline">Designations</span></a> -->
+                                <!-- <a routerLink="" class="list-group-item" data-parent="#menu5sub3"><span class=" d-md-inline">Expense Report</span></a>
+                                    <a routerLink="" class="list-group-item" data-parent="#menu5sub3"><span class=" d-md-inline">Invoice Report</span></a> -->
+                                <!-- </div> -->
+                                <a href="#menu5sub4" class="list-group-item" data-toggle="collapse"
+                                    aria-expanded="false"> <span class=" d-md-inline">Assets Management</span></a>
+                                <div class="collapse" id="menu5sub4" data-parent="#menu5">
+                                    <a routerLink="/asset-mgmt/asset-type" class="list-group-item"
+                                        data-parent="#menu5sub4"> <span class=" d-md-inline">Asset Type</span></a>
+                                    <a routerLink="/asset-mgmt/asset" class="list-group-item"
+                                        data-parent="#menu5sub4"><span class=" d-md-inline">Asset</span></a>
+                                </div>
+                                <a href="#menu5sub5" class="list-group-item" data-toggle="collapse"
+                                    aria-expanded="false"> <span class=" d-md-inline">Accounts</span></a>
+                                <div class="collapse" id="menu5sub5" data-parent="#menu5">
+                                    <a routerLink="/accounts/bill_claim" class="list-group-item"
+                                        data-parent="#menu5sub5"> <span class=" d-md-inline">Bill Claim</span></a>
+                                        <a routerLink="/accounts/team-bill-claim" class="list-group-item"
+                                        data-parent="#menu5sub5"> <span class=" d-md-inline">Team Bill Claim</span></a>
+                                    <a routerLink="/accounts/expense-category" class="list-group-item"
+                                    data-parent="#menu5sub5"> <span class=" d-md-inline">Expense Category</span></a>
+                                    <a routerLink="/accounts/sub-expense-category" class="list-group-item"
+                                    data-parent="#menu5sub5"> <span class=" d-md-inline">Sub Expense Category</span></a>
+                                    <a routerLink="/accounts/grade" class="list-group-item"
+                                    data-parent="#menu5sub5"> <span class=" d-md-inline">Grade</span></a>
+                                    <a routerLink="/accounts/bill-configuration" class="list-group-item"
+                                    data-parent="#menu5sub5"> <span class=" d-md-inline">Bill Configuration</span></a>
+                                </div>
+                                <a href="#menu5sub6" class="list-group-item" data-toggle="collapse"
+                                    aria-expanded="false"> <span class=" d-md-inline">Document Management</span></a>
+                                <div class="collapse" id="menu5sub6" data-parent="#menu5">
+                                    <a routerLink="/accounts/bill_claim" class="list-group-item"
+                                        data-parent="#menu5sub6"> <span class=" d-md-inline">Document Master</span></a>
+                                </div>
+                                <a href="#menu5sub7" class="list-group-item" data-toggle="collapse"
+                                    aria-expanded="false"> <span class=" d-md-inline">payrolls</span></a>
+                                <div class="collapse" id="menu5sub7" data-parent="#menu5">
+                                    <a routerLink="/reports/salary" class="list-group-item" data-parent="#menu5sub7">
+                                        <span class=" d-md-inline">Employee Salary</span></a>
+                                    <!-- <a routerLink="/reports/payslip" class="list-group-item" data-parent="#menu5sub7"><span class=" d-md-inline">Payslip</span></a> -->
+                                </div>
+                            </div>
+                            <span class=" menu-heading">Software Update</span>
+                            <a href="#menu6" class="list-group-item d-inline-block collapsed" data-toggle="collapse"
+                                aria-expanded="false"><i class="fa fa-desktop fa-lg"></i> <span
+                                    class=" d-md-inline">Current Version</span></a>
+                            <div class="collapse" id="menu6" data-parent="#sidebar">
+                                <a href="javascript:void(0);" class="list-group-item" data-parent="#menu6"> <span
+                                        class=" d-md-inline">Change Log</span></a>
+                                <a href="javascript:void(0);" class="list-group-item" data-parent="#menu6"> <span
+                                        class=" d-md-inline">V 1.0</span></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Sidebar -->

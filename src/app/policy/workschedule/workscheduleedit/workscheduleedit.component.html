@@ -1,0 +1,87 @@
+<!-- Created by Riddhi Omar on 27/04/2022 -->
+<body>
+    <div class=" page-details">
+      <div class="container-fluid card pl-5 py-5">
+        <div class="back">
+          <button type="button" class="btn btn-light back" onclick="history.back()"><i class="mr-2 fa fa-arrow-left" aria-hidden="true"></i>Back</button>
+        </div>
+        <!-- page header start -->
+        <div class="page-header">
+          <div class="row align-items-center">
+            <h3 class="page-title">Working Schedule</h3>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/policy/workschedule">Working Schdule</a></li>
+                <li class="breadcrumb-item active1">Working Schedule Edit</li>
+              </ul>
+          </div>
+        </div>
+        <!-- page header end -->
+        <!-- page-card start -->
+        <div class="">
+          <form [formGroup]="workScheduleforms">
+          <div class="form-group">
+            <label for="InputName" class="text-bold">Name<span class="required">*</span> </label>
+              <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter Name"
+              formControlName="name"
+              [ngClass]="{'red-border-class': Submitted && fr.name.errors}" required>
+          </div>
+          <!-- <div class="form-group">
+            <label for="InputDescription">Schedule<span class="required">*</span> </label>
+            <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter Schedule"
+              formControlName="schedule"
+              [ngClass]="{'red-border-class': Submitted && fr.schedule.errors}" required>
+          </div>
+          <div class="form-group">
+            <label for="InputDescription">Schedule Type<span class="required">*</span> </label>
+            <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter Schedule Type"
+              formControlName="scheduleType"
+              [ngClass]="{'red-border-class': Submitted && fr.scheduleType.errors}" required>
+          </div> -->
+          <div class="form-group">
+            <label for="InputDescription">Organization<span class="required">*</span> </label>
+            <select class="form-control" formControlName="organisationId" id="InputName" 
+                [ngClass]="{'red-border-class': Submitted && fr.organisationId.errors}" required>
+                <option value="">Select Your Option</option >
+                <option value="{{data.uniqueId}}" *ngFor='let data of org_dd '>{{data.name}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="InputName" class="text-bold">Paid (%)<span class="required">*</span> </label>
+              <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter the percentage"
+              formControlName="paid"
+              [ngClass]="{'red-border-class': Submitted && fr.name.errors}" required>
+          </div>
+          <div class="form-group">
+            <label for="InputName" class="text-bold">Partial Pay (%)<span class="required">*</span> </label>
+              <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter the percentage"
+              formControlName="partial_pay"
+              [ngClass]="{'red-border-class': Submitted && fr.name.errors}" required>
+          </div>
+          <div class="form-group">
+            <label for="InputName" class="text-bold">Loss of Pay (%)<span class="required">*</span> </label>
+              <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter the percentage"
+              formControlName="loss_of_pay"
+              [ngClass]="{'red-border-class': Submitted && fr.name.errors}" required>
+          </div>
+          <div class="form-group">
+            <label for="InputDescription">Working Hours In Days<span class="required">*</span> </label>
+            <input type="number" class="form-control" id="InputName" size="50" placeholder="Enter Working Hours"
+              formControlName="workingHoursInDays"
+              [ngClass]="{'red-border-class': Submitted && fr.workingHoursinDays.errors}" required>
+          </div>
+          <div class="form-group">
+            <label for="InputDescription">Working Hours In Week<span class="required">*</span> </label>
+            <input type="number" class="form-control" id="InputName" size="50" placeholder="Enter Working Hours in Week"
+              formControlName="workingHoursInWeek"
+              [ngClass]="{'red-border-class': Submitted && fr.workingHoursinWeek.errors}" required>
+          </div>
+  
+          <button type="submit" (click)="workScheduleUpdate()"class="btn mb-5">Update Work Schedule</button>
+          </form>
+        </div>
+        
+        <!-- page-card end -->
+      </div>
+    </div>
+  </body>
+  

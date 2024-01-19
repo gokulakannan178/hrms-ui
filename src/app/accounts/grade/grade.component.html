@@ -1,0 +1,490 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <!-- Page Content -->
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col-xl-9 col-lg-6">
+                    <h3 class="page-title">Accounts</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/dashboard">Home</a></li>
+                        <li class="breadcrumb-item active1">Grade</li>
+                    </ul>
+                </div>
+                <div class="col-xl-3 col-lg-6 float-right">
+                    <a href="#" class="btn add-btn add" data-toggle="modal" data-target="#langModal"> <i class="fa fa-plus"></i> Create Grade</a>
+
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <!-- tab row  -->
+        <div class="row mt-3">
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 search_text" style="padding-top: 12px !important;">
+                <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+                    <li class="nav-item">
+                        <a role="tab" class="nav-link active " id="tab-0" data-toggle="tab" href="#tab-content-0">
+                            <span>Active</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="position: relative;
+                    left: 3px;">
+                        <a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#tab-content-1">
+                            <span>Disabled</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <!-- /tab row  -->
+        <!-- tab content row  -->
+        <div class="tab-content">
+            <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body tableScroll" style="overflow-x: auto;">
+                        <div class="tble">
+                            <table class="table table-hover table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th scope="col">Name </th>
+                                        <th scope="col">Level </th>
+                                        <th scope="col">Organization </th>
+                                        <th scope="col">Description </th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Controls</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td data-label="#">1</td>
+                                        <td data-label="Name">Gokul</td>
+                                        <td data-label="Level">01</td>
+                                        <td data-label="Organization">LGF</td>
+
+                                        <td data-label="Description">Lorem ipsum dolor sit amet.</td>
+                                        <td data-label="Status"><label class="switch">
+                                                <input type="checkbox" data-toggle="modal" data-target="#activeModal"
+                                                    checked>
+                                                <span class="slider round"></span>
+                                            </label></td>
+                                        <td data-label="Controls">
+                                            <div class="controls desktop_control con_icons" style=" display: flex;
+                                                    justify-content: space-around;">
+
+                                                <a data-toggle="modal" data-target="#langModaledit" class="green"
+                                                    href="javascript:void(0);" title="Edit Designation Details"><i
+                                                        class="fa fa-pencil pen" aria-hidden="true"></i></a>
+                                                <a data-toggle="modal" data-target="#langModalview" class="green"
+                                                    href="javascript:void(0);" title="View designation Details"> <i
+                                                        class="fa fa-eye" aria-hidden="true"></i></a>
+
+                                                <a data-toggle="modal" data-target="#deleteModal" class="red"
+                                                    href="javascript:void(0);" title="Delete designation"><i
+                                                        class="fa fa-trash" aria-hidden="true"></i></a>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="row" style=" margin: 0;   justify-content: space-between;
+                        padding: 0px 17px 0px 15px;">
+                                <div>
+                                    <ul class="pagination mt-5">
+                                        <li class="page-item">
+                                            <a class="page-link">First</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link">Previous</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link">1</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link">Next</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link">Last</a>
+                                        </li>
+                                    </ul>
+                                    <label style="color: black;">Total Record- 1</label>
+                                </div>
+                                <div>
+                                    <ul class="pagination mt-5 pull-right">
+                                        <li class="page-item">
+                                            <a class="page-link">10</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link">50</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link">100</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane tabs-animation fade" id="tab-content-1" role="tabpanel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body tableScroll" style="overflow-x: auto;">
+                        <div class="tble">
+                            <table class="table table-hover table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th scope="col">Name </th>
+                                        <th scope="col">Level </th>
+                                        <th scope="col">Organization </th>
+                                        <th scope="col">Description </th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Controls</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td data-label="#">1</td>
+                                        <td data-label="Name"> Gokul</td>
+                                        <td data-label="Level"> 01</td>
+                                        <td data-label="Organization"> LGF</td>
+
+                                        <td data-label="Description">Lorem ipsum dolor sit amet.</td>
+                                        <td data-label="Status"><label class="switch">
+                                                <input type="checkbox" data-toggle="modal" data-target="#activeModal"
+                                                    checked>
+                                                <span class="slider round"></span>
+                                            </label></td>
+                                        <td data-label="Controls">
+                                            <div class="controls desktop_control con_icons" style=" display: flex;
+                                                    justify-content: space-around;">
+
+                                                <a data-toggle="modal" data-target="#langModaledit" class="green"
+                                                    href="javascript:void(0);" title="Edit Designation Details"><i
+                                                        class="fa fa-pencil pen" aria-hidden="true"></i></a>
+                                                <a data-toggle="modal" data-target="#langModalview" class="green"
+                                                    href="javascript:void(0);" title="View designation Details"> <i
+                                                        class="fa fa-eye" aria-hidden="true"></i></a>
+
+                                                <a data-toggle="modal" data-target="#deleteModal" class="red"
+                                                    href="javascript:void(0);" title="Delete designation"><i
+                                                        class="fa fa-trash" aria-hidden="true"></i></a>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row" style="    justify-content: space-between;
+                        padding: 0px 17px 0px 15px; margin: 0;">
+                            <div>
+                                <ul class="pagination mt-5">
+                                    <li class="page-item">
+                                        <a class="page-link">First</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link">Previous</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link">1</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link">Next</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link">Last</a>
+                                    </li>
+                                </ul>
+                                <label style="color: black;">Total Record- 1</label>
+                            </div>
+                            <div>
+                                <ul class="pagination mt-5 pull-right">
+                                    <li class="page-item">
+                                        <a class="page-link">10</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link">50</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link">100</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/tab content row-->
+
+        <!--  Modal -->
+        <div class="modal fade" id="langModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background: #ff9b44;color: #fff;">
+                        <h5 class="modal-title mt-0" id="langModalLabel">Create Grade</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label class="control-label">Name <span class="required">*</span> </label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Enter Name" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Level <span class="required">*</span> </label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" placeholder="Enter Level" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label ">Organization <span class="required">*</span></label>
+                                <select class="form-control dd" required>
+                                    <option value="">Select Your Option</option>
+                                    <option value="1">LGF</option>
+                                    <option value="2">LGF-Pondy</option>
+                                    <option value="3">LGF PVT LTD</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Description <span class="required">*</span></label>
+                                <div class="input-groupncol-md-12">
+                                    <textarea class="col-md-12" style="border: 1px solid #dcd9d9;" required>
+
+                      </textarea>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary prim">Save</button>
+                        <button type="button" class="btn btn-danger clos" data-dismiss="modal">
+                            &nbsp;Close</button>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- /Modal -->
+        <!-- edit model  -->
+        <!--  ViewModal -->
+        <div class="modal fade" id="langModaledit" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background: #ff9b44;color: #fff;">
+                        <h5 class="modal-title mt-0" id="langModalLabel">Edit Grade</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label class="control-label">Name <span class="required">*</span> </label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" value="Gokul" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Level <span class="required">*</span> </label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" value="01" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label ">Organisation <span class="required">*</span></label>
+                                <select class="form-control dd" required>
+                                    <option value="">Select Your Option</option>
+                                    <option value="1" Selected>LGF </option>
+                                    <option value="2">LGF Pondy</option>
+                                    <option value="3">LGF PVT LTD</option>
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label">Description <span class="required">*</span></label>
+                                <div class="input-groupncol-md-12">
+                                    <textarea class="col-md-12" style="border: 1px solid #dcd9d9;"
+                                        required>Lorem ipsum dolor sit amet. </textarea>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary prim">Save</button>
+                        <button type="button" class="btn btn-danger clos" data-dismiss="modal">
+                            &nbsp;Close</button>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  ViewModal -->
+        <div class="modal fade" id="langModalview" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background: #ff9b44;color: #fff;">
+                        <h5 class="modal-title mt-0" id="langModalLabel">View Grade</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label class="control-label">Name <span class="required">*</span> </label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Gokul" disabled
+                                        required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Level <span class="required">*</span> </label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="01" disabled
+                                        required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label ">Organisation <span class="required">*</span></label>
+                                <select class="form-control dd" disabled required>
+                                    <option value="">Select Your Option</option>
+                                    <option value="1" Selected>LGF </option>
+                                    <option value="2">LGF Pondy</option>
+                                    <option value="3">LGF PVT LTD</option>
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label">Description <span class="required">*</span></label>
+                                <div class="input-groupncol-md-12">
+                                    <textarea class="col-md-12" style="border: 1px solid #dcd9d9;" disabled
+                                        required>Lorem ipsum dolor sit amet. </textarea>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger clos" data-dismiss="modal">
+                            &nbsp;Close</button>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- active modal  -->
+        <div class="modal fade" id="activeModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background: #ff9b44;color: #fff;">
+                        <h5 class="modal-title mt-0" id="MovetoDisable">Move to disable</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label class="control-label">Do you want to disable ?<span class="required"></span>
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary prim"
+                            style="background: #ff9b44; border: none; color: #fff;">Submit</button>
+                        <button type="button" class="btn btn-danger clos" data-dismiss="modal">
+                            &nbsp;Cancel</button>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- disable modal -->
+        <div class="modal fade" id="disableModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background: #ff9b44;color: #fff;">
+                        <h5 class="modal-title mt-0" id="MovetoEnable">Move to enable</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label class="control-label">Do you want to enable ?<span class="required"></span>
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary prim"
+                            style="background: #ff9b44; border: none; color: #fff;">Submit</button>
+                        <button type="button" class="btn btn-danger clos" data-dismiss="modal">
+                            &nbsp;Cancel</button>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background: #ff9b44;color: #fff;">
+                        <h5 class="modal-title mt-0" id="langModalLabel">Delete</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label class="control-label">Are you sure you want to delete this item ?<span
+                                        class="required"></span> </label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary prim"
+                            style="background: #ff9b44; border: none; color: #fff;">OK</button>
+                        <button type="button" class="btn btn-danger clos" data-dismiss="modal">
+                            &nbsp;Cancel</button>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /ViewModal -->
+    </div>
+<!-- /Page Content  -->
+</div>
+<!-- /Page Wrapper  -->

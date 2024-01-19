@@ -1,0 +1,275 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <!-- Page Content -->
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col-xl-9 col-lg-6">
+                    <h3 class="page-title">Accounts</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/dashboard">Home</a></li>
+                        <li class="breadcrumb-item active1">Edit Bill</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <!--Table content-->
+        <div class="row">
+            <div class="col-xl-12 column-list">
+                <form [formGroup]="addclaimforms">
+                    <div class="form-row">
+                        <div class="form-group col-lg-4 col-md-12 mx-3">
+                            <label for="InputFrstName" class="text-bold font">Title<span class="required">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="InputFrstName" placeholder="Enter Title"
+                                formControlName="tit" [ngClass]="{ 'red-border-class': Submitted && fr.tit.errors }"
+                                required />
+                        </div>
+                        <div class="form-group col-lg-4 col-md-12 mx-3">
+                            <label for="InputLstName" class="text-bold font">Description<span class="required">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="InputLstName" placeholder="Enter Description"
+                                formControlName="desc" [ngClass]="{ 'red-border-class': Submitted && fr.desc.errors }"
+                                required />
+                        </div>
+
+                        <div class="col-xl-2 col-lg-4 float-right" style="margin-top: 30px">
+                            <a href="#" class="btn add-btn add" data-toggle="modal" data-target="#langModal"
+                                (click)="openNewModal()">
+                                <i class="fa fa-plus"></i> Add Expense</a>
+                        </div>
+                    </div>
+                </form>
+                <!-- <div role="search" class="app-search search_box">
+                    <div class="form-group mb-0">
+                        <input type="text" class="form-control " placeholder="Search.."
+                            [(ngModel)]="term" (keyup)="search()" [ngModelOptions]="{standalone: true}">
+                        <button type="submit" class="icon"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <!-- Pending -->
+
+        <div class="tab-content">
+            <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+                <div class="">
+                    <div>
+                        <table class="table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <!-- <th>#</th> -->
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col" rowspan="2">Amount</th>
+                                    <th scope="col">Controls</th>
+                                </tr>
+                            </thead>
+                            <tr *ngIf="!subbilldetails || subbilldetails.length == 0">
+                                <td colspan="8" style="text-align: center">No Data</td>
+                            </tr>
+                            <tbody>
+                                <tr *ngFor="let bill of subbilldetails; let i = index">
+                                    <td data-label="Date">
+                                        &nbsp;{{ apiService.getDate1(bill.date) }}
+                                    </td>
+                                    <td data-label="Title">{{ bill.title }}</td>
+                                    <td data-label="Description">{{ bill.desc }}</td>
+                                    <td data-label="Amount">{{ bill.amount }}</td>
+
+                                    <td data-label="Controls">
+                                        <div class="controls desktop_control con_icons"
+                                            style="display: flex; justify-content: space-around">
+                                            <div class="dropdown-action">
+                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" (click)="editsubbill(bill, i)"
+                                                        data-toggle="modal" data-target="#langModalEdit"
+                                                        href="javascript:void(0);" title="Edit Subbill Details">
+                                                        <i class="fa fa-pencil pen mr-2" aria-hidden="true"></i>Edit</a>
+
+                                                    <!-- <a *ngIf="bill?.file != ''" title="Download" target="_blank" rel="noopener noreferrer" href="{{ apiUrl + bill?.file }}">
+                                                        <i class="fa fa-download"> </i>Download</a> -->
+
+                                                    <a class="dropdown-item" (click)="delete(i)"
+                                                        href="javascript:void(0);" title="Delete branch"><i
+                                                            class="fa fa-trash red dust mr-2"
+                                                            aria-hidden="true"></i>Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" rowspan="2" scope="col">Total Amount</td>
+                                    <td data-label="totalamt">{{ total }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-1 col-lg-4 float-right">
+            <a (click)="updatetotbill()" class="btn add-btn sub">Update</a>
+        </div>
+    </div>
+    <!-- /Page Wrapper -->
+
+    <!--  Add Bill Modal -->
+    <div class="modal fade" id="langModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #ff9b44; color: #fff">
+                    <h5 class="modal-title mt-0" id="langModalLabel">
+                        {{ modalHeaderText }}
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="newbillForms">
+                        <div class="form-group">
+                            <label class="control-label">Title <span class="required">*</span>
+                            </label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Eg :Travel expense"
+                                    formControlName="title" [ngClass]="{
+                    'red-border-class': Submittedadd && fradd.title.errors
+                  }" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Date <span class="required">*</span>
+                            </label>
+                            <div class="input-group">
+                                <input type="date" max="{{ maxDate }}" class="form-control" placeholder="Eg :Enter Date"
+                                    formControlName="date" [ngClass]="{
+                    'red-border-class': Submittedadd && fradd.date.errors
+                  }" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Amount <span class="required">*</span>
+                            </label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" placeholder="Eg :Enter Amount"
+                                    formControlName="amount" [ngClass]="{
+                    'red-border-class': Submittedadd && fradd.amount.errors
+                  }" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Description <span class="required">*</span></label>
+                            <div class="input-groupncol-md-12">
+                                <textarea class="col-md-12" style="border: 1px solid #dcd9d9"
+                                    formControlName="description" [ngClass]="{
+                    'red-border-class': Submittedadd && fradd.description.errors  }" required></textarea>
+                 
+                
+                            </div>
+                        </div>
+
+                        <input type="file" class="form-control fixed_size" [(ngModel)]="cert"
+                            [ngModelOptions]="{ standalone: true }" (change)="saveCertImage($event)" />
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger clos" data-dismiss="modal">
+                        &nbsp;Close
+                    </button>
+                    <button type="submit" (click)="addbill(modalButtonText)" class="btn btn-primary prim">
+                        {{ modalButtonText }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /Add Bill Modal -->
+
+    <!--  Edit Bill Modal -->
+    <div class="modal fade" id="langModalEdit" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #ff9b44; color: #fff">
+                    <h5 class="modal-title mt-0" id="langModalLabel">
+                        {{ modalHeaderText }}
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="editbillForms">
+                        <div class="form-group">
+                            <label class="control-label">Title <span class="required">*</span>
+                            </label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Eg :Travel expense"
+                                    formControlName="title" [ngClass]="{
+                    'red-border-class': Submittedview && frview.title.errors
+                  }" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Description <span class="required">*</span></label>
+                            <div class="input-groupncol-md-12">
+                                <textarea class="col-md-12" style="border: 1px solid #dcd9d9"
+                                    formControlName="description" [ngClass]="{
+                    'red-border-class':
+                      Submittedview && frview.description.errors
+                  }" required>
+                </textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Date <span class="required">*</span>
+                            </label>
+                            <div class="input-group">
+                                <input type="date" max="{{ maxDate }}" class="form-control" placeholder="Eg :Enter Date"
+                                    formControlName="date" [ngClass]="{
+                    'red-border-class': Submittedview && frview.date.errors
+                  }" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Amount <span class="required">*</span>
+                            </label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" placeholder="Eg :Enter Amount"
+                                    formControlName="amount" [ngClass]="{
+                    'red-border-class': Submittedview && frview.amount.errors
+                  }" required />
+                            </div>
+                        </div>
+                        <input type="hidden" formControlName="index" />
+                        <input type="file" class="form-control fixed_size" [(ngModel)]="cert"
+                            [ngModelOptions]="{ standalone: true }" (change)="saveCertImage($event)" />
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger clos" data-dismiss="modal">
+                        &nbsp;Close
+                    </button>
+                    <button type="submit" (click)="updatebill()" class="btn btn-primary prim">
+                        {{ modalButtonText }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /Edit Bill Modal -->
+</div>

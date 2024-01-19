@@ -1,0 +1,316 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <!-- Page Content -->
+    <div class="content container-fluid">
+                    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col-lg-4">
+                    <h3 class="page-title">OffBoard Policy</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/dashboard/employee_dashbaord">Home</a></li>
+                        <li class="breadcrumb-item active1">OffBoard Policy</li>
+                    </ul>
+                </div>
+                <div class="col-lg-8 float-right ml-auto">
+                     <a routerLink="/policy/offboardpolicyadd" class="btn add-btn add" data-toggle="modal"  data-target="#langModal" 
+                     *ngIf="apiService.chkUserACLAccess('policy_write')"
+                     > <i class="fa fa-plus"></i> Create Offboard Policy</a>
+                      
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <!--Table content-->
+        <div class="row mt-3">
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 search_text"
+                style="padding-top: 12px !important;">
+                <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+                    <li class="nav-item">
+                        <a role="tab"  class="nav-link active clr"  id="tab-0" data-toggle="tab" href="#tab-content-0">
+                            <span>Active</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="position: relative;
+                    left: 3px;">
+                        <a role="tab" class="nav-link clr"  id="tab-1" data-toggle="tab" href="#tab-content-1">
+                            <span>Disabled</span>
+                        </a>
+                    </li>
+                   
+                </ul>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                <div role="search" class="app-search" style="margin-top: 12px;">
+                    <div class="form-group mb-0">
+                        <input type="text" class="form-control " placeholder="Search.."
+                            [(ngModel)]="term" (keyup)="search()" [ngModelOptions]="{standalone: true}">
+                        <button type="submit" class="icon"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>   
+     
+        <div class="tab-content">
+            <div class="tab-pane tabs-animation fade show active"
+                id="tab-content-0" role="tabpanel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body tableScroll" style="overflow-x: auto;">
+                       <div class="tble">
+                        <table class="table table-hover table-striped table-bordered">
+                            <thead>
+                      <tr>
+                          <th>#</th>
+                          <th scope="col">Name </th>
+                          <th scope="col">Description </th>
+                          <th *ngIf="apiService.chkUserACLAccess('policy_write')">Status</th>                                    
+                          <th scope="col">Controls</th>
+                      </tr>
+                  </thead>
+                  <tr *ngIf="!activeOffboardPolicy||activeOffboardPolicy.length==0"><td colspan="8" style="text-align: center;">No Data</td></tr>
+                  <tbody>
+                      <tr *ngFor="let data of activeOffboardPolicy;let i =index">
+                          <td data-label="#">{{((pagerActive.currentPage-1) * showItemActive)+(i+1)}}</td>
+                          <td data-label="Name">&nbsp;{{data.name}}</td>
+                          <td data-label="Description">&nbsp;{{data.description}}</td>
+                          <td *ngIf="apiService.chkUserACLAccess('policy_write')" data-label="Status"><label class="switch" (change)="status(data.uniqueId,'disable')">
+                              <input type="checkbox" data-toggle="modal" data-target="#activeModal" checked>
+                                  <span class="slider round"></span>
+                          </label></td>
+                          <td data-label="Controls">
+                              <div class="controls desktop_control con_icons" style=" display: flex;justify-content: space-around;">
+                                  <a *ngIf="apiService.chkUserACLAccess('policy_write')" title="Edit" (click)="useraction('edit',data.uniqueId)">
+                                      <i class="fa fa-pencil pen" aria-hidden="true"></i></a> &nbsp;
+  
+                                  <a class="green" title="view"(click)="useraction('view',data.uniqueId)">
+                                      <i class="fa fa-eye" aria-hidden="true"></i></a> &nbsp;
+                                                     
+                                  <i *ngIf="apiService.chkUserACLAccess('policy_write')" class="fa fa-trash dust" data-toggle="modal" data-target="#deleteModal" aria-hidden="true"title="Delete" (click)="status(data.uniqueId,'delete')"></i>
+                              </div>
+                          
+                          </td>
+                      </tr>
+                  </tbody>
+                          </table>
+                       </div>
+                        <div class="row" style="    justify-content: space-between;
+                        padding: 0px 17px 0px 15px;">
+                            <div>
+                                <ul class="pagination mt-5">
+                                    <li class="page-item">
+                                        <a class="page-link" (click)="setPage(1)">First</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                            (click)="setPage(pagerActive.currentPage - 1)">Previous</a>
+                                     </li>
+                                    <li class="page-item" *ngFor="let page of pagerActive.pages"
+                                       >
+                                        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                                    </li>
+                                    <li class="page-item"
+                                        >
+                                        <a class="page-link"
+                                            (click)="setPage(pagerActive.currentPage + 1)">Next</a>
+                                    </li>
+                                    <li class="page-item"
+                                        >
+                                        <a class="page-link" (click)="setPage(pagerActive.totalPages)">Last</a>
+                                    </li>
+                                </ul>
+                                <label  style="color: black;">Total Record- {{active_count}}</label>
+                            </div>
+                            <div>
+                                <ul class="pagination mt-5 pull-right" >
+                                    <li class="page-item">
+                                        <a class="page-link" (click)="saveActiveItems(10)">10</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" (click)="saveActiveItems(50)">50</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" (click)="saveActiveItems(100)">100</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane tabs-animation fade"
+                id="tab-content-1" role="tabpanel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body tableScroll" style="overflow-x: auto;">
+                      <div class="tble">
+                        <table class="table table-hover table-striped table-bordered">
+                            <thead>
+                      <tr>
+                          <th>#</th>
+                          <th scope="col">Name </th>
+                          <th scope="col">Description </th>  
+                          <th *ngIf="apiService.chkUserACLAccess('policy_write')">Status</th>                                    
+                          <th scope="col">Controls</th>
+                      </tr> 
+                  </thead>
+                  <tr *ngIf="!disabledOffboardPolicy||disabledOffboardPolicy.length==0"><td colspan="8" style="text-align: center;">No Data</td></tr>
+                  <tbody>
+                      <tr *ngFor="let data of disabledOffboardPolicy;let i =index">
+                          <td data-label="#">{{((pagerDisabled.currentPage-1) * showItemDisabled)+(i+1)}}</td>
+                          <td data-label="Name">&nbsp;{{data.name}}</td>
+                          <td data-label="Description">&nbsp;{{data.description}}</td>                
+                          <td *ngIf="apiService.chkUserACLAccess('policy_write')" data-label="Status"><label class="switch"
+                              (change)="status(data.uniqueId,'enable')">
+                              <input type="checkbox" data-toggle="modal" data-target="#disableModal" checked>
+                              <span class="slider round"></span>
+                          </label></td>
+                          <td data-label="Controls">
+                              <div class="controls desktop_control con_icons" style=" display: flex;justify-content: space-around;">
+                               <a *ngIf="apiService.chkUserACLAccess('policy_write')" title="Edit" (click)="useraction('edit',data.uniqueId)">
+                                  <i class="fa fa-pencil pen" aria-hidden="true"></i></a> &nbsp;
+                                                          
+                              <a class="green" title="view"(click)="useraction('view',data.uniqueId)">
+                                  <i class="fa fa-eye" aria-hidden="true"></i></a> &nbsp;
+                                                     
+                              <i *ngIf="apiService.chkUserACLAccess('policy_write')" class="fa fa-trash dust" data-toggle="modal" data-target="#deleteModal" aria-hidden="true"title="Delete" (click)="status(data.uniqueId,'delete')"></i>
+                                                      
+                              </div>
+  
+                          </td>
+                      </tr>
+                  </tbody>
+                          </table>
+                      </div>
+                        <div class="row" style="justify-content: space-between;padding: 0px 17px 0px 15px;">
+                            <div>
+                                <ul class="pagination mt-5">
+                                    <li class="page-item">
+                                        <a class="page-link" (click)="setPageDisabled(1)">First</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                            (click)="setPageDisabled(pagerDisabled.currentPage - 1)">Previous</a>
+                                    </li>
+                                    <li class="page-item" *ngFor="let page of pagerDisabled.pages"
+                                       >
+                                        <a class="page-link" (click)="setPageDisabled(page)">{{page}}</a>
+                                    </li>
+                                    <li class="page-item"
+                                        >
+                                        <a class="page-link"
+                                            (click)="setPageDisabled(pagerDisabled.currentPage + 1)">Next</a>
+                                    </li>
+                                    <li class="page-item"
+                                        >
+                                        <a class="page-link" (click)="setPageDisabled(pagerDisabled.totalPages)">Last</a>
+                                    </li>
+                                </ul>
+                                <label style="color: black;">Total Record- {{disabled_count}}</label>
+                            </div>
+                            <div>
+                                <ul class="pagination mt-5 pull-right" >
+                                    <li class="page-item">
+                                        <a class="page-link" (click)="saveDisabledItems(10)">10</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" (click)="saveDisabledItems(50)">50</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" (click)="saveDisabledItems(100)">100</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <!--/Table Content-->
+        <!-- active modal  -->
+        <div class="modal fade" id="activeModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+ aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header" style="background: #ff9b44;color: #fff;">
+             <h5 class="modal-title mt-0" id="langModalLabel">Move to disable</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <div class="modal-body">
+             <form>
+                 <div class="form-group">
+                     <label class="control-label">Do you want to disable ?<span class="required"></span> </label>
+                 </div>
+             </form>
+         </div>
+         <div class="modal-footer">
+            <button type="submit" (click)="sumbitstatus()" class="btn btn-primary prim" style="background: #ff9b44; border: none; color: #fff;">Submit</button>
+
+            <button type="button" (click)="cancelpop()" class="btn btn-danger clos" data-dismiss="modal">
+                &nbsp;Cancel</button>
+            
+            </div>
+     </div>
+ </div>
+</div>
+<!-- disable modal  -->
+<div class="modal fade" id="disableModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+ aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header" style="background: #ff9b44;color: #fff;">
+             <h5 class="modal-title mt-0" id="langModalLabel">Move to active</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <div class="modal-body">
+             <form>
+                 <div class="form-group">
+                     <label class="control-label">Do you want to active ?<span class="required"></span> </label>
+                 </div>
+             </form>
+         </div>
+         <div class="modal-footer">
+            <button type="submit" (click)="sumbitstatus()" class="btn btn-primary prim" style="background: #ff9b44; border: none; color: #fff;">Submit</button>
+
+            <button type="button" (click)="cancelpop()" class="btn btn-danger clos" data-dismiss="modal">
+                &nbsp;Cancel</button>
+            
+            </div>
+     </div>
+ </div>
+</div>
+<!-- delete modal  -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+ aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header" style="background: #ff9b44;color: #fff;">
+             <h5 class="modal-title mt-0" id="langModalLabel">Delete</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <div class="modal-body">
+             <form>
+                 <div class="form-group">
+                     <label class="control-label">Are you sure want to delete this item ?<span class="required"></span> </label>
+                 </div>
+             </form>
+         </div>
+         <div class="modal-footer">
+            <button type="submit" class="btn btn-primary prim" (click)="delete()" style="background: #ff9b44; border: none; color: #fff;">OK</button>
+             <button type="button" class="btn btn-danger clos" data-dismiss="modal">
+                 &nbsp;Close</button>
+           
+
+         </div>
+     </div>
+ </div>
+</div>
+      
+        
+    </div>

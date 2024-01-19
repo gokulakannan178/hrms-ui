@@ -1,0 +1,126 @@
+<!-- Created by Riddhi Omar on 27/04/2022 -->
+
+  <div class=" page-details">
+    <div class="container-fluid card shadow-3-strong ">
+      <div class="back">
+        <button type="button" class="btn btn-light back" onclick="history.back()"><i class="mr-2 fa fa-arrow-left" aria-hidden="true"></i>Back</button>
+      </div>
+      <!-- page header start -->
+      <div class="page-header">
+        <div class="row align-items-center">
+          <h3 class="page-title">Employee</h3>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/dashboard">Home</a></li>
+              <li class="breadcrumb-item active1">View Employee</li>
+            </ul>
+        </div>
+      </div>
+      <!-- page header end -->
+      <!-- Form start -->
+      <form [formGroup]="notifyforms">
+        <div class="form-row">
+          <div class="form-group col-lg-5 col-md-12 mx-3">
+            <label for="InputFrstName" class="text-bold ">First Name <span class="required">*</span> </label>
+            <input type="text" class="form-control" id="InputFrstName" placeholder="Enter First Name"
+              formControlName="first_name" disabled
+              [ngClass]="{'red-border-class': Submitted && fr.first_name.errors}" required>
+          </div>
+          <div class="form-group col-lg-5 col-md-12 mx-3">
+            <label for="InputLstName" class="text-bold">Last Name <span class="required">*</span> </label>
+            <input type="text" class="form-control " id="InputLstName" placeholder="Enter Last Name"
+                        formControlName="last_name" disabled
+                        [ngClass]="{'red-border-class': Submitted && fr.last_name.errors}" required>            
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-lg-5 col-md-12 mx-3">
+            <label for="InputFatherName" class="text-bold ">Father Name<span class="required">*</span> </label>
+            <input type="text" class="form-control " id="InputFatherName"  placeholder="Enter Father Name"
+                        formControlName="father_name" disabled
+                        [ngClass]="{'red-border-class': Submitted && fr.father_name.errors}" required>
+           </div>
+          <div class="form-group col-lg-5 col-md-12 mx-3">
+            <label for="InputDOB" class="text-bold">Date Of Birth<span class="required">*</span> </label>
+            <input type="date" class="form-control" id="InputDOB"
+            formControlName="dob" disabled
+            [ngClass]="{'red-border-class': Submitted && fr.dob.errors}" required>            
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-lg-5 col-md-12 mx-3">
+            <label for="InputGndr" >Gender<span class="required">*</span> </label>
+            <select class="form-select form-control dd" aria-label="Default select "
+            formControlName="gender" disabled
+            [ngClass]="{'red-border-class': Submitted && fr.gender.errors}" required>
+                <option selected>--Select Gender--</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="others">Others</option>
+            </select>
+          </div>
+          <div class="form-group col-lg-5 col-md-12 mx-3">
+            <label for="InputNmbr" class="text-bold">Mobile Number<span class="required">*</span> </label>
+            <input type="text" class="form-control" id="InputNambr"  placeholder="Enter Mobile Number"
+                formControlName="mob_no" disabled
+               [ngClass]="{'red-border-class': Submitted && fr.mob_no.errors}" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-lg-5 col-md-12 mx-3">
+            <label for="InputEmail1" class="text-bold ">Personal Email<span class="required">*</span> </label>
+            <input type="email" class="form-control" id="InputEmail1"  placeholder="Enter Email"
+                        formControlName="p_email" disabled
+                        [ngClass]="{'red-border-class': Submitted && fr.p_email.errors}" required>            
+          </div>
+          <div class="form-group col-lg-5 col-md-12 mx-3">
+            <label for="InputEmail2" class="text-bold ">Official Email<span class="required">*</span> </label>
+            <input type="email" class="form-control " id="InputEmail2" placeholder="Enter Email"
+                formControlName="off_email" disabled
+                [ngClass]="{'red-border-class': Submitted && fr.off_email.errors}" required>
+            </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-lg-5 col-md-12 mx-3">
+            <label for="InputJnDate" class="text-bold">Joining Date<span class="required">*</span> </label>
+            <input type="date" class="form-control" id="InputJnDate" 
+            formControlName="join_date" disabled
+            [ngClass]="{'red-border-class': Submitted && fr.join_date.errors}" required>            
+            </div>
+            <div class="form-group col-lg-5 col-md-12 mx-3">
+              <label for="InputOrganization">On Boarding Policy<span class="required">*</span> </label>
+              
+                <select class="form-select form-control dd"  aria-label="Default select " formControlName="onchecklist_drop" disabled
+    
+                (change)="getValue($event.target.value)" [ngClass]="{
+    
+                'red-border-class': Submitted && fr.onchecklist_drop.errors}" required>
+    
+                <option value="">Select Your Option</option>
+    
+                <option value="{{data.uniqueId}}"  *ngFor='let data of onchecklist_dd' >{{data.name}}</option>
+    
+            </select>
+            </div>
+        </div>
+         <div class="form-row">
+        <div class="form-group col-lg-5 col-md-12 mx-3">
+          <label for="InputOrganization">Organization<span class="required">*</span> </label>
+          
+            <select class="form-select form-control dd"  aria-label="Default select " formControlName="organisation" disabled
+
+            (change)="getValue1($event.target.value)" [ngClass]="{
+
+            'red-border-class': Submitted && fr.organisation.errors}" required>
+
+            <option value="">Select Your Option</option>
+
+            <option value="{{data.uniqueId}}"  *ngFor='let data of org_dd' >{{data.name}}</option>
+
+        </select>
+        </div>
+        </div>
+      </form>
+      <!-- Form end -->
+    </div>
+  </div>
+

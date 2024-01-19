@@ -1,0 +1,32 @@
+
+@media only screen and (max-width:1440px){
+
+.card {
+  margin: 0 150px;
+  width: 19em;
+  position: relative;
+  float: left;
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.sub{
+  color: #fff;
+    background-color: #ff9b44;
+    border-color: #ff9b44;
+}
+
+}
+
+.custom-modal .close{
+  position: absolute !important;
+  right: 15px !important;
+  top: 19px !important;
+}
+
+@media only screen and (max-width:990px){
+  .page-wrapper{
+		width: 100% !important;
+	}
+
+}

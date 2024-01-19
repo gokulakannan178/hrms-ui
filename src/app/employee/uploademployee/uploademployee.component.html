@@ -1,0 +1,94 @@
+<div class="page-wrapper">
+    <div class="content container-fluid setwidthcon6">
+        <!-- Header page -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col-lg-4">
+                    <h3 class="page-title">Upload Employee</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/dashboard/employee_dashbaord">Home</a></li>
+                        <li class="breadcrumb-item active1">Upload Employee</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3 ">
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                <form [formGroup]="uploadfile">
+                <!-- <div role="search" class="app-search" style="margin-top: 12px; display: flex;">
+                    <div class="form-group mb-0">
+                        <input type="text" class="form-control " id="file" value="{{fileName}}" style="width:300px" placeholder="choose file.."
+                            (keyup)="search()" >
+                        <button type="submit" class="icon"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </div>
+
+                    <div class="col-lg-8 float-right ml-auto" style="position: relative; left: 17px;">
+                        <input type="file" accept=".xlsx,.xls"  class="btn add-btn add" (change)="Fileselect($event)"> <i class="fa fa-file-word-o"
+                                aria-hidden="true"></i> Browse
+                    </div>
+                </div> -->
+                
+                    
+                    <div class="form-group mb-6 " style="display: flex;">
+                        <input type="text" id="file" value="{{fileName}}" class="form-control col-sm-6 " readonly style="border-radius: 0px;">
+                        <span class="input-group-btn" style="width:136px">
+                            <span class="btn btn-lg btn-purple btn-file " style="border-radius: 0px;cursor: pointer;padding: 8px 10px;font-size: 14px;color: #fff; border-radius: 3px;">
+                                    <i class="fas fa-file"></i> Browse
+                                <input type="file" accept=".xlsx,.xls" (change)="Fileselect($event)">
+                            </span>
+                        </span>
+                    </div>
+              
+                </form>
+                <div class="row mt-3"  >
+                    <div class="" style="margin-left: 15px;">
+                        <button  class="btn add-btn add" (click)="uploading(1)"> Upload</button>
+                    </div>
+                    <div >
+                        <a href="#" class="btn add-btn add " style="margin-left:9px"> Reset</a>
+                    </div>
+                </div>
+            </div>
+           
+
+        </div>
+        
+        <!-- page body -->
+        <div class="tab-content">
+            <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body tableScroll" style="overflow-x: auto;">
+                       <div class="tble">
+                        <table class="table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>S.no</th>
+                                    <th scope="col">Name </th>
+                                    <th scope="col">Mobile Number </th>
+                                    <th scope="col">User Name </th>
+                                    <th >Error</th>
+                                    
+                                </tr>
+                            </thead>
+                            <!-- <tr *ngIf="!branchDetails||branchDetails.length==0">
+                                <td colspan="8" style="text-align: center;">No Data</td>
+                            </tr> -->
+                            <tbody>
+                                <tr *ngFor="let data of employeedata; let i =index">
+                                    <td data-label="#">{{i+1}}</td>
+                                    <td data-label="Name">&nbsp;{{data.name}}</td>
+                                    <td data-label="Organisation">&nbsp;{{data.mobileNumber}}</td>
+                                    <td data-label="Description">&nbsp;{{data.userName}}</td>
+                                <td >&nbsp;{{data.error}}</td>
+                                   
+                                </tr>
+                            </tbody>
+                        </table>
+                       </div>
+                       
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div>
+</div>

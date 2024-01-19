@@ -1,0 +1,421 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+
+    <!-- Page Content -->
+    <div class="content container-fluid setwidthcon">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Holidays</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/dashboard/employee_dashbaord">Home</a></li>
+                        <li class="breadcrumb-item ">Holidays</li>
+                    </ul>
+                </div>
+                <div class="col-auto float-right ml-auto">
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_holiday"><i
+                            class="fa fa-plus"></i> Add Holiday</a>
+                </div>
+            </div>
+
+            <div class="row filter-row">
+                <div class="col-sm-6 col-md-3">
+                    <label for="InputOrganization">Organization<span></span> </label>
+
+                    <select class="form-select form-control dd" aria-label="Default select "
+                        [(ngModel)]="filterorganisation" (change)="getValue1($event.target.value)" [ngClass]="{
+    
+                  'red-border-class': submitted && fr.organisation.errors}" required>
+
+                        <option value="">Select Your Option</option>
+
+                        <option value="{{data.uniqueId}}" *ngFor='let data of org_dd'>{{data.name}}</option>
+
+                    </select>
+                </div>
+                <div class="col-sm-6 col-md-2" style="margin-top:35px;">
+                    <button (click)="search()" class="icon1">
+                        <i class="fa fa-search searc" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 search_text" style="padding-top: 12px !important;">
+                <!-- <div class="switch">
+                    <input [checked]="activeStatus" (change)="Checkbox($event)" type="checkbox"
+                        id="switch2" />
+                    <label for="switch2">{{buttonText}}</label>
+                </div> -->
+                <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+                    <li class="nav-item">
+                        <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
+                            <span>Active</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="position: relative;
+                    left: 3px;">
+                        <a role="tab" class="nav-link  clr" id="tab-1" data-toggle="tab" href="#tab-content-1">
+                            <span>Disabled</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <!-- active -->
+        <div class="tab-content">
+            <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body tableScroll" style="overflow-x: auto;">
+                        <div class="tble table-hover table-striped table-bordered" style="text-align: center;">
+                            <table class="table table-striped custom-table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Title </th>
+                                        <th>Holiday Date</th>
+                                        <th>organization</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="holiday-upcoming" *ngFor="let data of Activeholiday;let i =index">
+                                        <td data-label="#">{{((pager.currentPage-1) * showItemActive)+(i+1)}}</td>
+                                        <td data-label="Title">{{data.name}}</td>
+                                        <td data-label="Holiday Date">{{data.date |date:'dd-MM-yy'}}</td>
+                                        <td data-label="Day">{{data.ref.organisationId.name}}</td>
+                                        <td data-label="Status"><label class="switch" (change)="status(data.uniqueId,'disable')">
+                                                <input type="checkbox" data-toggle="modal" data-target="#activeModal" checked>
+                                                <span class="slider round" ></span>
+                                            </label></td>
+                                        <td data-label="Action" >
+                                            <div class="dropdown dropdown-action">
+                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                <div class="dropdown-menu dropdown-menu-right" >
+                                                    <a class="dropdown-item" href="#" data-toggle="modal" (click)="editupdate(data.uniqueId,'Edit')"
+                                                        data-target="#edit_holiday"><i class="fa fa-pencil m-r-5"></i>
+                                                        Edit</a>
+                                                    <a (click)="status(data.uniqueId,'Deleted')" class="dropdown-item" href="#" data-toggle="modal"data-target="#delete_holiday">
+                                                        <i class="fa fa-trash-o m-r-5"></i>
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row" style="    justify-content: space-between;
+                        padding: 0px 17px 0px 15px;">
+                            <div>
+                                <ul class="pagination mt-5">
+                                    <li class="page-item">
+                                        <a class="page-link" (click)="setPage(1)">First</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                                    </li>
+                                    <li class="page-item" *ngFor="let page of pager.pages">
+                                        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                                    </li>
+                                </ul>
+                                <label style="color: black;">Total Record- {{active_count}}</label>
+                            </div>
+                            <div>
+                                <ul class="pagination mt-5 pull-right">
+                                    <li class="page-item">
+                                        <a class="page-link" (click)="saveActiveItems(10)">10</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" (click)="saveActiveItems(50)">50</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" (click)="saveActiveItems(100)">100</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- disable -->
+            <div class="tab-pane tabs-animation fade" id="tab-content-1" role="tabpanel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body tableScroll" style="overflow-x: auto;">
+                        <div class="tble">
+                            <table class="table table-striped custom-table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Title </th>
+                                        <th>Holiday Date</th>
+                                        <th>organization</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="holiday-upcoming" *ngFor="let data of Disableholiday;let i =index">
+                                        <td data-label="#">{{((pagerdisable.currentPage-1) * showItemDisable)+(i+1)}}</td>
+                                        <td data-label="Title">{{data.name}}</td>
+                                        <td data-label="Holiday Date">{{data.date |date:'dd-MM-yy'}}</td>
+                                        <td data-label="Day">{{data.ref.organisationId.name}}</td>
+                                        <td *ngIf="apiService.chkUserACLAccess('branch_write')" data-label="Status">
+                                            <label class="switch" (change)="status(data.uniqueId,'enable')">
+                                                <input type="checkbox" data-toggle="modal" data-target="#disableModal">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                        <td data-label="Action">
+                                            <div class="dropdown dropdown-action">
+                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                    aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#" data-toggle="modal" (click)="editupdate(data.uniqueId,'Edit')"
+                                                        data-target="#edit_holiday" ><i class="fa fa-pencil m-r-5"></i>
+                                                        Edit</a>
+                                                    <a  (click)="status(data.uniqueId,'Deleted')" class="dropdown-item" href="#" data-toggle="modal"
+                                                        data-target="#delete_holiday"><i
+                                                            class="fa fa-trash-o m-r-5"></i>
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row" style="    justify-content: space-between;
+                        padding: 0px 17px 0px 15px;">
+                            <div>
+                                <ul class="pagination mt-5">
+                                    <li class="page-item">
+                                        <a class="page-link" (click)="setPagedisable(1)">First</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                            (click)="setPagedisable(pagerdisable.currentPage - 1)">Previous</a>
+                                    </li>
+                                    <li class="page-item" *ngFor="let page of pagerdisable.pages">
+                                        <a class="page-link" (click)="setPagedisable(page)">{{page}}</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                            (click)="setPagedisable(pagerdisable.currentPage + 1)">Next</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" (click)="setPagedisable(pagerdisable.totalPages)">Last</a>
+                                    </li>
+                                </ul>
+                                <label style="color: black;">Total Record- {{disable_count}}</label>
+                            </div>
+                            <div>
+                                <ul class="pagination mt-5 pull-right">
+                                    <li class="page-item">
+                                        <a class="page-link" (click)="savedisableItems(10)">10</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" (click)="savedisableItems(50)">50</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" (click)="savedisableItems(100)">100</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /Page Content -->
+
+    <!-- Add Holiday Modal -->
+    <div class="modal custom-modal fade" id="add_holiday" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{modalHeaderText}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="addholiday">
+                        <div class="form-group">
+                            <label>Holiday Name <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" formControlName="holiday_name">
+                        </div>
+                        <div class="form-group">
+                            <label>Holiday Date <span class="text-danger">*</span></label>
+                            <div class="cal"><input class="form-control" type="date" formControlName="holiday_date">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="InputOrganization">Organization<span class="required">*</span> </label>
+
+                            <select class="form-select form-control dd" aria-label="Default select "
+                                formControlName="organisation" (change)="getValue1($event.target.value)" [ngClass]="{
+                
+                              'red-border-class': submitted && fr.organisation.errors}" required>
+
+                                <option value="">Select Your Option</option>
+
+                                <option value="{{data.uniqueId}}" *ngFor='let data of org_dd'>{{data.name}}</option>
+
+                            </select>
+                        </div>
+                        <div class="submit-section">
+                            <button class="btn btn-primary submit-btn" (click)="save()" class="btn btn-primary prim">{{modalButtonText}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Add Holiday Modal -->
+
+    <!-- Edit Holiday Modal -->
+    <div class="modal custom-modal fade" id="edit_holiday" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Holiday</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="editforms">
+                        <div class="form-group">
+                            <label>Holiday Name <span class="text-danger">*</span></label>
+                            <input class="form-control" value="New Year" type="text" formControlName="edit_name">
+                        </div>
+                        <div class="form-group">
+                            <label>Holiday Date <span class="text-danger">*</span></label>
+                            <div class="cal"><input class="form-control" value="01-01-2021" type="date" formControlName="edit_date"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="InputOrganization">Organisation<span class="required">*</span> </label>
+
+                            <select class="form-select form-control dd" aria-label="Default select "
+                                formControlName="organisation" formControlName="edit_organisation" (change)="getValue1($event.target.value)" [ngClass]="{
+                
+                              'red-border-class': submitted && fr.organisation.errors}"  required>
+
+                                <option value="">Select Your Option</option>
+
+                                <option value="{{data.uniqueId}}" *ngFor='let data of org_dd'>{{data.name}}</option>
+
+                            </select>
+                        </div>
+                        <div class="submit-section">
+                            <button class="btn btn-primary submit-btn" (click)="updateholday()">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Edit Holiday Modal -->
+
+    <!-- Delete Holiday Modal -->
+    <div class="modal fade" id="delete_holiday" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+ aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header" style="background: #ff9b44;color: #fff;">
+             <h5 class="modal-title mt-0" id="langModalLabel">Delete</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <div class="modal-body">
+             <form>
+                 <div class="form-group">
+                     <label class="control-label">Are you sure you want to delete this item ?<span class="required"></span> </label>
+                 </div>
+             </form>
+         </div>
+         <div class="modal-footer">
+            <button type="submit" class="btn btn-primary prim" (click)="delete()" style="background: #ff9b44; border: none; color: #fff;">YES</button>
+             <button type="button" class="btn btn-danger clos" data-dismiss="modal">
+                 &nbsp;Close</button>
+           
+
+         </div>
+     </div>
+ </div>
+</div>
+    <!-- /Delete Holiday Modal -->
+
+    <!-- active model popup  -->
+    <div class="modal fade" id="activeModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #ff9b44;color: #fff;">
+                    <h5 class="modal-title mt-0" id="MovetoDisable">Move to disable</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label class="control-label">Do you want to disable ?<span class="required"></span> </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" (click)="cancelpop()" class="btn btn-danger clos" data-dismiss="modal">
+                        &nbsp;Cancel</button>
+                    <button type="submit" (click)="sumbitstatus()" class="btn btn-primary prim"
+                        style="background: #ff9b44; border: none; color: #fff;">Submit</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- disable modal popup -->
+    <div class="modal fade" id="disableModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #ff9b44;color: #fff;">
+                    <h5 class="modal-title mt-0" id="MovetoEnable">Move to active</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label class="control-label">Do you want to active ?<span class="required"></span> </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" (click)="cancelpop()" class="btn btn-danger clos" data-dismiss="modal">
+                        &nbsp;Cancel</button>
+                    <button type="submit" (click)="sumbitstatus()" class="btn btn-primary prim"
+                        style="background: #ff9b44; border: none; color: #fff;">Submit</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- /Page Wrapper -->

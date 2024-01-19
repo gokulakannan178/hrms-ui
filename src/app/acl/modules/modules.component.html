@@ -1,0 +1,399 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <!-- Page Content -->
+    <div class="content container-fluid">
+                    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">ACL</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/dashboard">Home</a></li>
+                        <li class="breadcrumb-item active1">Modules</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-lg-6">
+                <h6>User Type</h6>
+            </div>
+            <div class="col-lg-6">
+                <h6>Module</h6>
+            </div>
+        </div>
+       
+        <section>
+            <div class="rt-container">
+                <div class="col-rt-12">
+                    <div class="Scriptcontent">
+                        <section class="tabs-container">
+                            <label [ngClass]="{'active':i==0}"
+                                *ngFor="let data of dataList1;index as i"
+                                (click)="getList2(data?.name)">{{data?.name | uppercase}}
+                            </label>
+                        </section>
+
+
+                        <section class="tab-content">
+                            <!-- inner tab menu-->
+                            <section>
+                                <div class="container1">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="panel panel-bd lobidisable">
+                                                <div class="panel-heading">
+                                                    <div class="panel-title">
+
+                                                        <h4>{{aclname}}</h4>
+                                                        <hr style="width:50em">
+                                                    </div>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="skin-minimal">
+                                                        <div class="row ">
+                                                            <div class="col-sm-4">
+                                                                <div class="i-check">
+                                                                    <label class="control-label float-left setuser">Admin Attendence</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <label class="switch">
+                                                                    <input type="checkbox" [(ngModel)]="admin_attendence" (change)="saveFeatureArr($event,'admin_attendence')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading1">View</h6>
+                                                                </label>
+                                                                <label class="switch1">
+                                                                    <input type="checkbox"  [(ngModel)]="admin_attendencewrite" (change)="saveFeatureArr($event,'admin_attendencewrite')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading2">Create/Edit/Delete</h6>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row whole">
+                                                            <div class="col-sm-4">
+                                                                <div class="i-check">
+                                                                    <label class="control-label float-left setuser">Admin Leave</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <label class="switch">
+                                                                    <input type="checkbox" [(ngModel)]="admin_leave" (change)="saveFeatureArr($event,'admin_leave')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading1">View</h6>
+                                                                </label>
+                                                                <label class="switch1">
+                                                                    <input type="checkbox"[(ngModel)]="admin_leavewrite" (change)="saveFeatureArr($event,'admin_leavewrite')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading2">Create/Edit/Delete</h6>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row whole">
+                                                            <div class="col-sm-4">
+                                                                <div class="i-check">
+                                                                    <label class="control-label float-left setuser">Asset Management</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <label class="switch">
+                                                                    <input type="checkbox" [(ngModel)]="asst_mgmt" (change)="saveFeatureArr($event,'asst_mgmt')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading1">View</h6>
+                                                                </label>
+                                                                <label class="switch1">
+                                                                    <input type="checkbox"[(ngModel)]="asst_mgmtwrite" (change)="saveFeatureArr($event,'asst_mgmtwrite')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading2">Create/Edit/Delete</h6>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row whole">
+                                                            <div class="col-sm-4">
+                                                                <div class="i-check">
+                                                                    <label class="control-label float-left setuser">Attendence</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <label class="switch">
+                                                                    <input type="checkbox" [(ngModel)]="attendence" (change)="saveFeatureArr($event,'attendence')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading1">View</h6>
+                                                                </label>
+                                                                <label class="switch1">
+                                                                    <input type="checkbox"[(ngModel)]="attendencewrite" (change)="saveFeatureArr($event,'attendencewrite')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading2">Create/Edit/Delete</h6>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row whole" >
+                                                            <div class="col-sm-4">
+                                                                <div class="i-check">
+                                                                    <label class="control-label float-left setuser">Bill Claim</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <label class="switch">
+                                                                    <input type="checkbox" [(ngModel)]="billclaim" (change)="saveFeatureArr($event,'billclaim')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading1">View</h6>
+                                                                </label>
+                                                                <label class="switch1">
+                                                                    <input type="checkbox"[(ngModel)]="billclaimwrite" (change)="saveFeatureArr($event,'billclaimwrite')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading2">Create/Edit/Delete</h6>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row whole">
+                                                            <div class="col-sm-4">
+                                                                <div class="i-check">
+                                                                    <label class="control-label float-left setuser">Branch</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <label class="switch">
+                                                                    <input type="checkbox" [(ngModel)]="branch" (change)="saveFeatureArr($event,'branch')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading1">View</h6>
+                                                                </label>
+                                                                <label class="switch1">
+                                                                    <input type="checkbox"[(ngModel)]="branchwrite" (change)="saveFeatureArr($event,'branchwrite')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading2">Create/Edit/Delete</h6>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row whole">
+                                                            <div class="col-sm-4">
+                                                                <div class="i-check">
+                                                                    <label class="control-label float-left setuser">Department</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <label class="switch">
+                                                                    <input type="checkbox" [(ngModel)]="department" (change)="saveFeatureArr($event,'department')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading1">View</h6>
+                                                                </label>
+                                                                <label class="switch1">
+                                                                    <input type="checkbox"[(ngModel)]="departmentwrite" (change)="saveFeatureArr($event,'departmentwrite')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading2">Create/Edit/Delete</h6>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row whole">
+                                                            <div class="col-sm-4">
+                                                                <div class="i-check">
+                                                                    <label class="control-label float-left setuser">Designation</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <label class="switch">
+                                                                    <input type="checkbox" [(ngModel)]="designation" (change)="saveFeatureArr($event,'designation')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading1">View</h6>
+                                                                </label>
+                                                                <label class="switch1">
+                                                                    <input type="checkbox"[(ngModel)]="designationwrite" (change)="saveFeatureArr($event,'designationwrite')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading2">Create/Edit/Delete</h6>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row whole">
+                                                            <div class="col-sm-4">
+                                                                <div class="i-check">
+                                                                    <label class="control-label float-left setuser">Document Management</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <label class="switch">
+                                                                    <input type="checkbox" [(ngModel)]="doc_mgmt" (change)="saveFeatureArr($event,'doc_mgmt')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading1">View</h6>
+                                                                </label>
+                                                                <label class="switch1">
+                                                                    <input type="checkbox"[(ngModel)]="doc_mgmtwrite" (change)="saveFeatureArr($event,'doc_mgmtwrite')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading2">Create/Edit/Delete</h6>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row whole">
+                                                            <div class="col-sm-4">
+                                                                <div class="i-check">
+                                                                    <label class="control-label float-left setuser">Employee</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <label class="switch">
+                                                                    <input type="checkbox" [(ngModel)]="employee" (change)="saveFeatureArr($event,'employee')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading1">View</h6>
+                                                                </label>
+                                                                <label class="switch1">
+                                                                    <input type="checkbox"[(ngModel)]="employeewrite" (change)="saveFeatureArr($event,'employeewrite')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading2">Create/Edit/Delete</h6>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row whole">
+                                                            <div class="col-sm-4">
+                                                                <div class="i-check">
+                                                                    <label class="control-label float-left setuser">Leave</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <label class="switch">
+                                                                    <input type="checkbox" [(ngModel)]="leave" (change)="saveFeatureArr($event,'leave')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading1">View</h6>
+                                                                </label>
+                                                                <label class="switch1">
+                                                                    <input type="checkbox"[(ngModel)]="leavewrite" (change)="saveFeatureArr($event,'leavewrite')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading2">Create/Edit/Delete</h6>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row whole">
+                                                            <div class="col-sm-4">
+                                                                <div class="i-check">
+                                                                    <label class="control-label float-left setuser">Leave Setting</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <label class="switch">
+                                                                    <input type="checkbox" [(ngModel)]="leave_setting" (change)="saveFeatureArr($event,'leave_setting')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading1">View</h6>
+                                                                </label>
+                                                                <label class="switch1">
+                                                                    <input type="checkbox"[(ngModel)]="leave_settingwrite" (change)="saveFeatureArr($event,'leave_settingwrite')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading2">Create/Edit/Delete</h6>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row whole">
+                                                            <div class="col-sm-4">
+                                                                <div class="i-check">
+                                                                    <label class="control-label float-left setuser">Organization</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <label class="switch">
+                                                                    <input type="checkbox" [(ngModel)]="organisation" (change)="saveFeatureArr($event,'organisation')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading1">View</h6>
+                                                                </label>
+                                                                <label class="switch1">
+                                                                    <input type="checkbox"[(ngModel)]="organisationwrite" (change)="saveFeatureArr($event,'organisationwrite')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading2">Create/Edit/Delete</h6>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row whole">
+                                                            <div class="col-sm-4">
+                                                                <div class="i-check">
+                                                                    <label class="control-lab,kmel float-left setuser">Payroll</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <label class="switch">
+                                                                    <input type="checkbox" [(ngModel)]="payroll" (change)="saveFeatureArr($event,'payroll')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading1">View</h6>
+                                                                </label>
+                                                                <label class="switch1">
+                                                                    <input type="checkbox"[(ngModel)]="payrollwrite" (change)="saveFeatureArr($event,'payrollwrite')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading2">Create/Edit/Delete</h6>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row whole">
+                                                            <div class="col-sm-4">
+                                                                <div class="i-check">
+                                                                    <label class="control-label float-left setuser">Policy</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <label class="switch">
+                                                                    <input type="checkbox" [(ngModel)]="policy" (change)="saveFeatureArr($event,'policy')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading1">View</h6>
+                                                                </label>
+                                                                <label class="switch1">
+                                                                    <input type="checkbox"[(ngModel)]="policywrite" (change)="saveFeatureArr($event,'policywrite')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading2">Create/Edit/Delete</h6>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row whole">
+                                                            <div class="col-sm-4">
+                                                                <div class="i-check">
+                                                                    <label class="control-label float-left setuser">Report</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <label class="switch">
+                                                                    <input type="checkbox" [(ngModel)]="report" (change)="saveFeatureArr($event,'report')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading1">View</h6>
+                                                                </label>
+                                                                <label class="switch1">
+                                                                    <input type="checkbox"[(ngModel)]="reportwrite" (change)="saveFeatureArr($event,'reportwrite')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading2">Create/Edit/Delete</h6>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row whole">
+                                                            <div class="col-sm-4">
+                                                                <div class="i-check">
+                                                                    <label class="control-label float-left setuser">News</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-8">
+                                                                <label class="switch">
+                                                                    <input type="checkbox" [(ngModel)]="news" (change)="saveFeatureArr($event,'news')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading1">View</h6>
+                                                                </label>
+                                                                <label class="switch1">
+                                                                    <input type="checkbox"[(ngModel)]="newswrite" (change)="saveFeatureArr($event,'newswrite')">
+                                                                    <span class="slider round"></span>
+                                                                    <h6 class="setheading2">Create/Edit/Delete</h6>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                       
+                                                     
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btnColor" (click)="save()">Add</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </section>
+
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>    
+    </div>
+</div>

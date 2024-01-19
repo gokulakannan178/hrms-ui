@@ -1,0 +1,90 @@
+
+    <div class=" page-details">
+        <div class="container-fluid card pl-5 py-5">
+          <div class="back">
+            <button type="button" class="btn btn-light back" onclick="history.back()"><i class="mr-2 fa fa-arrow-left" aria-hidden="true"></i>Back</button>
+          </div>
+          <!-- page header start -->
+          <div class="page-header">
+            <div class="row align-items-center">
+              <h3 class="page-title">Add New Asset </h3>
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item"><a routerLink="/dashboard">Home</a></li>
+                  <li class="breadcrumb-item active1">Add Asset </li>
+                </ul> 
+            </div>
+          </div>
+          <!-- page header end -->
+          <!-- page-card start -->
+          <div class="">
+            <form [formGroup]="assetforms">
+            <div class="form-group">
+              <label for="InputName" class="text-bold">Name<span class="required">*</span> </label>
+                <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter Name"
+                formControlName="name"
+                [ngClass]="{'red-border-class': Submitted && fr.name.errors}" required>
+            </div>
+
+            <div class="form-group">
+              <label for="InputOrganization">Organization<span class="required">*</span> </label>
+                <select class="form-select form-control dd" aria-label="Default select "  formControlName="orgdrop"
+                [ngClass]="{'red-border-class': Submitted && fr.orgdrop.errors}" required>
+                 
+    
+                        <option value="">Select Your Option</option>
+    
+                        <option value="{{data.uniqueId}}" placeholder="Select Organization" *ngFor='let data of org_dd'>{{data.name}}</option>
+                
+                 
+                </select>
+            </div> 
+
+    
+    
+            <div class="form-group">
+              <label for="InputDescription">Description<span class="required">*</span> </label>
+              <textarea class="form-control" name=" Description" id="InputDescription" placeholder="Enter Description" 
+              formControlName="desp"
+              [ngClass]="{'red-border-class': Submitted && fr.desp.errors}" required></textarea>
+            </div>
+
+            <!-- <div class="form-group">
+                <label for="InputAssetType">Asset Type<span class="required">*</span> </label>
+                  <select class="form-select form-control dd" aria-label="Default select "  formControlName="assettypedrop"
+
+                  (change)="getValue($event.target.value)"
+                   
+                  [ngClass]="{'red-border-class': Submitted && fr.assettypedrop.errors}" required>
+                   
+                          <option value="">Select Your Option</option>
+      
+                          <option  placeholder="Select Asset Type" *ngFor='let data1 of assettype_dd' >{{data1.name}}</option>
+                   
+                  </select>
+              </div> -->
+            
+              <div class="form-group">
+          <label for="InputOrganization">AssetType <span class="required">*</span> </label>
+            <select class="form-select form-control dd" (change)="assettypeval($event)" aria-label="Default select "  formControlName="assetdrop"
+            [ngClass]="{'red-border-class': Submitted && fr.assetdrop.errors}" required>
+             
+                    <option value="">Select Your Option</option>
+
+                    <option value="{{i}}"  placeholder="Select Asset" *ngFor='let data of asset_dd;let i=index'>{{data.name}}</option>
+                         
+            </select>
+        </div>
+        <h6><u>Properties</u></h6>
+        <div *ngFor="let ap of assettype_properties">
+          <label >{{ap.name}} <span class="required">*</span> </label>
+          <input class="form-control" (change)="getAssetPropertyValues(ap.uniqueId,$event)" type="text" id="InputName" size="50" placeholder="Enter Name">
+
+        </div>
+
+            <button type="submit" (click)="saveasset()"class="btn mb-5">Add Asset</button>
+            </form>
+          </div>
+          
+          <!-- page-card end -->
+        </div>
+      </div>

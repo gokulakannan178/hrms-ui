@@ -1,0 +1,96 @@
+
+<!-- Page Wrapper -->
+
+<div class="page-wrapper">
+    <!-- Page Content -->
+    <div class="content container-fluid setwidthcon5">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col-lg-4">
+                    <h3 class="page-title">Notification</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/dashboard/employee_dashbaord">Home</a></li>
+                        <li class="breadcrumb-item active1">News</li>
+                    </ul>
+                </div>
+                <div class="col-lg-8 float-right ml-auto">
+                    <a routerLink="/notifications/add-news" class="btn add-btn"> <i class="fa fa-plus"></i> Add News</a>
+
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <!-- page content  -->
+       <div class="container">
+        <div class="page-content">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="input-group rounded">
+                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                        <span class="input-group-text border-0" id="search-addon">
+                          <i class="fas fa-search"></i>
+                        </span>
+                      </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12" *ngFor="let data of newstitle">
+                    <div class="card my-2">
+                        <div class="card-body">
+                            <a routerLink="/notifications/news_view" class="card-heading" (click)="fullnews(data)"><h6 class="font-weight-bold"><i class="fa fa-flag" aria-hidden="true"></i> &nbsp; <span>{{data.title}}</span></h6></a>
+                            <div class="news-div">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;
+                                <span class="date"><b>{{data.date |date:'dd-MM-yy'}}</b> </span>
+                                <span class="divider"></span>
+                                <span>{{data.ref.createdBy.name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+      
+                
+            </div>
+            <div class="row" style="    justify-content: space-between;
+                        padding: 0px 17px 0px 15px;">
+                            <div>
+                                <ul class="pagination mt-5">
+                                    <li class="page-item">
+                                        <a class="page-link">First</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link">Previous</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link">1</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link">Next</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link">Last</a>
+                                    </li>
+                                </ul>
+                                <label style="color: black;">Total Record- 6</label>
+                            </div>
+                            <div>
+                                <ul class="pagination mt-5 pull-right">
+                                    <li class="page-item">
+                                        <a class="page-link">10</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link">50</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link">100</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+        </div>
+       </div>
+
+        <!-- /page content  -->
+    </div>
+</div>

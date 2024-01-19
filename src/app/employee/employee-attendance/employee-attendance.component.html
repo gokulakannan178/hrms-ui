@@ -1,0 +1,308 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12 ml-2">
+                    <h3 class="page-title">Employee Attendance</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/dashboard/employee_dashbaord">Home</a></li>
+                        <li class="breadcrumb-item active">Employee Attendance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <!-- search box filter -->
+        <div class="row">
+            <div class="col-xl-8">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <form>
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 form-group select-focus"
+                                style="float: left;">
+                                <label class="ml-1">employee Name</label>
+                                <div class="form-group form-focus select-focus">
+                                    <input type="text" class="select floating form-control" [(ngModel)]="term" [ngModelOptions]="{standalone: true}"
+>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 form-group select-focus"
+                                style="float: left;">
+                                <label class="ml-1">Select Month</label>
+                                <div class="form-group form-focus select-focus">
+                                    <select class="select floating form-control" [(ngModel)]="month" [ngModelOptions]="{standalone: true}">
+                                        <!-- <option>--Select Month--</option> -->
+                                        <option value="01"> Jan </option>
+                                        <option value="02">Feb</option>
+                                        <option value="03"> Mar </option>
+                                        <option value="04"> Apr </option>
+                                        <option value="05"> May </option>
+                                        <option value="06"> Jun </option>
+                                        <option value="07"> Jul </option>
+                                        <option value="08"> Aug </option>
+                                        <option value="09"> Sep </option>
+                                        <option value="10"> Oct </option>
+                                        <option value="11"> Nov </option>
+                                        <option value="12"> Dec </option>
+                                        
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 form-group select-focus"
+                                style="float: left;">
+                                <label class="ml-1">Select Year</label>
+                                <div class="form-group form-focus select-focus">
+                                    <select class="select floating form-control" [(ngModel)]="year" [ngModelOptions]="{standalone: true}">
+                                        <option value="">--Select Year--</option>
+                                        <!-- <option value="2043">2043</option>
+                                        <option value="2042">2042</option>
+                                        <option value="2041">2041</option>
+                                        <option value="2040">2040</option>
+                                        <option value="2039">2039</option>
+                                        <option value="2038">2038</option>
+                                        <option value="2037">2037</option>
+                                        <option value="2036">2036</option>
+                                        <option value="2035">2035</option>
+                                        <option value="2034">2034</option>
+                                        <option value="2033">2033</option>
+                                        <option value="2032">2032</option>
+                                        <option value="2031">2031</option>
+                                        <option value="2030">2030</option>
+                                        <option value="2029">2029</option>
+                                        <option value="2028">2028</option>
+                                        <option value="2027">2027</option>
+                                        <option value="2026">2026</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2024">2024</option> -->
+                                        <option value="2023">2023</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2015">2015</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+
+
+
+                            <div style="display: flex;">
+                                <button (click)="search(1,'search')" class="icon1" style="margin-top:34px">
+                                    <i class="fa fa-search searc" aria-hidden="true"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="status-button">
+                    <button class="btn btn-secondary mx-1 px-3" (click)="documentexcel()"><i class="fa-solid fa-download"></i></button>
+                    <!-- <button class="btn btn-secondary mx-1 px-3">Revert</button> -->
+                    <button class="btn btn-danger mx-1 px-3" (click)="Reject()">Reject</button>
+                    <button class="btn btn-success mx-1 px-3" (click)="approve()">Approve</button>
+                </div>
+            </div>
+        </div>
+        <div class="row notification-row">
+            <p><i class="fa-solid fa-bell text-success"></i> &nbsp; You can only update the attendance record within the
+                last 31 days.</p>
+        </div>
+        <div class="row" *ngIf="employeattendance">
+            <div class="card m-3" style="width: 100%">
+                <div class="row ml-1 px-3">
+                    <div class="tble1 table-responsive-lg ">
+                        <table class="table medium table small-md">
+                            <thead class="table small">
+                                <tr>
+
+                                    <!-- <input class="form-check-input" type="checkbox" (change)=bulkselect($event)> -->
+
+
+                                    <th>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" [(ngModel)]="allselectcheckbox" (change)="selectall($event)">
+                                        </div>
+                                    </th>
+                                    <th scope="col">Emp. Name</th>
+                                    <th>Emp. Type</th>
+                                    <!-- <th>Paid Time/Work Schedule</th>  -->
+                                    <th>Overtime</th>
+                                    <!-- <th>Status</th> -->
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let data of attedance;let i=index">
+                                <tr>
+                                    <td>
+                                        <div class="form-check" >
+                                            <input class="form-check-input" type="checkbox"    [(ngModel)]="data.isChecked" (change)="selcted($event,data,i)"
+                                                id="flexCheckDefault">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <img alt="image" src="assets/img/profiles/avatar-02.jpg" class="rounded-circle"
+                                            width="35" height="35" *ngIf="data.profileImg ==''">
+                                        <img src="{{apiUrl+data.profileImg}}" class="rounded-circle" width="35"
+                                            height="35" alt="" *ngIf="data.profileImg !=''"> &nbsp;
+                                        {{data.name}}
+                                    </td>
+                                    <td>Full Time</td>
+                                    <!-- <td>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 50%;"
+                                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">8h/16h</div>
+                                        </div>
+                                    </td> -->
+                                    <td>{{data.overtime}}</td>
+                                    <!-- <td> <i class="fa solid fa-circle text-warning"></i> 2</td> -->
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class=" tble2 table-responsive-lg">
+                        <table class="table medium ">
+                            <thead class="table small">
+                                <tr>
+                                    <th *ngFor="let data of attedancedatelist">{{data|date}}</th>
+                                    <!-- <th>12 Apr</th>
+                                    <th>13 Apr</th>
+                                    <th>14 Apr</th>
+                                    <th>15 Apr</th>
+                                    <th>16 Apr</th>
+                                    <th>17 Apr</th>
+                                    <th>18 Apr</th>
+                                    <th>19 Apr</th>
+                                    <th>20 Apr</th>
+                                    <th>21 Apr</th>
+                                    <th>22 Apr</th>
+                                    <th>23 Apr</th>
+                                    <th>24 Apr</th>
+                                    <th>25 Apr</th>
+                                    <th>26 Apr</th>
+                                    <th>27 Apr</th>
+                                    <th>28 Apr</th>
+                                    <th>29 Apr</th>
+                                    <th>30 Apr</th>
+                                    <th>1 May</th>
+                                    <th>2 May</th>
+                                    <th>3 May</th>
+                                    <th>4 May</th>
+                                    <th>5 May</th>
+                                    <th>6 May</th>
+                                    <th>7 May</th>
+                                    <th>8 May</th>
+                                    <th>9 May</th>
+                                    <th>10 May</th> -->
+                                    <th class="sticky-col eight-col last">Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="table-row" *ngFor="let data of attedance">
+                                    <td *ngFor="let data1 of data.days" ><span *ngIf="data1.attendance.status!='Approved'&&data1.attendance.status!='Rejected'">{{data1.attendance.totalworkingHoursStr}}</span>
+                                        <span *ngIf="data1.attendance.status=='Approved'" style="color:green">{{data1.attendance.totalworkingHoursStr}}</span>
+                                        <span *ngIf="data1.attendance.status=='Rejected'" style="color:rgb(158, 26, 8)">{{data1.attendance.totalworkingHoursStr}}</span>
+                                    </td>
+                                    <!-- <td>8h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td>
+                                    <td>0h</td> -->
+                                    <td class="sticky-col eight-col last">
+                                        <div class="dropdown-container" tabindex="-1">
+                                            <div class="three-dots"></div>
+                                            <div class="dropdown">
+                                                <a class="p-2 edit"><i class="fa fa-edit"></i>Edit</a>
+                                                <!-- <a href="#" class="p-2 edit"><i class="fa fa-edit"></i> Delete</a> -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                   
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="row m-0" style="justify-content: space-between;padding: 0px 17px 0px 15px;">
+                    <div>
+                        <ul class="pagination mt-5">
+                            <li class="page-item">
+                                <a class="page-link" (click)="setPageactiveemp(1)">First</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" (click)="setPageactiveemp(pageractiveemp.currentPage - 1)">Previous</a>
+                            </li>
+                            <li class="page-item" *ngFor="let page of pageractiveemp.pages">
+                                <a class="page-link" (click)="setPageactiveemp(page)">{{page}}</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" (click)="setPageactiveemp(pageractiveemp.currentPage + 1)">Next</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" (click)="setPageactiveemp(pageractiveemp.totalPages)">Last</a>
+                            </li>
+                        </ul>
+                        <label style="color: black;">Total Record- {{activeemp_count}}</label>
+                    </div>
+                    <div>
+                        <ul class="pagination mt-5 pull-right">
+                            <li class="page-item">
+                                <a class="page-link" (click)="saveactiveempItems(10)">10</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" (click)="saveactiveempItems(50)">50</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" (click)="saveactiveempItems(100)">100</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+      
+      <div *ngIf="!employeattendance">
+<h3 style="text-align: center;padding: 10px;color: orangered;"> please select month and year</h3>
+        </div>
+    </div>
+    <!-- /Page Content -->
+
+</div>
+<!-- Page Wrapper -->

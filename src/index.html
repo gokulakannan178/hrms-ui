@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+  <meta name="description" content="Logikoof Human Resource Management System">
+  <meta name="keywords" content="Logikoof Human Resource Management System">
+  <meta name="author" content="Logikoof Human Resource Management System">
+  <title>Logikoof Human Resource Management System - Admin Panel</title>
+
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.png">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+  <!-- Fontawesome CSS -->
+  <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- Lineawesome CSS -->
+  <link rel="stylesheet" href="/assets/css/line-awesome.min.css">
+
+  <!-- Select2 CSS -->
+  <link rel="stylesheet" href="/assets/css/select2.min.css">
+
+  <!-- Datetimepicker CSS -->
+  <link rel="stylesheet" href="/assets/css/bootstrap-datetimepicker.min.css">
+
+  <!-- material icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/orgchart.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0-1/css/all.css">
+  <style>
+    .account-logo img {
+      width: 250px;
+    }
+   
+
+  </style>
+
+<body class="account-page">
+  <app-root></app-root>
+  <!-- jQuery -->
+  
+  <script>
+    function filter(button) {
+     var x = $('#filter_data');
+     $(button).find('i').remove();
+     if ($(button).html() == ' ') {
+      $(button).html($('<i/>',{class:'fa-solid fa-plus'}));
+        x.fadeOut();
+      }
+      else {
+        $(button).html($('<i/>',{class:'fa-solid fa-minus'})).append(' ');
+       x.fadeIn();
+      }
+  }
+   </script>
+   <script src="/assets/js/app.js"></script>
+
+   <script src="/assets/js/jquery-3.2.1.min.js"></script>
+ 
+   <script src="/assets/js/jquery-ui.min.js"></script>
+   <script src="/assets/js/jquery.ui.touch-punch.min.js"></script>
+ 
+   <!-- Bootstrap Core JS -->
+   <script src="/assets/js/popper.min.js"></script>
+   <script src="/assets/js/bootstrap.min.js"></script>
+ 
+   <!-- Slimscroll JS -->
+   <script src="/assets/js/jquery.slimscroll.min.js"></script>
+ <script src="/assets/js/sidemenu.js"></script>
+   <!-- Task JS -->
+   <script src="/assets/js/task.js"></script>
+ 
+   <!-- Custom JS -->
+   <script src="/assets/js/app.js"></script>
+ <!-- orgchart js  -->
+ <script src="/assets/js/orgchart.js"></script>
+</body>
+
+</html>

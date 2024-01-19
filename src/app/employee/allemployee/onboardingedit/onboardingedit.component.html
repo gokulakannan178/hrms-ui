@@ -1,0 +1,151 @@
+<!-- Created by Riddhi Omar on 27/04/2022 -->
+
+<div class=" page-details">
+  <div class="container-fluid card shadow-3-strong ">
+    <div class="back">
+      <button type="button" class="btn btn-light back" onclick="history.back()"><i class="mr-2 fa fa-arrow-left"
+          aria-hidden="true"></i>Back</button>
+    </div>
+    <!-- page header start -->
+    <div class="page-header">
+      <div class="row align-items-center">
+        <h3 class="page-title">Employee</h3>
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/dashboard/employee_dashbaord">Home</a></li>
+          <li class="breadcrumb-item active1">Edit Employee</li>
+        </ul>
+      </div>
+    </div>
+    <!-- page header end -->
+    <!-- Form start -->
+    <form [formGroup]="notifyforms">
+      <div class="form-row">
+        <div class="form-group col-lg-5 col-md-12 mx-3">
+          <label for="InputFrstName" class="text-bold ">First Name <span class="required">*</span> </label>
+          <input type="text" class="form-control" id="InputFrstName" placeholder="Enter First Name"
+            formControlName="first_name" [ngClass]="{'red-border-class': Submitted && fr.first_name.errors}" required>
+        </div>
+        <div class="form-group col-lg-5 col-md-12 mx-3">
+          <label for="InputLstName" class="text-bold">Last Name <span class="required">*</span> </label>
+          <input type="text" class="form-control " id="InputLstName" placeholder="Enter Last Name"
+            formControlName="last_name" [ngClass]="{'red-border-class': Submitted && fr.last_name.errors}" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-lg-5 col-md-12 mx-3">
+          <label for="InputFatherName" class="text-bold ">Father Name<span class="required">*</span> </label>
+          <input type="text" class="form-control " id="InputFatherName" placeholder="Enter Father Name"
+            formControlName="father_name" [ngClass]="{'red-border-class': Submitted && fr.father_name.errors}" required>
+        </div>
+        <div class="form-group col-lg-5 col-md-12 mx-3">
+          <label for="InputDOB" class="text-bold">Date Of Birth<span class="required">*</span> </label>
+          <input type="date" max="{{maxdate}}" class="form-control" id="InputDOB" formControlName="dob"
+            [ngClass]="{'red-border-class': Submitted && fr.dob.errors}" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-lg-5 col-md-12 mx-3">
+          <label for="InputGndr">Gender<span class="required">*</span> </label>
+          <select class="form-select form-control dd" aria-label="Default select " formControlName="gender"
+            [ngClass]="{'red-border-class': Submitted && fr.gender.errors}" required>
+            <option selected>--Select Gender--</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="others">Others</option>
+          </select>
+        </div>
+        <div class="form-group col-lg-5 col-md-12 mx-3">
+          <label for="InputNmbr" class="text-bold">Mobile Number<span class="required">*</span> </label>
+          <input type="number" class="form-control" id="InputNambr" placeholder="Enter Mobile Number"
+            formControlName="mob_no" [ngClass]="{'red-border-class': Submitted && fr.mob_no.errors}" required>
+          <div *ngIf="fr.mob_no.touched && fr.mob_no.invalid" style="font-size: 12px;height: 35%;margin-bottom: -26px;"
+            class="alert alert-danger">
+            <div *ngIf="fr.mob_no.errors.required" style="
+            margin-top: -6px;
+            margin-left: -7px;">Mobile Number is required.</div>
+            <div *ngIf="fr.mob_no.errors.pattern" style="
+            margin-top: -6px;
+            margin-left: -7px;">*Please, Enter 10 digit Mobile Number.</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-lg-5 col-md-12 mx-3">
+          <label for="InputEmail1" class="text-bold ">Personal Email<span class="required">*</span> </label>
+          <input type="email" class="form-control" id="InputEmail1" placeholder="Enter Email" formControlName="p_email"
+            [ngClass]="{'red-border-class': Submitted && fr.p_email.errors}" required>
+          <div *ngIf="fr.p_email.touched && fr.p_email.invalid"
+            style="font-size: 13px;height: 35%;margin-bottom: -26px;" class="alert alert-danger">
+            <div *ngIf="fr.p_email.errors.required" style="
+            margin-top: -6px;
+            margin-left: -7px;">Please enter email </div>
+            <div *ngIf="fr.p_email.errors.pattern" style="
+            margin-top: -6px;
+            margin-left: -7px;">*Email must be a valid email address</div>
+          </div>
+        </div>
+        <!-- <div class="form-group col-lg-5 col-md-12 mx-3">
+              <label for="InputEmail2" class="text-bold ">Official Email<span class="required">*</span> </label>
+              <input type="email" class="form-control " id="InputEmail2" placeholder="Enter Email"
+                  formControlName="off_email"
+                  [ngClass]="{'red-border-class': Submitted && fr.off_email.errors}" required>
+              </div> -->
+
+        <div class="form-group col-lg-5 col-md-12 mx-3">
+          <label for="InputOrganization">Organization<span class="required">*</span> </label>
+
+          <select class="form-select form-control dd" aria-label="Default select " formControlName="organisation"
+            (change)="getValue1($event.target.value)" [ngClass]="{
+      
+                  'red-border-class': Submitted && fr.organisation.errors}" required>
+
+            <option value="">Select Your Option</option>
+
+            <option value="{{data.uniqueId}}" *ngFor='let data of org_dd'>{{data.name}}</option>
+
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-lg-5 col-md-12 mx-3">
+          <label for="InputJnDate" class="text-bold">Joining Date<span class="required">*</span> </label>
+          <input type="date" class="form-control" id="InputJnDate" formControlName="join_date"
+            [ngClass]="{'red-border-class': Submitted && fr.join_date.errors}" required>
+        </div>
+        <div class="form-group col-lg-5 col-md-12 mx-3">
+          <label for="InputOrganization" style="width: 103%;">On Boarding Checklist Policy<span
+              class="required">*</span> </label>
+
+          <select class="form-select form-control dd" aria-label="Default select " formControlName="onchecklist_drop"
+            (change)="getValue($event.target.value)" [ngClass]="{
+      
+                  'red-border-class': Submitted && fr.onchecklist_drop.errors}" required>
+
+            <option value="">Select Your Option</option>
+
+            <option value="{{data.uniqueId}}" *ngFor='let data of onchecklist_dd'>{{data.name}}</option>
+
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+
+
+      </div>
+
+
+      <div class="form-row">
+
+
+        <div class="form-group col-lg-5 col-md-12 mx-3"></div>
+        <div class="form-group col-lg-5 col-md-12 mx-3">
+          <br>
+          <button type="submit" (click)="updateimp()" class="btn font-weight-bold mt-2 ">Update Employee</button>
+        </div>
+      </div>
+    </form>
+    <!-- Form end -->
+  </div>
+</div>

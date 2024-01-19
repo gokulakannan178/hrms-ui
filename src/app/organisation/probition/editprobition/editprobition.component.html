@@ -1,0 +1,59 @@
+<!-- Created by Riddhi Omar on 27/04/2022 -->
+<body>
+    <div class=" page-details">
+        <div class="container-fluid card pl-5 py-5">
+            <div class="back">
+                <button type="button" class="btn btn-light back" onclick="history.back()"><i class="mr-2 fa fa-arrow-left" aria-hidden="true"></i>Back</button>
+              </div>
+            <!-- page header start -->
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <h3 class="page-title">Probition</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/dashboard/employee_dashbaord">Home</a></li>
+                        <li class="breadcrumb-item active1">Edit Probition</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- page header end -->
+            <!-- page-card start -->
+            <div class="">
+                <form [formGroup]="notifyforms">
+                <div class="form-group">
+                    <label for="InputOrganization">Organization<span class="required">*</span> </label>
+                    <select class="form-control" formControlName="orgdrop" id="InputName"
+                    [ngClass]="{'red-border-class': Submitted && fr.orgdrop.errors}" required>
+                            <option value="">Select Your Option</option>
+                            <option value="{{data.uniqueId}}" *ngFor='let data of org_dd'>{{data.name}}</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="InputName" class="text-bold">Probition Name<span class="required">*</span> </label>
+                    <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter Name"
+                    formControlName="name"
+            [ngClass]="{'red-border-class': Submitted && fr.name.errors}" required>
+                </div>
+              
+
+                <div class="form-group">
+                    <label for="InputProbition">Probition Months<span class="required">*</span> </label>
+                      <input type="number" class="form-control" id="InputProbition" aria-describedby="emailHelp" placeholder="Enter Druration Of Months"
+                      formControlName="prob_months"
+                      [ngClass]="{'red-border-class': Submitted && fr.prob_months.errors}" required>
+                  </div>
+
+                <div class="form-group">
+                    <label for="InputDescription">Description<span class="required">*</span> </label>
+                    <textarea class="form-control" name=" Description" id="InputDescription" placeholder="Enter Description" 
+                    formControlName="desp"
+            [ngClass]="{'red-border-class': Submitted && fr.desp.errors}" required></textarea>
+                </div>
+                <button type="submit" (click)="updateimp()" class="btn mb-5">Edit Probition</button>     
+                </form>
+            </div>
+            <!-- page-card end -->
+        </div>
+    </div>
+</body>
+

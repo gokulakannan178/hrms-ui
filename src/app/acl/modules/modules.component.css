@@ -1,0 +1,348 @@
+input[type=checkbox] {
+    height: 25px !important;
+    width: 19px !important;
+    visibility: visible !important;
+  }
+   p{
+      line-height: 1.5;
+      padding: 10px;
+      text-indent: 20px;
+  }
+  
+  .tabs-container{
+     position: relative;
+     background:  #ff9b44;
+     width: 190px;
+     height: 74.5em;
+     float: left;
+     z-index: 20;
+     overflow-y: auto;
+  
+  }
+  
+  .tabs-container1{
+     position: relative;
+     background: lightsalmon;
+     width: 190px;
+     height: 70vh;
+     float: left;
+     z-index: 20;
+  
+  }
+  
+  /* tabs names */
+  .tabs-container label{
+     position: relative;
+     padding: 10px;
+     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+     display: block;
+     font-size: 12px;
+     color: #fff;
+     cursor: pointer;
+     user-select: none;
+  }
+  
+  /* tabs names */
+  .tabs-container1 label{
+     position: relative;
+     padding: 10px;
+     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+     display: block;
+     font-size: 13px;
+     color: #fff;
+     cursor: pointer;
+     user-select: none;
+  }
+  
+  /* Hover effect on tabs names */
+  .tabs-container label:hover{
+    background: rgba(0, 0, 0, 0.2);
+  
+  }
+  
+  /* Hover effect on tabs names */
+  .tabs-container1 label:hover{
+     background: rgba(0, 0, 0, 0.2);
+   
+   }
+  
+  /* Content area for tabs */
+  .tab-content{
+     position: relative;
+     background: #eee;
+     width: calc(100% - 190px);
+     min-height: 70vh;
+     padding-left: 1px;
+     float: left;
+     box-sizing: border-box;
+     z-index: 19;
+     /* display: none; */
+  }
+  
+  .tab-content1{
+     position: relative;
+     background: #eee;
+     width: calc(100% - 190px);
+     min-height: 70vh;
+     padding: 15px;
+     float: left;
+     box-sizing: border-box;
+     z-index: 19;
+     /* display: none; */
+  }
+  
+ .btnColor{
+  background-color:#ff9b44;
+  color:white;
+ } 
+  
+  
+  
+  .tab-content:after{
+     content: "";
+     clear: both;
+  
+  }
+  
+  .tab-content1:after{
+     content: "";
+     clear: both;
+  
+  }
+   /* Hide input radio from users */
+  input[name="tab"]{
+    display: none;
+  }
+   /* Show tab when input checked */
+  /* input[name="tab"]:checked + .tab-content{
+      display: block;
+         
+  
+  } */
+  
+  
+    /* Hide input radio from users */
+    input[name="tabs"]{
+     display: none;
+   }
+    /* Show tab when input checked */
+   /* input[name="tabs"]:checked + .tab-content1{
+       display: block;
+          
+   
+   } */
+  
+  /* Slide animation for tab contents */
+  @keyframes slide{
+      from{
+          left: -100%;
+          opacity: 0;
+      }
+      to{
+          left: 0;
+          opacity: 1;
+      }
+  
+  }
+  
+  
+  
+  
+  
+  
+  /* Checkbox css start here */
+  .container1{
+    
+    align-items: center;
+    justify-content: center;
+  }
+    
+  /* input[type="checkbox"]{
+    display:none;
+  } */
+  
+  input[type="checkbox"]:hover + label:before{
+    opacity: .5;
+  }
+  
+  .checkbox{
+    display:inline-block;
+    position:relative;
+    padding-left: 40px;
+    line-height: 30px;
+    font-size: 12px;
+    cursor: pointer;
+    color: #111;
+    font-weight: 600;
+  }
+  
+  .checkbox:before{
+    z-index:15;
+    content: '';
+    position:absolute;
+    left:0;
+    top: 6px;
+    transition:all 0.3s ease;
+    cursor:pointer;
+    width:20px;
+    border-width: 4px;
+    border-style: solid;
+    border-color: #444;
+    height:20px;
+  }
+  input[type="checkbox"]:checked + label{
+    color:#000;
+    font-size: 15px;
+      margin: 0px;
+      margin-bottom: 0px;
+  }
+  
+  input[type="checkbox"]:checked +  label:before{
+    border-color: transparent;
+    border-left-color: #2ecc71;
+    border-bottom-color: #2ecc71;
+    transform:rotate(-50deg);
+    width:22px;
+    height:12px;
+    top: 3px;
+  }
+  
+  
+  input:checked + label {
+    background: #eee !important;
+  }
+  
+  
+  /* new css  */
+  
+  .nav-pills-custom .nav-link {
+    color: #aaa;
+    background: #fff;
+    position: relative;
+  }
+  
+  .nav-pills-custom .nav-link.active {
+    color: #ffffff;
+    background: #567507;
+  }
+
+
+
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-top: -10px;
+margin-left: -17px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .switch1 {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-top: -10px;
+margin-left: 90px;
+  }
+  
+  .switch1 input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .switch3 {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-top: -10px;
+margin-left: 160px;
+  }
+  
+  .switch3 input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #ff9b44;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #ff9b44;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .setuser{
+    margin-left:10px;
+    margin-top: -10px;
+  }
+  .setheading1{
+    margin-top: -16px;
+margin-left: 66px;
+  }
+  .setheading2{
+    margin-top: -16px;
+margin-left: 67px;
+width: 200px;
+  }
+  .setheading3{
+    margin-top: -16px;
+margin-left: 66px;
+width: 150px;
+  }
+  .whole{
+    display: flex;
+    margin-top: 2em;
+  }
+  
+  
+   

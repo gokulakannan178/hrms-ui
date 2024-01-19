@@ -1,0 +1,13 @@
+
+.page-link {
+  background: #ff9b44;
+  color: #fff;
+  cursor: pointer;
+}
+
+@media only screen and (max-width:990px){
+    .page-wrapper{
+		width: 100% !important;
+	}
+      
+}

@@ -1,0 +1,90 @@
+
+<div class=" page-details">
+    <div class="container-fluid card pl-5 py-5">
+      <div class="back">
+        <button type="button" class="btn btn-light back" onclick="history.back()"><i class="mr-2 fa fa-arrow-left" aria-hidden="true"></i>Back</button>
+      </div>
+      <!-- page header start -->
+      <div class="page-header">
+        <div class="row align-items-center">
+          <h3 class="page-title">Add New Asset type</h3>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/dashboard">Home</a></li>
+              <li class="breadcrumb-item active1">Add Asset Type</li>
+            </ul> 
+        </div>
+      </div>
+      <!-- page header end -->
+      <!-- page-card start -->
+      <div class="">
+        <form [formGroup]="assetTypeforms">
+        <div class="form-group">
+          <label for="InputName" class="text-bold">Name<span class="required">*</span> </label>
+            <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter Name"
+            formControlName="name"
+            [ngClass]="{'red-border-class': Submitted && fr.name.errors}" required>
+        </div>
+
+        <div class="form-group">
+          <label for="InputOrganization">Organization<span class="required">*</span> </label>
+            <select class="form-select form-control dd" aria-label="Default select "  formControlName="orgdrop"
+            [ngClass]="{'red-border-class': Submitted && fr.orgdrop.errors}" required>
+             
+
+                    <option value="">Select Your Option</option>
+
+                    <option value="{{data.uniqueId}}" placeholder="Select Organization" *ngFor='let data of org_dd'>{{data.name}}</option>
+            
+             
+            </select>
+        </div>
+
+        <div class="form-group">
+          <label for="InputDescription">Description<span class="required">*</span> </label>
+          <textarea class="form-control" name=" Description" id="InputDescription" placeholder="Enter Description" 
+          formControlName="desp"
+          [ngClass]="{'red-border-class': Submitted && fr.desp.errors}" required></textarea>
+        </div>
+        
+          <div class="form-group">
+            <label for="InputAssetProperties" class="text-bold">Add Asset Properties<span class="required">*</span> </label>
+              <input type="text" class="form-control with-button" id="InputAssetProperties" size="50" placeholder="Enter Property"
+              formControlName="assetProperties"
+              [ngClass]="{'red-border-class': Submitted && fr.assetProperties.errors}" >
+        <button type="button" (click)="addproperty()"  class="btn2 mb-5">Add Property</button>
+              
+          </div>
+
+          <table class="table table-hover table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Property </th>
+                    
+                    <th scope="col">Controls</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let property of properties;let i =index">
+                    <td>{{property}}</td>
+                    <td>
+                        <div class="controls desktop_control con_icons"
+                        style=" display: flex;justify-content: space-around;">
+                       
+
+                        <i class="fa fa-trash dust" aria-hidden="true" title="Delete"
+                            (click)="deleteProperty(i)"></i>
+                    </div>
+                    </td>
+                </tr>
+                
+            </tbody>
+            </table>
+
+
+        <button type="submit" (click)="saveassettype()"class="btn mb-5">Add Asset Type</button>
+        </form>
+      </div>
+      
+      <!-- page-card end -->
+    </div>
+  </div>

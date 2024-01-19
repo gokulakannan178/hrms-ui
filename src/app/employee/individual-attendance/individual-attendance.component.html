@@ -1,0 +1,329 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-lg-10">
+                    <h3 class="page-title">Attendance</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/dashboard/employee_dashbaord">Home</a></li>
+                        <li class="breadcrumb-item active"><a routerLink="/employee/admin_attendance">Attendance</a></li>
+                    </ul>
+                </div>
+                <div><button style="background:orange;"><a style="background:orange;" routerLink="/employee/admin_attendance">Back</a></button></div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+       
+        <div class="tab-content">
+            
+               
+            <div class="row">
+                <div class="col-xl-10">
+                    <form >
+                        
+                    <div class="col-xl-4 col-lg-5 col-md-5 col-sm-12 form-group select-focus" style="float: left;">
+                                    <!-- <div class="input-group"> -->
+                                        <label >Select Month</label>
+                                        <div class="form-group form-focus select-focus">
+                                            <select class="select floating form-control"  [(ngModel)]="month"  [ngModelOptions]="{standalone: true}">
+                                                <option>-</option>
+                                                <option  value="01">Jan</option>
+                                                <option  value="02">Feb</option>
+                                                <option  value="03">Mar</option>
+                                                <option  value="04">Apr</option>
+                                                <option  value="05">May</option>
+                                                <option  value="06">Jun</option>
+                                                <option  value="07">Jul</option>
+                                                <option  value="08">Aug</option>
+                                                <option  value="09">Sep</option>
+                                                <option  value="10">Oct</option>
+                                                <option  value="11">Nov</option>
+                                                <option  value="12">Dec</option>
+                                            </select>
+                                            
+                                        </div>
+                                    <!-- </div>           -->
+                    </div>
+                    <div class="col-xl-4 col-lg-5 col-md-5 col-sm-12 form-group select-focus" style="float: left;">
+                    <label >Select Year</label>
+                    <div class="form-group form-focus select-focus">
+                        <select class="select floating form-control" [(ngModel)]="year"  [ngModelOptions]="{standalone: true}">
+                            <option>-</option>
+                            
+                            <!-- <option  value="2043">2043</option>
+                            <option  value="2042">2042</option>
+                            <option  value="2041">2041</option>
+                            <option  value="2040">2040</option>
+                            <option  value="2039">2039</option>
+                            <option  value="2038">2038</option>
+                            <option  value="2037">2037</option>
+                            <option  value="2036">2036</option>
+                            <option  value="2035">2035</option>
+                            <option  value="2034">2034</option>
+                            <option  value="2033">2033</option>
+                            <option  value="2032">2032</option>
+                            <option  value="2031">2031</option>
+                            <option  value="2030">2030</option>
+                            <option  value="2029">2029</option>
+                            <option  value="2028">2028</option>
+                            <option  value="2027">2027</option>
+                            <option  value="2026">2026</option>
+                            <option  value="2025">2025</option>
+                            <option  value="2024">2024</option> -->
+                            <option  value="2023">2023</option>
+                            <option  value="2022">2022</option>
+                            <option  value="2021">2021</option>
+                            <option  value="2020">2020</option>
+                            <option  value="2019">2019</option>
+                            <option  value="2018">2018</option>
+                            <option  value="2017">2017</option>
+                            <option  value="2016">2016</option>
+                            <option  value="2015">2015</option>
+                        </select>
+                       </div>
+                    </div>
+               
+                    <div class="col-xl-4 col-lg-5 col-md-5 col-sm-12 form-group select-focus " style="float: left;">
+                        <label>Status</label>
+                        <select class="form-select form-control" [(ngModel)]="status"  [ngModelOptions]="{standalone: true}" >
+                            <option  value="">All Status</option>
+                            <option value="Approved">Approved</option>
+                            <option value="Rejected">Rejected</option>
+                            <option value="Pending">Pending</option>
+                        </select>
+                        
+                    </div>
+
+                       <div class="icons-button" style="display: flex;">
+                        <button (click)="normalSearch()"  class="icon1" style="margin-top:34px">
+                            <i class="fa fa-search searc" aria-hidden="true"></i></button>
+                          
+                            <div><a  rel="noopener noreferrer" (click)="documentexcel()"><i class="fa fa-file fileclass" style="font-size: 31px; margin-top:29px;">
+                            </i></a></div>
+                            <!-- <div>
+                            <button class="btn btn-success" style="background-color: green;margin-left:3em;" data-toggle="modal" (click)="approverequest()"
+
+                            type="button" *ngIf="checkitem.length > 0">Approve</button>
+
+                            <button class="btn btn-reject" style="background-color: red; color:white; margin-left:2em;" data-toggle="modal" (click)="approverequest()"
+
+                            type="button" *ngIf="checkitem.length > 0">Reject</button>
+                            </div> -->
+                           
+
+                       </div>
+
+
+                      
+                   
+                     </form>
+                    
+                    
+                </div>
+            </div>
+            <p> &nbsp;&nbsp; EmployeeName : {{attendenceDetails.employeeName}}</p> 
+
+                <div class="row ml-1 col-xl-12 ">
+                    <div class="card col-xl-2 col-lg-3 col-md-5 py-0 my-4 mr-2 ">
+                        <div class="crd">
+                            <h6 class="card-title">Work Schedule</h6>
+                            <p class=" card-text text-bold">{{attendenceDetails.workSchedule?attendenceDetails.workSchedule:"---:---"}}</p>
+                        </div>
+                    </div>
+                    <div class="card col-xl-2 col-lg-3 col-md-5  py-0 my-4 mx-2 ">
+                        <div class="crd">
+                            <h6 class="card-title">Logged Time</h6>
+                            <p class=" card-text text-bold">{{attendenceDetails.totalWorkingMinsStr?attendenceDetails.totalWorkingMinsStr:"---:---"}}</p>
+                        </div>
+                    </div>
+                    <div class="card col-xl-2 col-lg-3 col-md-5 py-0 my-4 mx-2 ">
+                        <div class="crd">
+                            <h6 class="card-title">Paid Time</h6>
+                            <p class=" card-text text-bold">{{attendenceDetails.paidTime?attendenceDetails.paidTime:"---:---"}}</p>
+                        </div>
+                    </div>
+                    <div class="card col-xl-2 col-lg-3 col-md-5 py-0 my-4 mx-2 ">
+                        <div class="crd">
+                            <h6 class="card-title">Deficit</h6>
+                            <p class=" card-text text-bold">{{attendenceDetails.deficitStr?attendenceDetails.deficitStr:"---:---"}}</p>
+                        </div>
+                    </div>
+                    <div class="card col-xl-2 col-lg-3 col-md-5 py-0 my-4 mx-2 ">
+                        <div class="crd">
+                            <h6 class="card-title">Overtime</h6>
+                            <p class=" card-text text-bold">{{attendenceDetails.totalOvertimeStr?attendenceDetails.totalOvertimeStr:"---:---"}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row ml-1 px-3">
+                    <div class="tble1 table-responsive-lg ">
+                        <table class="table medium table small-md">
+                            <thead class="table small">
+                                <tr>
+                                    <input class="form-check-input" type="checkbox" (change)=bulkselect($event)>
+
+                                    <th class="first">Date</th>
+                                    <th scope="col">Clock IN</th>
+                                    <!-- <th>Clock In Location</th> -->
+                                    <th>Clock Out</th>
+                                    <!-- <th>Clock Out Location</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngIf="!attendenceDetails||attendenceDetails.length==0">
+                                    <td colspan="8" style="text-align: center;">No Data</td>
+                                </tr>
+                                <tbody>
+                                    <tr *ngFor="let attendence of attendenceDetails.days;let i =index">
+                                        <td ><input class="form-check-input" type="checkbox" [checked]="checks" (change)=singleselect($event,attendence.uniqueId)></td>
+
+                                        <td>{{attendence.dateStr}}</td>
+                                        
+                                        <td>{{attendence.punchIn ?(attendence.punchIn | date: 'h:mm a (zzzz)'):"---:---"}}</td >
+                                        <td>{{attendence.punchOut ?(attendence.punchOut | date: 'h:mm a (zzzz)'):"---:---"}}</td>
+                                    </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class=" tble2 table-responsive-lg">
+                        <table class="table medium ">
+                            <thead class="table small">
+                                <tr>
+                                    <th>Work Schedule</th>
+                                    <th>Logged Time</th>
+                                    <th>Paid Time</th>
+                                    <th>Deficit</th>
+                                    <th>Overtime</th>
+                                    <th>Status</th>
+                                    <th>Note</th>
+                                    <th class="sticky-col eight-col last">Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody >
+                                <tr *ngIf="!attendenceDetails||attendenceDetails.length==0">
+                                    <td colspan="8" style="text-align: center;">No Data</td>
+                                </tr>
+                                <tbody>
+                                    <tr *ngFor="let attendence of attendenceDetails.days;let i =index">
+                                        <!-- Constant -->
+                                        <td>8h</td>  
+                                        <td>{{attendence.totalWorkingMinsStr }}</td >
+                                         <!-- Constant    -->
+                                        <td>8h</td>
+                                        <td>{{attendence.deficitStr }}</td >
+                                        <td>{{attendence.totalOvertimeStr}}</td >
+                                        <td>{{attendence.status}}</td>
+                                        <td>-</td>
+                                    
+                                    <td class="sticky-col eight-col last">
+                                        <div class="dropdown-container" tabindex="-1">
+                                            <div class="three-dots"></div>
+                                            <div class="dropdown">
+                                                <a class="p-2 edit"  (click)="useraction('editpaid',attendence)"  data-toggle="modal"
+                                                data-target="#PaidtimeModal"><i class="fa fa-edit"></i>Edit Paid
+                                                    Time</a> 
+                                                <!-- <a href="#" class="p-2 edit"><i class="fa fa-edit"></i> Edit
+                                                    Overtime</a> -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                             
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            
+        </div>
+
+        <!-- Search Filter -->
+
+
+
+        <!-- /Search Filter -->
+
+    </div>
+    <!-- /Page Content -->
+
+</div>
+<!-- Page Wrapper -->
+
+<!-- Paid time -->
+<div class="modal fade" id="PaidtimeModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content ">
+        <div class="modal-header" style="background: #ff9b44;color: #fff;">
+        <h5 class="modal-title mt-0" id="PaidtimeModal">Edit Paid / Overtime</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+       
+        <div class="modal-body">
+             <form [formGroup]="PaidovertimeModalForms">
+            
+                <div class="form-group">
+                    <label class="control-label">Date</label>
+                    <div class="input-group">
+                        <!-- <input type="datepicker" class="form-control"   formControlName="date"> -->
+                        <input class="form-control" formControlName="date" disabled> 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Paid Time</label>
+                    <div class="input-group">
+                        <select class="form-control col-md-2"   formControlName="hoursvalue" (change)="minutesvalue($event)">
+                            
+                            <!-- <option selected disabled>Select</option> -->
+                            <option *ngFor="let data of hours" value="{{data}}">{{data}}</option>
+                        </select>
+                        <select class="form-control col-md-2" formControlName="minvalue" >
+                            <!-- <option selected disabled>Select</option> -->
+                            <option *ngFor="let data of minutes" value="{{data.min}}">{{data.min}}</option>
+                        </select>
+                        <!-- <input type="time" id="appt" name="appt" class="form-control"   placeholder="Select time"  formControlName="paid_time" > -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Over Time</label>
+                    <div class="input-group">
+
+                        <select class="form-control col-md-2"  formControlName="overhoursvalue"  (change)="overminutesvalue($event)">
+                            <!-- <option selected disabled>Select</option> -->
+                            <option *ngFor="let data of overhours" value="{{data}}">{{data}}</option>
+                        </select>
+                        <select class="form-control col-md-2" formControlName="overminvalue" >
+                            <!-- <option selected disabled>Select</option> -->
+                            <option *ngFor="let data of overminutes" value="{{data.min}}">{{data.min}}</option>
+                        </select>
+                        
+                    </div>
+                </div>
+               
+               <div class="form-group">
+                <label class="control-label">Notes</label>
+                <div class="input-group">
+                    <textarea class="form-control"   formControlName="notes"cols="30" rows="3"></textarea>
+                    
+                </div>
+            </div>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger clos" data-dismiss="modal">
+                &nbsp;Cancel</button>
+            <button type="button" (click)="saveedittime()" class="btn btn-primary prim">Save</button>
+            
+            </div>
+      
+    </div>
+    </div>
+</div>

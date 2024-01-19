@@ -1,0 +1,553 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+
+    <!-- Page Content -->
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Leaves</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/dashboard/employee_dashbaord">Home</a></li>
+                        <li class="breadcrumb-item ">Leaves</li>
+                    </ul>
+                </div>
+                <!-- <div class="col-auto float-right ml-auto">
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_leave"><i
+                            class="fa fa-plus"></i> Add Leave</a>
+                </div> -->
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <!-- Leave Statistics -->
+        <div class="row">
+            <div class="col-xl-3 col-md-6">
+                <div class="stats-info">
+                    <h6>Today Presents</h6>
+                    <h4>{{attendancedata?.todayPresent?attendancedata?.todayPresent:'0'}}</h4>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="stats-info">
+                    <h6>Planned Leaves</h6>
+                    <h4>{{attendancedata?.planned?attendancedata?.planned:'0'}}</h4>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="stats-info">
+                    <h6>Unplanned Leaves</h6>
+                    <h4>{{attendancedata?.unPlanned?attendancedata?.unPlanned:'0'}}</h4>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="stats-info">
+                    <h6>Pending Requests</h6>
+                    <h4>{{attendancedata?.pendingTimeOff?attendancedata?.pendingTimeOff:'0'}}</h4>
+                </div>
+            </div>
+        </div>
+        <!-- /Leave Statistics -->
+
+
+        <!-- Search Filter -->
+        <form [formGroup]="searchform">
+            <div class="row filter-row">
+
+                <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
+                    <label class="focus-label">Employee Name</label>
+                    <div class="form-group form-focus">
+                        <input type="text" class="form-control floating" formControlName="empname"
+                            (change)="empsearch()">
+
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
+                    <label class="focus-label">Leave Type</label>
+
+                    <div class="form-group form-focus select-focus">
+                        <select class="select floating form-control" formControlName="leavetype">
+                            <option disabled>Select Leave Type</option>
+                            <option *ngFor="let data of leavemaster" value="{{data.uniqueId}}">{{data.name}}</option>
+
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
+                    <label class="focus-label">Leave Status</label>
+                    <div class="form-group form-focus select-focus">
+                        <select class="select floating form-control" formControlName="leavestatus">
+                            <option disabled> -- Select -- </option>
+                            <option> Request </option>
+                            <option> Approved </option>
+                            <option> Rejected </option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
+                    <label class="focus-label">From</label>
+                    <div class="form-group form-focus">
+
+                        <input class="form-control" type="date" formControlName="datefrom">
+
+
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
+                    <label class="focus-label">To</label>
+                    <div class="form-group form-focus">
+
+                        <input class="form-control" type="date" formControlName="dateto">
+
+
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12" style="margin-top: 30px;">
+                    <button type="button" class="btn btn-success btn-block" (click)="search()"> Search </button>
+                </div>
+
+            </div>
+        </form>
+        <div class="row mt-3">
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 search_text" style="padding-top: 12px !important;">
+                <!-- <div class="switch">
+                        <input [checked]="activeStatus" (change)="Checkbox($event)" type="checkbox"
+                            id="switch2" />
+                        <label for="switch2">{{buttonText}}</label>
+                    </div> -->
+                <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+                    <li class="nav-item">
+                        <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
+                            <span>Leave Request</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="position: relative;
+                        left: 3px;">
+                        <a role="tab" class="nav-link  clr" id="tab-1" data-toggle="tab" href="#tab-content-1">
+                            <span>Revoke Request</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <!-- /Search Filter -->
+
+        <div class="tab-content">
+          <!-- leave request table -->
+            <div class=" tab-pane tabs-animation fade show active" id="tab-content-0">
+                <div class="main-card mb-3 card">
+                    <div class="card-body tableScroll" style="overflow-x: auto;">
+                    <div class="tble">
+                    <table class="table table-hover table-striped table-bordered" style="text-align: center;">
+                        <thead>
+                            <tr>
+                                <th>s.no</th>
+                                <th>Employee</th>
+                                <th>Leave Type</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>No of Days</th>
+                                <th>Reason</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of emptimeofflist ;let i =index">
+                                <td>{{((pager.currentPage-1) * showItemActive)+(i+1)}}</td>
+                                <td>
+                                    {{data?.ref?.employee?.name}}
+                                    <!-- <h2 class="table-avatar">
+                                                <a routerLink="/employee/employee_profile" class="avatar"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
+                                                <a routerLink="/employee/employee_profile">Abhishek Kumar <span>Web Developer</span></a>
+                                            </h2> -->
+                                </td>
+                                <td> {{data?.ref?.leaveType?.name}}</td>
+                                <td>{{apiService.getDate(data.startDate)}}</td>
+                                <td>{{apiService.getDate(data.endDate)}}</td>
+                                <td>{{data.numberOfDays}}</td>
+                                <td>{{data.description}}</td>
+                                <td>{{data.status}}
+                                    <!-- <div class="dropdown action-label">
+                                                <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-dot-circle-o text-purple"></i> New
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+    
+                                                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Request</a>
+                                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#approve_leave"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
+                                                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Declined</a>
+                                                </div>
+                                            </div> -->
+                                </td>
+                                <td class="text-center">
+                                    <div class="dropdown dropdown-action">
+                                        <a *ngIf="data?.status != 'Approved'&&data?.status != 'Revoke'" href="#"
+                                            class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#" data-toggle="modal"
+                                                data-target="#edit_leave" (click)="singleempdata(data.uniqueId)"><i
+                                                    class="fa fa-pencil m-r-5"></i> Edit</a>
+                                            <a class="dropdown-item" href="#" data-toggle="modal"
+                                                data-target="#approved_leave" (click)="singleid(data.uniqueId)"><i
+                                                    class="fa fa-plus m-r-5"></i> Approve</a>
+                                            <!-- <a class="dropdown-item" href="#" data-toggle="modal"
+                                                data-target="#rejected_leave" (click)="singleid(data.uniqueId)"><i
+                                                    class="fa fa-close m-r-5"></i> Reject</a> -->
+                                            <a *ngIf="data?.status != 'Cancel'" class="dropdown-item"
+                                                (click)="revokedata(data)"><i class="fa fa-trash-o m-r-5"></i>
+                                                Cancel</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    </div>
+                    <div class="row" style="    justify-content: space-between;
+                    padding: 0px 17px 0px 15px;">
+                <div>
+                    <ul class="pagination mt-5">
+                        <li class="page-item">
+                            <a class="page-link" (click)="setPage(1)">First</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                        </li>
+                        <li class="page-item" *ngFor="let page of pager.pages">
+                            <a class="page-link" (click)="setPage(page)">{{page}}</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+                        </li>
+                    </ul>
+                    <label style="color: black;">Total Record- {{active_count}}</label>
+                </div>
+                <div>
+                    <ul class="pagination mt-5 pull-right">
+                        <li class="page-item">
+                            <a class="page-link" (click)="saveActiveItems(10)">10</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" (click)="saveActiveItems(50)">50</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" (click)="saveActiveItems(100)">100</a>
+                        </li>
+                    </ul>
+                </div>
+                 </div>
+                </div>
+                </div>
+            </div>
+
+<!-- revoke table -->
+            <div class="tab-pane tabs-animation fade" id="tab-content-1">
+                <div class="main-card mb-3 card">
+                    <div class="card-body tableScroll" style="overflow-x: auto;">
+                    <div class="tble">
+                    <table class="table table-hover table-striped table-bordered" style="text-align: center;">
+                        <thead>
+                            <tr>
+                                <th>S.no</th>
+                                <th>Employee</th>
+                                <th>Leave Type</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>No of Days</th>
+                                <th>Reason</th>
+                                <th class="text-center">Status</th>
+                                <th >Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of revokelist;let i =index">
+                                <td>{{((pagerevoke.currentPage-1) * showRevokeActive)+(i+1)}}</td>
+                                <td>
+                                    {{data?.ref?.employee?.name}}
+                                    <!-- <h2 class="table-avatar">
+                                                <a routerLink="/employee/employee_profile" class="avatar"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
+                                                <a routerLink="/employee/employee_profile">Abhishek Kumar <span>Web Developer</span></a>
+                                            </h2> -->
+                                </td>
+                                <td> {{data?.ref?.leaveType?.name}}</td>
+                                <td>{{apiService.getDate(data.startDate)}}</td>
+                                <td>{{apiService.getDate(data.endDate)}}</td>
+                                <td>{{data.numberOfDays}}</td>
+                                <td>{{data.description}}</td>
+                                <td>{{data.revoke}}
+                                    <!-- <div class="dropdown action-label">
+                                                <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-dot-circle-o text-purple"></i> New
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+    
+                                                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Request</a>
+                                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#approve_leave"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
+                                                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Declined</a>
+                                                </div>
+                                            </div> -->
+                                </td>
+                                <td >
+                                    <div class="dropdown dropdown-action">
+                                        <a  href="#"
+                                            class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                           
+                                            <a class="dropdown-item" href="#" data-toggle="modal"
+                                                data-target="#Revoke_leave" (click)="singleid(data.uniqueId)"><i
+                                                    class="fa fa-plus m-r-5"></i> Revoke</a>
+                                            
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                   </div>
+                    <div class="row" style="    justify-content: space-between;
+                    padding: 0px 17px 0px 15px;">
+                <div>
+                    <ul class="pagination mt-5">
+                        <li class="page-item">
+                            <a class="page-link" (click)="setrevokePage(1)">First</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" (click)="setrevokePage(pagerevoke.currentPage - 1)">Previous</a>
+                        </li>
+                        <li class="page-item" *ngFor="let page of pagerevoke.pages">
+                            <a class="page-link" (click)="setrevokePage(page)">{{page}}</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" (click)="setrevokePage(pagerevoke.currentPage + 1)">Next</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" (click)="setrevokePage(pagerevoke.totalPages)">Last</a>
+                        </li>
+                    </ul>
+                    <label style="color: black;">Total Record- {{revoke_count}}</label>
+                </div>
+                <div>
+                    <ul class="pagination mt-5 pull-right">
+                        <li class="page-item">
+                            <a class="page-link" (click)="saveActiveItems(10)">10</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" (click)="saveActiveItems(50)">50</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" (click)="saveActiveItems(100)">100</a>
+                        </li>
+                    </ul>
+                </div>
+                     </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- /Page Content -->
+
+    <!-- Add Leave Modal -->
+    <div id="edit_leave" class="modal custom-modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Leave</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="updateleaveform">
+                        <div class="form-group">
+                            <label>Leave Type <span class="text-danger">*</span></label>
+                            <select class="select floating form-control" formControlName="leavetype">
+                                <option>Select Leave Type</option>
+                                <option *ngFor="let data of leavemaster" value="{{data.uniqueId}}">{{data.name}}
+                                </option>
+
+                            </select>
+
+                        </div>
+                        <div class="form-group">
+                            <label>From <span class="text-danger">*</span></label>
+
+                            <input class="form-control" type="date" formControlName="datefrom">
+
+                        </div>
+                        <div class="form-group">
+                            <label>To <span class="text-danger">*</span></label>
+                            <input class="form-control" type="date" formControlName="dateto">
+                        </div>
+                        <div class="form-group">
+                            <label>Number of days <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" formControlName="numberOfDays">
+                        </div>
+                        <!-- <div class="form-group">
+                                    <label>Remaining Leaves <span class="text-danger">*</span></label>
+                                    <input class="form-control"  value="12" type="text" formControlName="leaves">
+                                </div> -->
+                        <div class="form-group">
+                            <label>Leave Reason <span class="text-danger">*</span></label>
+                            <textarea rows="4" class="form-control" formControlName="reason"></textarea>
+                        </div>
+                        <div class="submit-section">
+                            <button class="btn btn-primary submit-btn" (click)="updateleave()">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Add Leave Modal -->
+
+
+    <div id="approved_leave" class="modal custom-modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Approve</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="form-group">
+                        <label>Remarks <span class="text-danger">*</span></label>
+
+                        <textarea class="form-control" [(ngModel)]="remarksapprove"></textarea>
+
+                    </div>
+                    <button type="button" (click)="approve()" class="btn btn-primary">Submit</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="Revoke_leave" class="modal custom-modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Revoke</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="form-group">
+                        <label>Remarks <span class="text-danger">*</span></label>
+
+                        <textarea class="form-control" [(ngModel)]="remarksapprove"></textarea>
+
+                    </div>
+                    <button type="button" (click)="revokeaprove()" class="btn btn-primary">Submit</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="rejected_leave" class="modal custom-modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Reject</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="form-group">
+                        <label>Remarks <span class="text-danger">*</span></label>
+
+                        <textarea class="form-control" [(ngModel)]="remarksreject"></textarea>
+
+                    </div>
+                    <button type="button" (click)="reject()" class="btn btn-primary">Submit</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Add Leave Modal -->
+    <div id="" class="modal custom-modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Leave</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>Leave Type <span class="text-danger">*</span></label>
+                        <select class="select form-control">
+                            <option>Select Leave Type</option>
+                            <option>Casual Leave 12 Days</option>
+                            <option>Medical Leave</option>
+                            <option>Paternity Leave</option>
+                            <option>Hospitalisation </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>From <span class="text-danger">*</span></label>
+                        <div class="cal-icon">
+                            <input class="form-control datetimepicker" value="01-01-2019" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>To <span class="text-danger">*</span></label>
+                        <div class="cal-icon">
+                            <input class="form-control datetimepicker" value="01-01-2019" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Number of days <span class="text-danger">*</span></label>
+                        <input class="form-control" readonly type="text" value="2">
+                    </div>
+                    <div class="form-group">
+                        <label>Remaining Leaves <span class="text-danger">*</span></label>
+                        <input class="form-control" readonly value="12" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label>Leave Reason <span class="text-danger">*</span></label>
+                        <textarea rows="4" class="form-control">Going to hospital</textarea>
+                    </div>
+                    <div class="submit-section">
+                        <button class="btn btn-primary submit-btn">Save 2</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Add Leave Modal -->
+
+ 

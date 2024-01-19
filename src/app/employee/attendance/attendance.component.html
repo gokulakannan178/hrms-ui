@@ -1,0 +1,496 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-title">Attendance</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/dashboard/employee_dashbaord">Home</a></li>
+                        <li class="breadcrumb-item active">Attendance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <div class="row mt-3">
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 search_text" style="padding-top: 12px !important;">
+                <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+                    <li class="nav-item">
+                        <a role="tab" class="nav-link active clr" id="tab-0" data-toggle="tab" href="#tab-content-0">
+                            <span>Statistics</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" style="position: relative;left: 3px;">
+                        <a role="tab" class="nav-link clr" id="tab-1" data-toggle="tab" href="#tab-content-1">
+                            <span>Attendance Details</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content">
+            <!-- <div id="stopwatch-container">
+       
+                <div id="stopwatch"></div> -->
+            
+
+                <!-- <button (click)="start()"  id="start-btn">
+                    <i class="fas fa-play" *ngIf="!running"></i>
+                    <i class="fas fa-pause" *ngIf="running"></i>
+
+                </button> -->
+                <!-- <button (click)="pause()">Pause</button> -->
+                <!-- <button (click)="reset()">Reset</button> -->
+            <!-- </div> -->
+            <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class=" col col-xl-4">
+                            <div class="card punch-status">
+                                <div class="card-body"> 
+                                    <h5 class="card-title">Timesheet <strong class="text-muted">{{getapplication.firstpunchinTime ?(getapplication.firstpunchinTime | date: 'd MMMM , y'):"---:---"}}</strong></h5>
+                                    <div  class="punch-det" >
+                                        <h6>Punch In at</h6>
+                                        <p>{{getapplication.firstpunchinTime ?(getapplication.firstpunchinTime | date: 'EEEE, MMMM d, y, h:mm a'):"---:---"}}</p>
+                                        <br>
+                                        <h6>Punch Out at</h6>
+
+                                        <p>{{getapplication.lastpunchoutTime ?(getapplication.lastpunchoutTime | date: 'EEEE, MMMM d, y, h:mm a'):"---:---"}}</p>
+                                       
+                                    </div>
+                                   
+                                    <div class="punch-info">
+                                        <div class="punch-hours">
+                                            <span>{{hr}}H:</span>
+                                            <span>{{min}}M:</span>
+                                            <span>{{sec}}S</span>
+                                            <!-- <span>{{getapplication.totalworkingHoursStr?getapplication.totalworkingHoursStr:"---:---"}}</span> -->
+                                            <!-- <span>{{ time | date: 'hh:mm:ss' }}</span> -->
+
+                                        </div>
+                                    </div>
+                                    <div class="punch-btn-section">
+                                        <!-- <button (click)="start()"  id="start-btn">
+                                            <i class="fas fa-play" *ngIf="!running"></i>
+                                            <i class="fas fa-pause" *ngIf="running"></i>
+                        
+                                        </button> -->
+                                        <button type="button" (click)="toggle()"class="btn  btn-punch punch-btn " [ngClass]="{'orenge' : modalButtonText=='Punch In', 'red': modalButtonText!='Punch In'}">{{modalButtonText}} </button>
+
+                                        
+                                    </div>
+                                    
+                                    <div class="statistics">
+                                        <div class="row">
+                                            <!-- <div class="col-md-6 col-6 text-center">
+                                                <div class="stats-box">
+                                                    <p>Break</p>
+                                                    <h6>{{getapplication.totalbreakHoursStr?getapplication.totalbreakHoursStr:"---:---"}}</h6>
+                                                </div>
+                                            </div> -->
+                                            <div class="col-md-12 col-12 text-center">
+                                                <div class="stats-box">
+                                                    <p>Overtime</p>
+                                                    <h6>{{getapplication.overTimeStr?getapplication.overTimeStr:"---:---"}}</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-xl-4">
+                            <div class="card att-statistics">
+                                <div class="card-body">
+                                    <h5 class="card-title">Statistics</h5>
+                                    <div class="stats-list">
+                                        <div class="stats-info">
+                                            <p>Today <strong>{{(getstatics.totalWorkingMinsStr + 10) ?getstatics.totalWorkingMinsStr :"---:---"}} <small> /{{getstatics.todaytotalworkingHours}}</small></strong></p>
+                                            <div class="progress">
+                                                <!-- <p>Today <strong>{{getstatics.todaytotalWorkingMinsStr ?getstatics.totalWorkingMin :"---:---"}} <small> /{{getstatics.todaytotalworkingHours}}</small></strong></p>>
+                                               <div class="progress-bar bg-primary" role="progressbar"
+                                                    style="width: 90%" aria-valuenow="90" aria-valuemin="0"
+                                                    aria-valuemax="100"></div> -->
+                                                    <div id="myBar"  [ngStyle]="{'width': getstatics.totalWorkingMinsStr  + '%'}"></div>
+                                            </div>
+                                        </div>
+                                        <div class="stats-info">
+                                            <p>This Week <strong>{{getstatics.weekworkingHoursStr?getstatics.weekworkingHoursStr:"---:---"}} <small> /{{getstatics.weektotalworkingHours}}</small></strong></p>
+                                            <div class="progress">
+                                             <!-- <div class="progress-bar bg-warning" role="progressbar"
+                                                    style="width: 31%" aria-valuenow="31" aria-valuemin="0"
+                                                    aria-valuemax="100"></div> -->
+                                                    <div id="myBar"  [ngStyle]="{'width': getstatics.weekworkingHoursStr+ '%'}"></div>
+                                            </div>
+                                        </div>
+                                        <div class="stats-info">
+                                            <p>This Month <strong>{{getstatics.monthworkingHoursStr?getstatics.monthworkingHoursStr:"---:---"}} <small> /{{getstatics.monthtotalworkingHours}}</small></strong></p>
+                                            <div class="progress">
+                                                <!-- <div class="progress-bar bg-success" role="progressbar"
+                                                    style="width: 62%" aria-valuenow="62" aria-valuemin="0"
+                                                    aria-valuemax="100"></div> -->
+                                                    <div id="myBar"  [ngStyle]="{'width': getstatics.monthworkingHoursStr+ '%'}"></div>
+                                            </div>
+                                        </div>
+                                        <div class="stats-info">
+                                            <p>Remaining <strong>{{getstatics.remainingWorkingHoursStr?getstatics.remainingWorkingHoursStr:"---:---"}} <small> /{{getstatics.monthtotalworkingHours}}</small></strong></p>
+                                            <div class="progress">
+                                                <!-- <div class="progress-bar bg-danger" role="progressbar"
+                                                    style="width: 62%" aria-valuenow="62" aria-valuemin="0"
+                                                    aria-valuemax="100"></div> -->
+                                                    <div id="myBar"  [ngStyle]="{'width': getstatics.remainingWorkingHoursStr+ '%'}"></div>
+                                            </div>
+                                        </div>
+                                        <div class="stats-info">
+                                            <p>Overtime <strong>{{getstatics.totalOvertimeStr?getstatics.totalOvertimeStr:"---:---"}}</strong></p>
+                                            <div class="progress">
+                                                <!-- <div class="progress-bar bg-info" role="progressbar" style="width: 22%"
+                                                    aria-valuenow="22" aria-valuemin="0" aria-valuemax="100"></div> -->
+                                                    <div id="myBar"  [ngStyle]="{'width': getstatics.totalOvertimeStr+ '%'}"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-xl-4">
+                            <div class="card recent-activity">
+                                <div class="card-body"> 
+                                    <h5 class="card-title">Today Activity</h5>
+                                    <ul *ngFor="let activity of getactivity;let i =index" class="res-activity-list today_activity">
+                                        <li >
+                                            <p class="mb-2  " >Punch In at</p>
+                                            <p class="res-activity-time ">
+                                                <i class="fa fa-clock-o"></i>
+                                                {{activity.punchinTime | date: 'h:mm a'}}
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p class="mb-2">Punch Out at</p>
+                                            <p class="res-activity-time">
+                                                <i class="fa fa-clock-o"></i>
+                                                {{activity.punchoutTime | date: 'h:mm a'}}
+                                            </p>
+                                        </li>
+                                       
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane tabs-animation fade" id="tab-content-1" role="tabpanel">
+               
+                <div class="row">
+                    <div class="col-xl-10">
+                        <form [formGroup]="dataForms">
+                            
+                        <div class="col-xl-4 col-lg-5 col-md-5 col-sm-12 form-group select-focus" style="float: left;">
+                                        <!-- <div class="input-group"> -->
+                                            <label >Select Month</label>
+                                            <div class="form-group form-focus select-focus">
+                                                <select class="select floating form-control"  [(ngModel)]="month"  [ngModelOptions]="{standalone: true}">
+                                                    <option>-</option>
+                                                    <option  value="01">Jan</option>
+                                                    <option  value="02">Feb</option>
+                                                    <option  value="03">Mar</option>
+                                                    <option  value="04">Apr</option>
+                                                    <option  value="05">May</option>
+                                                    <option  value="06">Jun</option>
+                                                    <option  value="07">Jul</option>
+                                                    <option  value="08">Aug</option>
+                                                    <option  value="09">Sep</option>
+                                                    <option  value="10">Oct</option>
+                                                    <option  value="11">Nov</option>
+                                                    <option  value="12">Dec</option>
+                                                </select>
+                                                
+                                            </div>
+                                        <!-- </div>           -->
+                        </div>
+                        <div class="col-xl-4 col-lg-5 col-md-5 col-sm-12 form-group select-focus" style="float: left;">
+                        <label >Select Year</label>
+                        <div class="form-group form-focus select-focus">
+                            <select class="select floating form-control" [(ngModel)]="year"  [ngModelOptions]="{standalone: true}">
+                                <option>-</option>
+<!--                                 
+                                <option  value="2043">2043</option>
+                                <option  value="2042">2042</option>
+                                <option  value="2041">2041</option>
+                                <option  value="2040">2040</option>
+                                <option  value="2039">2039</option>
+                                <option  value="2038">2038</option>
+                                <option  value="2037">2037</option>
+                                <option  value="2036">2036</option>
+                                <option  value="2035">2035</option>
+                                <option  value="2034">2034</option>
+                                <option  value="2033">2033</option>
+                                <option  value="2032">2032</option>
+                                <option  value="2031">2031</option>
+                                <option  value="2030">2030</option>
+                                <option  value="2029">2029</option>
+                                <option  value="2028">2028</option>
+                                <option  value="2027">2027</option>
+                                <option  value="2026">2026</option>
+                                <option  value="2025">2025</option>
+                                <option  value="2024">2024</option> -->
+                                <option  value="2023">2023</option>
+                                <option  value="2022">2022</option>
+                                <option  value="2021">2021</option>
+                                <option  value="2020">2020</option>
+                                <option  value="2019">2019</option>
+                                <option  value="2018">2018</option>
+                                <option  value="2017">2017</option>
+                                <option  value="2016">2016</option>
+                                <option  value="2015">2015</option>
+                            </select>
+                           </div>
+                        </div>
+                   
+                        <div class="col-xl-4 col-lg-5 col-md-5 col-sm-12 form-group select-focus " style="float: left;">
+                            <label>Status</label>
+                            <select class="form-select form-control"  aria-label="Default select " formControlName="status" >
+                               
+                                <option  value="">All Status</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Reject">Rejected</option>
+                                <option value="Pending">Pending</option>
+                            </select>
+                            
+                        </div>
+
+                           <div class="icons-button" style="display: flex;">
+                            <button (click)="normalSearch()"  class="icon1" style="margin-top:34px">
+                                <i class="fa fa-search searc" aria-hidden="true"></i></button>
+                              
+                                <div><a  rel="noopener noreferrer" (click)="documentexcel()"><i class="fa fa-file fileclass" style="font-size: 31px; margin-top:29px;">
+                                </i></a></div>
+                                <!-- <div>
+                                <button class="btn btn-success" style="background-color: green;margin-left:3em;" data-toggle="modal" (click)="approverequest()"
+
+                                type="button" *ngIf="checkitem.length > 0">Approve</button>
+
+                                <button class="btn btn-reject" style="background-color: red; color:white; margin-left:2em;" data-toggle="modal" (click)="approverequest()"
+
+                                type="button" *ngIf="checkitem.length > 0">Reject</button>
+                                </div> -->
+                               
+
+                           </div>
+
+
+                          
+                       
+                         </form>
+                        
+                        
+                    </div>
+                </div>
+                <div class="row ml-1 col-xl-12 ">
+                    <div class="card col-xl-2 col-lg-3 col-md-5 py-0 my-4 mr-2 ">
+                        <div class="crd">
+                            <h6 class="card-title">Work Schedule</h6>
+                            <p class=" card-text text-bold">{{attendenceDetails.workSchedule?attendenceDetails.workSchedule:"---:---"}}</p>
+                        </div>
+                    </div>
+                    <div class="card col-xl-2 col-lg-3 col-md-5  py-0 my-4 mx-2 ">
+                        <div class="crd">
+                            <h6 class="card-title">Logged Time</h6>
+                            <p class=" card-text text-bold">{{attendenceDetails.totalWorkingMinsStr?attendenceDetails.totalWorkingMinsStr:"---:---"}}</p>
+                        </div>
+                    </div>
+                    <div class="card col-xl-2 col-lg-3 col-md-5 py-0 my-4 mx-2 ">
+                        <div class="crd">
+                            <h6 class="card-title">Paid Time</h6>
+                            <p class=" card-text text-bold">{{attendenceDetails.paidTime?attendenceDetails.paidTime:"---:---"}}</p>
+                        </div>
+                    </div>
+                    <div class="card col-xl-2 col-lg-3 col-md-5 py-0 my-4 mx-2 ">
+                        <div class="crd">
+                            <h6 class="card-title">Deficit</h6>
+                            <p class=" card-text text-bold">{{attendenceDetails.deficitStr?attendenceDetails.deficitStr:"---:---"}}</p>
+                        </div>
+                    </div>
+                    <div class="card col-xl-2 col-lg-3 col-md-5 py-0 my-4 mx-2 ">
+                        <div class="crd">
+                            <h6 class="card-title">Overtime</h6>
+                            <p class=" card-text text-bold">{{attendenceDetails.totalOvertimeStr?attendenceDetails.totalOvertimeStr:"---:---"}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row ml-1 px-3">
+                    <div class="tble1 table-responsive-lg ">
+                        <table class="table medium table small-md">
+                            <thead class="table small">
+                                <tr>
+                                   
+                                    <!-- <input class="form-check-input" type="checkbox" (change)=bulkselect($event)> -->
+                                    
+
+                                    <th class="first">Date</th>
+                                    <th scope="col">Clock IN</th>
+                                    <!-- <th>Clock In Location</th> -->
+                                    <th>Clock Out</th>
+                                    <!-- <th>Clock Out Location</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngIf="!attendenceDetails||attendenceDetails.days==null">
+                                    <td colspan="8" style="text-align: center;">No Data</td>
+                                </tr>
+                                <tbody>
+<!--                                   
+                                    
+                                    </tr> -->
+
+                                    <tr *ngFor="let attendence of attendenceDetails.days;let i =index">
+                                        <!-- <td ><input class="form-check-input" type="checkbox" [checked]="checks" (change)=singleselect($event,attendence.uniqueId)></td> -->
+                                        <!-- <td ><input class="form-check-input"  ></td> -->
+
+                                        <!-- <td>{{apiService.getDate1(attendence.date|date)}}</td> -->
+                                        <td>{{attendence.dateStr}}({{attendence.dayOfWeek}})</td>
+                                        
+                                        <td>{{attendence.punchIn ?(attendence.punchIn | date: 'h:mm a (zzzz)'):"---:---"}}</td >
+                                        <td>{{attendence.punchOut ?(attendence.punchOut | date: 'h:mm a (zzzz)'):"---:---"}}</td>
+                                    </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class=" tble2 table-responsive-lg">
+                        <table class="table medium ">
+                            <thead class="table small">
+                                <tr>
+                                    <th>Work Schedule</th>
+                                    <th>Logged Time</th>
+                                    <th>Paid Time</th>
+                                    <th>Deficit</th>
+                                    <th>Overtime</th>
+                                    <th>Status</th>
+                                    <th>Note</th>
+                                    <th class="sticky-col eight-col last">Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody >
+                                <tr *ngIf="!attendenceDetails||attendenceDetails.length==0">
+                                    <td colspan="8" style="text-align: center;">No Data</td>
+                                </tr>
+                                <tbody>
+                                    <tr *ngFor="let attendence of attendenceDetails.days;let i =index">
+                                        <!-- Constant -->
+                                        <td>{{attendence.paidTime}}h</td>  
+                                        <td>{{attendence.totalWorkingMinsStr}}</td >
+                                         <!-- Constant    -->
+                                        <td>{{attendence.paidTime}}h</td>
+                                        <td>{{attendence.deficitStr }}</td >
+                                        <td>{{attendence.totalOvertimeStr}}</td >
+                                        <td>{{attendence.status}}</td>
+                                        <td>-</td>
+                                    
+                                    <td class="sticky-col eight-col last">
+                                        <div class="dropdown-container" tabindex="-1">
+                                            <div class="three-dots"></div>
+                                            <div class="dropdown">
+                                                <a class="p-2 edit"  (click)="useraction('editpaid',attendence)"  data-toggle="modal"
+                                                data-target="#PaidtimeModal"><i class="fa fa-edit"></i>Edit Paid
+                                                    Time</a> 
+                                                <!-- <a href="#" class="p-2 edit"><i class="fa fa-edit"></i> Edit
+                                                    Overtime</a> -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                             
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- Paid time -->
+<div class="modal fade" id="PaidtimeModal"  tabindex="-1" role="dialog" aria-labelledby="langModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content ">
+        <div class="modal-header" style="background: #ff9b44;color: #fff;">
+        <h5 class="modal-title mt-0" id="PaidtimeModal">Edit Paid / Overtime</h5>
+        <button type="button" class="close" (click)="editdeleted()" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+       
+        <div class="modal-body">
+             <form [formGroup]="PaidovertimeModalForms">
+            
+                <div class="form-group">
+                    <label class="control-label">Date</label>
+                    <div class="input-group">
+                        <!-- <input type="datepicker" class="form-control"   formControlName="date"> -->
+                        <input class="form-control" formControlName="date" disabled> 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Paid Time</label>
+                    <div class="input-group">
+                        <select class="form-control col-md-2" (change)="minutesvalue($event)" [(ngModel)]="hoursvalue" [ngModelOptions]="{standalone: true}">
+                            
+                            <!-- <option selected disabled>Select</option> -->
+                            <option *ngFor="let data of hours" value="{{data}}">{{data}}</option>
+                        </select>
+                        <select class="form-control col-md-2" [(ngModel)]="minvalue" [ngModelOptions]="{standalone: true}">
+                            <!-- <option selected disabled>Select</option> -->
+                            <option *ngFor="let data of minutes" value="{{data.min}}">{{data.min}}</option>
+                        </select>
+                        <!-- <input type="time" id="appt" name="appt" class="form-control"   placeholder="Select time"  formControlName="paid_time" > -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Over Time</label>
+                    <div class="input-group">
+
+                        <select class="form-control col-md-2"  [(ngModel)]="overhoursvalue" [ngModelOptions]="{standalone: true}" (change)="overminutesvalue($event)">
+                            <!-- <option selected disabled>Select</option> -->
+                            <option *ngFor="let data of overhours" value="{{data}}">{{data}}</option>
+                        </select>
+                        <select class="form-control col-md-2" [(ngModel)]="overminvalue" [ngModelOptions]="{standalone: true}">
+                            <!-- <option selected disabled>Select</option> -->
+                            <option *ngFor="let data of overminutes" value="{{data.min}}">{{data.min}}</option>
+                        </select>
+                        
+                    </div>
+                </div>
+               
+               <div class="form-group">
+                <label class="control-label">Notes</label>
+                <div class="input-group">
+                    <textarea class="form-control"   formControlName="notes"cols="30" rows="3"></textarea>
+                    
+                </div>
+            </div>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger clos" data-dismiss="modal">
+                <i class="fa fa-times" aria-hidden="true" (click)="editdeleted()"></i>&nbsp;Cancel</button>
+            <button type="button" (click)="saveedittime()" class="btn btn-primary prim">Save</button>
+            
+            </div>
+      
+    </div>
+    </div>
+</div>
+<!--/Paid time-->
+    
+
+    </div>
+    <!-- /Page Content -->
+
+</div>
+<!-- Page Wrapper -->

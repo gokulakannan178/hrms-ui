@@ -1,0 +1,147 @@
+
+<!-- Page Wrapper -->
+
+<div class="page-wrapper">
+    <!-- Page Content -->
+    <div class="content container-fluid setwidthcon5">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col-lg-4">
+                    <h3 class="page-title">Notification</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/dashboard/employee_dashbaord">Home</a></li>
+                        <li class="breadcrumb-item active1">Add News</li>
+                    </ul>
+                </div>
+               
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <div class="page-body">
+            <h4>Create News</h4>
+            <form [formGroup]="sendnewsforms" >
+                <div class="form-group">
+                  <label for="titleInput">Title <span class="required">*</span></label>
+                  <input type="text" class="form-control" id="titleInput" placeholder="Title" formControlName="title">
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="markCheckbox">
+                  <label class="form-check-label" for="markCheckbox">Mark as Important</label>
+                </div>
+                <div class="form-group my-2">
+                    <label for="editor">Content <span class="required">*</span></label>
+                    <angular-editor [placeholder]="'Enter text here...'" [config]="config" formControlName="content" [(ngModel)]="contentmodel"></angular-editor>
+                    
+                </div>
+                
+                    <!-- <div  style="color:#757575">
+                      <span> Who should see this?</span>
+                    </div> -->
+                    <div class="input-group select-group" style="width:28%"> 
+                    <span class="input-group-addon">
+                      <span><i class="fa fa-share-alt" aria-hidden="true"></i> Who should see this?</span>
+                    </span>
+                    <select class="form-control col-md-8"  (change)="Everyone_($event.target.value)" >
+                        <option  selected> -- Select --</option>
+                        <option value="Everyone"> Everyone</option>
+                        <option value="Department"> Department</option>
+                        <option value="Employee"> Employee</option>
+                        <option  style="color:rgb(255, 102, 0)" value="Reset" > --Reset--</option>
+                    </select>
+                  </div>
+                    <!-- <div>
+                      <input  type="radio" id="everyone" style="border-radius: 10px;">
+                      <label for="everyone">Everyone</label>
+                    </div> -->
+
+                    <!-- <div class="container">
+                      <div class="round">
+                        <input type="checkbox"  id="checkbox" >
+                        <label for="checkbox">Everyone</label>
+                      </div>
+                      
+                    </div> -->
+                    <div *ngIf="everyonefield">
+                      <input type="checkbox" formControlName="everyone" (click)="everyemp($event)">&nbsp;Everyone</div>
+               
+                <div style="display: flex;justify-content: space-between;" >
+                  <div >
+                <!-- <div class="input-group select-group w-25"> 
+                    <span class="input-group-addon">
+                      <span><i class="fa fa-share-alt" aria-hidden="true"></i> Who should see this?</span>
+                    </span>
+                    <select class="form-control">
+                        <option disabled>Who should see this?</option>
+                        <option value="1" selected> Everyone</option>
+                        <option value="2" > Department</option>
+                        <option value="2" > Employee</option>
+                    </select>
+                  </div> -->
+                  <div class="form-group form-focus select-focus" *ngIf="employeefield">
+                    <label>Employee</label>
+                    <!-- <div>
+                      <input class="form-control" type="text" (keyup)="getUserIdsFirstWay($event)" (change)="onSelectAll($event)" id="userIdFirstWay" list="dynmicUserIds" formControlName="name"/>
+                      <datalist id="dynmicUserIds" >
+                        <option *ngFor="let item of empname" [value]="item.name">{{item.name}}</option>
+                      </datalist>
+                    </div> -->
+                    <div  style="color:#757575; width:300px;  margin-left: 10px;">
+
+                      <ng-multiselect-dropdown  [placeholder]="'Select employee name'" 
+                      formControlName="name"
+                      [settings]="employeedropdown"
+                          [data]="empname" 
+                          [(ngModel)]="selectedItemsemp" [ngModelOptions]="{standalone: true}" 
+                          (onSelect)="onemployeeSelect($event)"
+                          (onSelectAll)="onemployeeSelectAll($event)">
+                          (onDeSelect)="onItemDeSelect($event)">
+                      </ng-multiselect-dropdown>
+                      <!-- <label class="focus-label">Onboarding</label> -->
+                  </div>
+                    <p style="color:#757575;font-size:small;  margin-right: 10px;"  *ngFor="let names of _employeename;index as i">{{names}}&nbsp;<span (click)="removename(i)"><i class="fa fa-window-close-o" aria-hidden="true"></i></span></p>
+                  </div>
+                     
+                    
+
+                    
+                    <!-- <div class="ng-autocomplete">
+                      <ng-autocomplete [data]="empname" [searchKeyword]="keyword" (selected)='selectEvent($event)' (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate" [minQueryLength]="2"
+                          [debounceTime]="600" formControlName="name">
+                      </ng-autocomplete>
+                      <ng-template #itemTemplate let-item>
+                          <a [innerHTML]="item.content"></a>
+                      </ng-template>
+                      <ng-template #notFoundTemplate let-notFound>
+                          <div [innerHTML]="notFound">
+                          </div>
+                      </ng-template>
+                  </div> -->
+               
+                <div class="form-group form-focus select-focus" *ngIf="Departmentfield">
+                  <label style=" margin-left: 10px;">Department</label>
+                <div  style="color:#757575; width:300px;  margin-left: 10px;">
+
+                  <ng-multiselect-dropdown  [placeholder]="'Select Department'" 
+                  formControlName="multidepartment"
+                  [settings]="deptdropdown"
+                      [data]="dept_multi_dd" 
+                      [(ngModel)]="selectedItemsDept" [ngModelOptions]="{standalone: true}" 
+                      (onSelect)="onItemSelect($event)"
+                          (onSelectAll)="onSelectAll($event)">
+                  </ng-multiselect-dropdown>
+                  <!-- <label class="focus-label">Onboarding</label> -->
+              </div>
+            </div>
+            </div>
+
+                  <div style="margin-top: 34px;">
+                    <button class="form-control" (click)="sendall()"><i class="fa fa-share-alt" aria-hidden="true"></i> Send</button>
+                  </div>
+                </div>
+            
+              </form>
+        </div>
+    </div>
+</div>

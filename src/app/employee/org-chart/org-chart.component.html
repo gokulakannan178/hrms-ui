@@ -1,0 +1,87 @@
+<div class="page-wrapper" >
+  <div class="content container-fluid p-0" >
+    
+      <div class="row bg-light parentdata">
+    <div id="chart-container"  ></div>
+    </div>
+    </div>
+
+<!-- <div *ngFor='let data of allemploye'>{{data.name}} -->
+<!-- <img   src="assets/img/profiles/avatar-05.jpg"  alt="image" width="80" height="80"
+    class="img-responsive d-block mx-auto mt-4 circle " *ngIf="data.profileImg ==''">
+    <img   src="{{data.profileImg}}"  alt="image" width="80" height="80"
+    class="img-responsive d-block mx-auto mt-4 circle " *ngIf="data.profileImg !=''">
+<div class="card-body text-center">
+    <div >{{data.name}}</div>
+    <div class=" card-text  text-muted" >{{data.ref.designationId.name}}</div> -->
+<!-- </div>
+</div> -->
+</div>
+
+
+<!-- *ngFor='let data of allemploye'  -->
+
+<!-- - <div class="page-wrapper"  >
+  <div class="content" > -->
+
+
+<!-- original -->
+<!-- <div class="page-wrapper">
+  <div class="content container-fluid">
+    <div class="row bg-light parentdata">
+      <div class="text-center directory card my-4 mx-2">
+        <img src="/assets/img/logo-1.png" alt="image" width="130" height="130">
+      </div>
+      <div class="directory card my-4 mx-2 " *ngFor='let data of allemploye'>
+        <div>
+          <img src="assets/img/profiles/avatar-05.jpg" alt="image" width="40" height="40"
+            class="img-responsive d-block mx-auto mt-4 circle " *ngIf="data.employee.profileImg ==''">
+          <img src="{{apiUrl+data.employee.profileImg}}" alt="image" width="40" height="40"
+            class="img-responsive d-block mx-auto mt-4 circle " *ngIf="data.employee.profileImg !=''">
+        </div>
+        <div class="card-text text-center">{{data.employee.name}}</div>
+        <div class=" card-text  text-center">{{data.employee.designationId}}</div>
+        <button class="child-loop text-center btun" *ngIf="data.childran" (click)="childShow(data.childran)">
+          {{readmore?"-":"+"}}
+        </button>
+        
+
+        <div *ngIf="childata">
+          <div class="directory card my-4 mx-2 " *ngFor='let child of data.childran'>
+
+            <img src="assets/img/profiles/avatar-05.jpg" alt="image" width="40" height="40"
+              class="img-responsive d-block mx-auto mt-4 circle " *ngIf="child.employee.profileImg ==''">
+            <img src="{{child.employee.profileImg}}" alt="image" width="40" height="40"
+              class="img-responsive d-block mx-auto mt-4 circle " *ngIf="child.employee.profileImg !=''">
+            <div class="card-body text-center">{{child.employee.name}}</div>
+            <div class=" card-text  text-center">{{child.employee.designationId}}</div>
+            <button class="child-loop text-center btun" *ngIf="child.childran"> {{readmore?"-":"+"}}</button>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+  
+</div> -->
+
+<!-- sample -->
+<!-- <div class="page-wrapper " >
+  <div class="content container-fluid">
+    
+  <div  *ngFor='let data of allemploye'>
+    <div class="card-text text-center">{{data.employee.name}}</div>
+    <button class="child-loop text-center btun" *ngIf="data.childran" (click)="childShow(data.childran)">
+      {{readmore?"-":"+"}}
+    </button>
+    <div *ngIf="childata">
+      <div *ngFor='let child of data.childran'>
+        <button class="child-loop text-center btun" *ngIf="child.childran"> {{readmore?"-":"+"}}</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div> -->
+
+

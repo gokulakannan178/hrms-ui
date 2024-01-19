@@ -1,0 +1,387 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+
+    <!-- Page Content -->
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="welcome-box">
+                        <div class="welcome-img">
+                            <img alt="" src="/assets/img/profiles/avatar-02.jpg">
+                        </div>
+                        <div class="welcome-det">
+                            <h3>Welcome, {{emplyoee.name}}</h3>
+                            <h6 class="mb-0">{{myDate | date: 'fullDate' }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Content -->
+
+
+        <!-- Leave Statistics -->
+        <div class="row">
+            <div class="col-md-6 col-xl-4" *ngFor="let data of employeedashoard">
+                <div class="stats-info">
+                    <img src="/assets/img/leave-icon.png" alt="leave-icon" width="40">
+                    <h6>{{data?.name}}</h6>
+                    <h4>{{data?.value}}</h4>
+                </div>
+            </div>
+
+        </div>
+        <!-- /Leave Statistics -->
+
+
+
+
+        <div class="row">
+            <div class="col-md-12 col-lg-8 col-xl-8 px-4">
+                <div class="row">
+                    <div class="card flex-fill">
+                        <div class="card-body">
+                            <h4 class="card-title">Today Absent <span class="badge bg-inverse-danger ml-2"></span></h4>
+                            <div class="leave-info-box" *ngFor="let data of timeoff; let i=index">
+                                <div class="media align-items-center">
+                                    <img *ngIf='data.employeeId.profileImg != ""'
+                                        src="{{apiService.APIURL + data.employeeId.profileImg}}" style="height: 40px;
+                                    width: 40px;">
+                                    <span style="color:black;text-align: center;"
+                                        *ngIf='data.employeeId.profileImg == ""'><img src="../../../assets/img/icon.png"
+                                            style="height: 40px; width: 40px;"> </span>
+                                    <div class="media-body" style="margin:12px;">
+    
+                                        <div class="text-sm my-0">{{data.employeeId.name}}</div>
+    
+                                    </div>
+                                </div>
+                                <div class="row align-items-center mt-3">
+                                    <div class="col-6">
+                                        <h6 class="mb-0">{{myDate | date: 'mediumDate' }}</h6>
+                                        <span class="text-sm text-muted">Leave Date</span>
+                                    </div>
+                                    <!-- <div class="col-6 text-right">
+                                        <span class="badge bg-inverse-danger">Pending</span>
+                                    </div> -->
+                                </div>
+    
+    
+                            </div>
+                            <div class="load-more text-center" style="display:flex;justify-content:center"
+                                *ngIf='timeoffshow'>
+                                <button class="btn add-btn" routerLink="/employee/leaverequest_admin"
+                                    href="javascript:void(0);">See All</button>
+                            </div>
+    
+                            <div class="load-more text-center" *ngIf='timeoffnull'>
+                                <span href="javascript:void(0);">No one is Absent Today!</span>
+                            </div>
+                           
+    
+                        </div>
+    
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="main-card mb-3 card w-100" style="height: 400px;">
+                        <div class="card-body tableScroll" style="overflow-x: auto;">
+                            <div class="tble">
+                                <div class="event-row" style="display: block;">
+                                    <div class="card-title">
+                                        Holiday events
+                                    </div>
+                                    <div class="card-date text-center">
+
+                                        <!-- <span><i class="fa fa-angle-left" aria-hidden="true"></i></span> -->
+                                        <a (click)="changeleft()"> <i class="fa fa-angle-left"
+                                                aria-hidden="true"></i> </a>
+                                        <span ([ngModel])="eventDate">{{Holidaytitle}}
+                                        </span>
+                                        <!-- <span><i class="fa fa-angle-right" aria-hidden="true"
+                                                change="changeright()"></i></span> -->
+
+                                        <a (click)="changeright()"> <i class="fa fa-angle-right"
+                                                aria-hidden="true"></i></a>
+
+
+                                    </div>
+                                </div>
+                                <table class="table table-hover table-striped table-bordered mt-3">
+
+                                    <thead>
+                                        <tr style="background-color: lightgray;">
+                                            <th *ngFor="let data of eventList">{{data.date | date :
+                                                'EE,dd'}}
+                                            </th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <!-- <tr *ngIf="!branchDetails||branchDetails.length==0">
+                                <td colspan="8" style="text-align: center;">No Data</td>
+                            </tr> -->
+                                    <tbody>
+                                        <tr style="height:100px;font-size: 15px;">
+                                            <td data-label="#" *ngFor="let data of eventList">
+                                                <p style="color:rgb(239, 120, 120)">{{data.name}}</p>
+                                                <div class="dropright event-list">
+                                                    <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <p
+                                                        *ngFor="let data2 of data.anniversaryEmployee let i=index" style="cursor: pointer;" (click)="pluse(data)">
+                                                        <span *ngIf="i==0"><i class="fa fa-graduation-cap event-icon"
+                                                                style="color:#e65d26;margin-right: 6px;"
+                                                                aria-hidden="true"></i>
+                                                                <img src="{{apiUrl+data2.profileImg}}"  class="event-img" alt=""  *ngIf="data2.profileImg !=''">
+                                                                <img src="assets/img/profiles/avatar-05.jpg"  class="event-img" alt=""  *ngIf="data2.profileImg ==''">
+                                                                
+                                                            </span>
+                                                            <span *ngIf="i==1" class="event-all">+{{count}}</span>
+                                                        </p>
+                                                            <!-- <span *ngIf="i>=1"><i class="fa fa-graduation-cap event-icon"
+                                                                style="color:#e65d26;"
+                                                                aria-hidden="true"></i>
+                                                                <img src="{{apiUrl+data2.profileImg}}"  class="event-img" alt=""  *ngIf="data2.profileImg !=''">
+                                                                <img src="assets/img/profiles/avatar-05.jpg"  class="event-img" alt=""  *ngIf="data2.profileImg ==''">
+                                                                <span *ngIf="i>=1" class="event-all">+2</span>
+                                                                
+                                                            </span> -->
+                                                        
+                                                        <!-- <span *ngIf="i>1">
+                                                            <span class="event-all">+2</span>
+                                                        </span> -->
+                                                       
+                                                        
+                                                                <!-- &nbsp;{{data2.name}} -->
+                                                            <!-- <span *ngIf="i >0" (click)="pluse(data.date)" data-toggle="modal" data-target="#langModal" style="cursor: pointer;">+</span> -->
+                                                        
+                                                        <!-- <span *ngIf="plusbutton"><i class="fa fa-graduation-cap" style="color:#e65d26;" aria-hidden="true"></i>&nbsp;+</span> -->
+
+                                                   
+                                                    <!-- <p *ngFor="let data2 of data.anniversaryEmployee let i=index">
+                                                    <span *ngIf="i>=1"><i class="fa fa-graduation-cap" style="color:#e65d26;" aria-hidden="true"></i>&nbsp;+</span> -->
+
+                                                    </div>
+                                                    <div class="dropdown-menu">
+                                                      <!-- Dropdown menu links -->
+                                                      <ul class="event-list p-0">
+                                                        <li>
+                                                            <h3>Work Anniversary</h3>
+                                                            <hr>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-calendar-week"></i> &nbsp; <span> {{headdate?.date | date : 'EEEE,yyyy-dd-MM'}}</span>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fas fa-user"></i> &nbsp; <span>{{count}} People</span>
+                                                        </li>
+                                                        <li class="d-flex user-details" *ngFor="let data of headdate?.anniversaryEmployee">
+                                                            
+                                                            <div class="col-md-2">
+                                                                <img src="/assets/img/profiles/avatar-02.jpg" class="user-img" alt="" *ngIf="data.profileImg ==''">
+                                                                <img src="{{apiUrl+data.profileImg}}" class="user-img" alt="" *ngIf="data.profileImg !=''">
+                                                            </div>
+                                                            <div class="col-md-7 user-name">
+                                                                <p>{{data.name}}</p>
+                                                                <span>{{data?.ref?.designationId?.name}}</span>
+                                                            </div>
+                                                            <div class="col-md-3 user-experience">
+                                                                <span>{{data.yearOfJoining}}Year</span>
+                                                            </div>
+                                                           
+                                                        </li>
+                                                        <!-- <li class="d-flex user-details">
+                                                            <div class="col-md-2">
+                                                                <img src="/assets/img/profiles/avatar-02.jpg" class="user-img" alt="">
+                                                            </div>
+                                                            <div class="col-md-7 user-name">
+                                                                <p>Rajesh Kumar</p>
+                                                                <span>TAX Collector</span>
+                                                            </div>
+                                                            <div class="col-md-3 user-experience">
+                                                                <span>2 Year</span>
+                                                            </div>
+                                                        </li> -->
+                                                       
+                                                    </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="dropright event-list">
+                                                    <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                               
+                                                <p  *ngFor="let data1 of data.brithdateEmployee let i=index" style="cursor: pointer;" (click)="bdaypluse(data)">
+                                                    <span *ngIf="i==0"><i class="fa fa-birthday-cake event-icon" style="color: deeppink;"aria-hidden="true"></i>
+                                                        <img src="{{apiUrl+data1.profileImg}}"  class="event-img" alt=""  *ngIf="data1.profileImg !=''">
+                                                        <img src="assets/img/profiles/avatar-05.jpg"  class="event-img" alt=""  *ngIf="data1.profileImg ==''">
+                                                        
+                                                    </span>
+                                                    <span *ngIf="i==1" class="event-all">+{{count}}</span>
+
+                                                    <!-- <span *ngIf="i==1"><i class="fa fa-birthday-cake" style="color: deeppink;"aria-hidden="true"></i>{{data1.name}}
+                                                    <span *ngIf="i>0" data-toggle="modal" data-target="#langModal1" style="cursor: pointer;" (click)="bdaypluse(data.date)">&nbsp;+</span></span> -->
+                                                </p>
+                                                </div>
+                                                <div class="dropdown-menu">
+                                                    <!-- Dropdown menu links -->
+                                                    <ul class="event-list p-0">
+                                                      <li>
+                                                          <h3>Birthday</h3>
+                                                          <hr>
+                                                      </li>
+                                                      <li>
+                                                          <i class="fas fa-calendar-week"></i> &nbsp; <span> {{bdayheaddate?.date | date : 'EEEE,yyyy-dd-MM'}}</span>
+                                                      </li>
+                                                      <li>
+                                                          <i class="fas fa-user"></i> &nbsp; <span>{{bdaycount}} People</span>
+                                                      </li>
+                                                      <li class="d-flex user-details" *ngFor="let data of bdayheaddate?.brithdateEmployee">
+                                                          
+                                                          <div class="col-md-2">
+                                                              <img src="/assets/img/profiles/avatar-02.jpg" class="user-img" alt="" *ngIf="data.profileImg ==''">
+                                                              <img src="{{apiUrl+data.profileImg}}"  class="event-img" alt=""  *ngIf="data.profileImg !=''">
+                                                          </div>
+                                                          <div class="col-md-7 user-name">
+                                                              <p>{{data.name}}</p>
+                                                              <span>{{data?.ref?.designationId?.name}}</span>
+                                                          </div>
+                                                          
+                                                         
+                                                      </li>
+                                                      <!-- <li class="d-flex user-details">
+                                                          <div class="col-md-2">
+                                                              <img src="/assets/img/profiles/avatar-02.jpg" class="user-img" alt="">
+                                                          </div>
+                                                          <div class="col-md-7 user-name">
+                                                              <p>Rajesh Kumar</p>
+                                                              <span>TAX Collector</span>
+                                                          </div>
+                                                          <div class="col-md-3 user-experience">
+                                                              <span>2 Year</span>
+                                                          </div>
+                                                      </li> -->
+                                                     
+                                                  </ul>
+                                                  </div>
+                                              </div>
+
+                                            </td>
+
+
+
+                                            <!-- 
+                                            <tr *ngFor="let data of holidayevents">
+                                                <td>{{data.day}}</td>
+
+                                            </tr> -->
+                                    </tbody>
+                                    
+                                </table>
+                                <div>
+                                    <p style="font-size: 14px">
+                                        <i class="fa fa-graduation-cap" style="color:#e65d26;"aria-hidden="true"></i>Anniversery &nbsp;&nbsp;
+                                        <i class="fa fa-birthday-cake" style="color: deeppink;"aria-hidden="true"></i>&nbsp;Birthday</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-4 col-xl-4 d-flex">
+
+                <div class="card flex-fill">
+                    <div class="card-body">
+                        <h5 class="card-title">Timesheet :- <strong class="text-muted">{{getapplication.firstpunchinTime
+                                ?(getapplication.firstpunchinTime | date: 'd MMMM , y'):"---:---"}}</strong></h5>
+                        <div class="punch-det">
+                            <h6>Punch In at</h6>
+                            <p>{{getapplication.firstpunchinTime ?(getapplication.firstpunchinTime | date: 'EEEE, MMMM d, y, h:mm a'):"---:---"}}</p>
+                            <br>
+                            <h6>Punch Out at</h6>
+
+                            <p>{{getapplication.lastpunchoutTime ?(getapplication.lastpunchoutTime | date: 'EEEE, MMMM d, y, h:mm a'):"---:---"}}</p>
+
+                        </div>
+
+                        <div class="punch-info">
+                            <div class="punch-hours">
+                                <span>{{hr}}H:</span>
+                                <span>{{min}}M:</span>
+                                <span>{{sec}}S</span>
+                                <!-- <span>{{getapplication.totalworkingHoursStr?getapplication.totalworkingHoursStr:"---:---"}}</span> -->
+                                <!-- <span>{{ time | date: 'hh:mm:ss' }}</span> -->
+
+                            </div>
+                        </div>
+                        <div class="punch-btn-section">
+                            <button type="button" (click)="toggle()" class="btn  btn-punch punch-btn "
+                                [ngClass]="{'orenge' : modalButtonText=='Punch In', 'red': modalButtonText!='Punch In'}">{{modalButtonText}}</button>
+
+
+                        </div>
+
+                        <div class="statistics">
+                            <div class="row">
+                                <!-- <div class="col-md-6 col-6 text-center">
+                                <div class="stats-box">
+                                    <p>Break</p>
+                                    <h6>{{getapplication.totalbreakHoursStr?getapplication.totalbreakHoursStr:"---:---"}}</h6>
+                                </div>
+                            </div> -->
+                                <div class="col-md-12 col-12 text-center">
+                                    <div class="stats-box">
+                                        <p>Overtime</p>
+                                        <h6>{{getapplication.overTimeStr?getapplication.overTimeStr:"---:---"}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Attendence -->
+
+
+        <!-- /Attendence -->
+<!-- 
+        <div class="modal fade" id="langModal" tabindex="-1" role="dialog" aria-labelledby="langModalLabel" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="padding:20px">
+                    <h5>Anniversery</h5>
+                    <p>
+                        <span>{{headdate | date : 'EEEE,yyyy-dd-MM'}}</span></p>
+                    <div *ngFor="let data of eventList">
+                        <p *ngFor="let Data of data.anniversaryEmployee"><i class="fa fa-graduation-cap" style="color:#e65d26;" aria-hidden="true"></i>&nbsp;
+                            <img src="assets/img/profiles/avatar-05.jpg"  alt="image" width="25" height="25"
+                            class="circle " *ngIf="Data.profileImg ==''">
+                            <img src="{{apiUrl+Data.profileImg}}"  alt="image" width="25" height="25"
+                            class="circle " *ngIf="Data.profileImg !=''">&nbsp;{{Data.name}}</p>
+                </div>
+                </div>
+            </div>
+        </div> -->
+        
+        <!-- <div class="modal fade" id="langModal1" tabindex="-1" role="dialog" aria-labelledby="langModalLabel" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="padding:20px">
+                    <h5>Birthday</h5>
+                    <p>{{bdayheaddate | date : 'EEEE,yyyy-dd-MM'}}</p>
+                    <div *ngFor="let data of eventList">
+                        <p *ngFor="let data1 of data.brithdateEmployee"><i class="fa fa-birthday-cake" style="color: deeppink;"aria-hidden="true"></i>&nbsp;
+                            <img src="assets/img/profiles/avatar-05.jpg"  alt="image" width="25" height="25"
+                    class="circle " *ngIf="data1.profileImg ==''">
+                    <img src="{{apiUrl+data1.profileImg}}"  alt="image" width="25" height="25"
+                    class="circle " *ngIf="data1.profileImg !=''">&nbsp;{{data1.name}}</p>
+                </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+</div>
+<!-- /Page Wrapper -->

@@ -1,0 +1,36 @@
+.btn-custom{
+    margin: 10px;
+}
+.staff-msg{
+    margin-left: -20px;
+}
+.docpar{
+    border:1px solid black;
+    height:23em;
+    width:100%;
+    /* background-color: yellow; */
+}
+.doc_in{
+    border:1px solid black;
+    margin:auto;
+    height:23em;
+    width:50%;
+}
+.cardon{
+    height:8em; 
+    border:1px solid lightgray;
+    margin-top:23px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    background-color: #f4f3f3;
+    padding: 10px;
+  }
+  input[type=file]{
+    color:transparent;
+  }
+.clckbu{
+ background-color:#ff9b44 !important ; 
+ border-color: #ff9b44 !important;
+}

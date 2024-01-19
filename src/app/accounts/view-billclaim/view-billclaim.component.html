@@ -1,0 +1,96 @@
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+			
+    <!-- Page Content -->
+    <div class="content container-fluid py-5">
+        
+        <!-- Page Header -->
+        <div class="page-header">
+            <div  style="display:flex; " class="row align-items-center">
+                <div class="col-xl-9 col-lg-6">
+                    <h3 class="page-title">Accounts</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/dashboard">Home</a></li>
+                        <li class="breadcrumb-item active1">View Bill </li>
+                    </ul> 
+                    <div class="back">
+                        <button style="width: 20%; margin-left: 37em; margin-top: -5em; background-color:#ff9b44;color:white" 
+                        type="button" class="btn btn-light back"routerLink="/accounts/edit_billclaim"  ><i class="fa fa-eye mr-2 green" aria-hidden="true"></i>Edit</button>
+                      </div>
+                </div>
+                    
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row ">
+            <div class="col-xl-12 column-list">
+               <form [formGroup]="addclaimforms">
+                   <div class="form-row">
+                     <div class="form-group col-lg-4 col-md-12 mx-3">
+                       <label for="InputFrstName" class="text-bold font">Title<span class="required">*</span> </label>
+                       <input type="text" class="form-control" id="InputFrstName" placeholder="Enter Title"
+                         formControlName="tit" disabled 
+                         [ngClass]="{'red-border-class': Submitted && fr.tit.errors}" required>
+                     </div>
+                     <div class="form-group col-lg-4 col-md-12 mx-3">
+                       <label for="InputLstName"  class="text-bold font">Description<span class="required">*</span> </label>
+                       <input type="text" class="form-control " id="InputLstName" placeholder="Enter Description"
+                                   formControlName="desc" disabled
+                                   [ngClass]="{'red-border-class': Submitted && fr.desc.errors}" required>            
+                     </div>
+
+                    
+                     </div>
+              
+              </form>
+            </div> 
+       </div>
+       
+       <div class="main-card mb-3 card">
+        <div class="card-body">
+            <div class="row card-row" style="height: 30%;
+            display: flex;
+            flex-flow: nowrap;">
+                <div class="col-lg-4 card-1" style="height: 448px;overflow-y: scroll;">
+                    <div class="cardon" *ngFor="let data of billdetails" (click)="showbill(data?.file)">
+                        <div style="display:flex; justify-content: space-between; color:black;">
+
+                      <span style="margin-top: 13px;"><b>{{data?.title}}</b></span>
+                      <span style="font-size:1.8em;"><b>{{data?.amount}}</b>
+                        </span>
+                        
+                        </div>
+                        <label style="color:black;">{{apiService.getDate1(data?.date)}}</label><br>
+                        <label style="color:black;">{{data?.desc}}</label><br>
+
+                    </div>
+                    
+                </div>
+                <div class="col-lg-9 card-2" style="display:flex; width:20%;justify-content:center;margin:auto;">
+                   <div style="width:100%; overflow:hidden; "> 
+                    <iframe scrolling="" *ngIf='photoUrldata != ""' style="height:28em; width:400px; border:1px solid #f4f3f3; " [src]="photoUrldata" ></iframe>
+                    <!-- <iframe *ngIf='photoUrldata != ""' [src]="photoUrldata" scrolling="no" height="1800" width="400px" ></iframe> -->
+                   
+                    </div>
+                   <span style="color:black;text-align: center;" *ngIf='photoUrldata == ""'><img src="../../../assets/img/download.png"
+                    ></span>
+                    
+                </div>
+               
+
+                <div class="col-lg-9" >
+                 
+                   
+                </div>
+               
+            </div>
+            
+        </div>
+</div>
+</div>
+
+
+       
+    

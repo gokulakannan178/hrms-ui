@@ -1,0 +1,65 @@
+<!-- Main Wrapper -->
+<div class="main-wrapper" style="background-image: url('/assets/img/back.jpg');background-size: cover;">
+   
+    <div class="account-content setloginscreen">
+        <div class="container">
+            <div class="account-box">
+                <div class="account-wrapper">
+                    <img src="/assets/img/icon-light.png" width="65px" class="logo-img">
+                    <h3 class="account-title">Login Portal</h3>
+                    <p class="account-subtitle">Access to Our Dashboard</p>
+                    <hr color="orange"><br>
+                    <!-- Account Form -->
+                    <form class="form-auth-small" [formGroup]="registerForms" (ngSubmit)="submitLogin()">
+
+                        <div class="form-group">
+                            <label>User Name</label>
+                            <input class="form-control" formControlName="userName" type="text" name="email"
+                                placeholder="Enter Username"
+                                [ngClass]="{'red-border-class': submittedLog && fa.userName.errors}" required />
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                    <label>Password</label>
+                                </div>
+                                <div class="col-auto">
+                                    <a class="text-muted" routerLink="forgetpassword">
+                                        Forgot password?
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="input-group-append">
+                                <!-- <span class="form-control"><i class="fa fa-key"></i></span> -->
+                                <input [type]="fieldTextType ? 'text': 'password'" class="form-control"
+                                    formControlName="password" placeholder="*******"
+                                    [ngClass]="{'red-border-class': submittedLog && fa.password.errors}">
+
+                                <span class="input-group-text">
+                                    <i class="fa" [ngClass]="{'fa-eye-slash': !fieldTextType, 'fa-eye':fieldTextType}"
+                                        (click)="toggleFieldTextType()"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group" *ngIf="errorVal != ''">
+                            <p style="color:red">{{errorVal}}</p>
+                        </div>
+                        <div class="form-group text-center">
+                            <button class="btn btn-primary account-btn" type="submit"
+                                (click)="submitLogin()">Login</button>
+                        </div>
+                        <div class="account-footer">
+                            <!-- <p>Don't have an account yet? <a href="#">Register Here</a></p> -->
+                        </div>
+                    </form>
+                    <!-- /Account Form -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<img src="/assets/img/back1.jpg" alt="" width="100%" class="login-img">
+
+<!-- /Main Wrapper -->

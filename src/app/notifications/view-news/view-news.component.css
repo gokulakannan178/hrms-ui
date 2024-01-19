@@ -1,0 +1,30 @@
+.card-heading i{
+    color: #ff9b44;
+}
+.card-heading{
+    color: rgb(14, 34, 61);
+    text-decoration: none;
+}
+
+.news-div .divider{
+    position: relative;
+    top: -0.06em;
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    margin: 0 8px;
+    vertical-align: middle;
+    background: rgb(235, 240, 244) !important;
+}
+.news-div span,
+.news-div i{
+    color: rgb(105, 129, 148);
+}
+.news-div .date{
+    font-size: 14px;
+}
+.page-link {
+    background: #ff9b44;
+    color: #fff !important;
+    cursor: pointer;
+}

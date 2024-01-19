@@ -1,0 +1,103 @@
+<!-- Created by Riddhi Omar on 27/04/2022 -->
+<body>
+    <div class=" page-details">
+      <div class="container-fluid card pl-5 py-5">
+        <div class="back">
+          <button type="button" class="btn btn-light back" onclick="history.back()"><i class="mr-2 fa fa-arrow-left" aria-hidden="true"></i>Back</button>
+        </div>
+        <!-- page header start -->
+        <div class="page-header">
+          <div class="row align-items-center">
+            <h3 class="page-title">Working Schedule</h3>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/policy/workschedule">Working Schdule</a></li>
+                <li class="breadcrumb-item active1">Working Schedule Add</li>
+              </ul>
+          </div>
+        </div>
+        <!-- page header end -->
+        <!-- page-card start -->
+        <div class="">
+          <form [formGroup]="workScheduleforms">
+          <div class="form-group">
+            <label for="InputName" class="text-bold">Name<span class="required">*</span> </label>
+              <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter Name"
+              formControlName="name"
+              [ngClass]="{'red-border-class': Submitted && fr.name.errors}" required>
+          </div>
+          <!-- <div class="form-group">
+            <label for="InputDescription">Schedule<span class="required">*</span> </label>
+            <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter Schedule"
+              formControlName="schedule"
+              [ngClass]="{'red-border-class': Submitted && fr.schedule.errors}" required>
+          </div>
+          <div class="form-group">
+            <label for="InputDescription">Schedule Type<span class="required">*</span> </label>
+            <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter Schedule Type"
+              formControlName="scheduleType"
+              [ngClass]="{'red-border-class': Submitted && fr.scheduleType.errors}" required>
+          </div> -->
+          <div class="form-group">
+            <label for="InputDescription">Organization<span class="required">*</span> </label>
+            <select class="form-control" formControlName="organisationId" id="InputName"
+                [ngClass]="{'red-border-class': Submitted && fr.organisationId.errors}" required>
+                <option value="">Select Your Option</option>
+                <option value="{{data.uniqueId}}" *ngFor='let data of organisationData'>{{data.name}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="InputName" class="text-bold">Paid (%)<span class="required">*</span> </label>
+              <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter the percentage"
+              formControlName="paid"
+              [ngClass]="{'red-border-class': Submitted && fr.name.errors}" required>
+          </div>
+          <div class="form-group">
+            <label for="InputName" class="text-bold">Partial Pay (%)<span class="required">*</span> </label>
+              <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter the percentage"
+              formControlName="partial_pay"
+              [ngClass]="{'red-border-class': Submitted && fr.name.errors}" required>
+          </div>
+          <div class="form-group">
+            <label for="InputName" class="text-bold">Loss of Pay (%)<span class="required">*</span> </label>
+              <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter the percentage"
+              formControlName="loss_of_pay"
+              [ngClass]="{'red-border-class': Submitted && fr.name.errors}" required>
+          </div>
+          <div class="form-group">
+            <label for="InputDescription">Working Hours In Days<span class="required">*</span> </label>
+            <input type="number" class="form-control" id="InputName" size="50" placeholder="Enter Working Hours"
+              formControlName="workingHoursInDays"
+              [ngClass]="{'red-border-class': Submitted && fr.workingHoursinDays.errors}" required>
+          </div>
+         
+
+          <div class="form-group ">
+            <div class="check_box">
+            <label for="message-text" class="col-form-label">Working Hours in Week</label>
+            <br>
+            <input id="checkbox-1" type="checkbox" [(ngModel)]="sunday" [ngModelOptions]="{standalone: true}"(change)="workingdays($event,sunday)" style="background-color: #fff;">
+            <label class="checkbox" for="checkbox-2" >Sunday</label>
+            <input id="checkbox-2" type="checkbox" [(ngModel)]="monday" [ngModelOptions]="{standalone: true}"(change)="workingdays($event,monday)" style="background-color: #fff;">
+            <label class="checkbox" for="checkbox-1" >Monday</label>
+            <input id="checkbox-3" type="checkbox" [(ngModel)]="tuesday" [ngModelOptions]="{standalone: true}"(change)="workingdays($event,tuesday)" style="background-color: #fff;">
+            <label class="checkbox" for="checkbox-2" >Tuesday</label>
+            <input id="checkbox-4" type="checkbox" [(ngModel)]="wednesday" [ngModelOptions]="{standalone: true}"(change)="workingdays($event,wednesday)" style="background-color: #fff;">
+            <label class="checkbox" for="checkbox-2" >Wednesday</label>
+            <input id="checkbox-5" type="checkbox" [(ngModel)]="thursday" [ngModelOptions]="{standalone: true}"(change)="workingdays($event,thursday)" style="background-color: #fff;">
+            <label class="checkbox" for="checkbox-2" >Thursday</label>
+            <input id="checkbox-6" type="checkbox" [(ngModel)]="friday" [ngModelOptions]="{standalone: true}"(change)="workingdays($event,friday)" style="background-color: #fff;">
+            <label class="checkbox" for="checkbox-2" >Friday</label>
+            <input id="checkbox-7" type="checkbox" [(ngModel)]="saturday" [ngModelOptions]="{standalone: true}"(change)="workingdays($event,saturday)" style="background-color: #fff;">
+            <label class="checkbox" for="checkbox-2" >Saturday</label>
+            </div> 
+        </div>
+  
+          <button type="submit" (click)="workScheduleAdd()"class="btn mb-5">Add Work Schedule</button>
+          </form>
+        </div>
+        
+        <!-- page-card end -->
+      </div>
+    </div>
+  </body>
+  

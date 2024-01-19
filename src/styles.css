@@ -1,0 +1,89 @@
+
+.required {
+	color: red;
+}
+
+div {
+	cursor: default;
+}
+.page-wrapper{
+    width:calc(100% - 230px) !important;
+}
+.tableScroll {
+	width: 92%;
+	overflow-x: scroll;
+	white-space: nowrap;
+}
+
+.eight-col {
+	left: 92%;
+	position: absolute;
+	background-color: white;
+	width: 7%;
+}
+
+/* .mini-sidebar .page-wrapper {
+    margin-left: 60px;
+    width: 95% !important;
+} */
+th,
+td, .table-bordered thead td, .table-bordered thead th {
+	text-align: center !important;
+}
+
+@media only screen and (max-width:990px) {
+	.page-wrapper {
+		width: 100% !important;
+	}
+}
+
+@media screen and (max-width: 890px) {
+	.con_icons {
+		display: inline !important;
+		justify-content: space-evenly;
+	}
+
+	table {
+		border: 0;
+	}
+
+	table caption {
+		font-size: 1.3em;
+	}
+	.table {
+		overflow-x: auto;
+		white-space: nowrap;
+		width: 100% !important;
+	}
+}
+
+@media only screen and (max-width:1900px) and (min-width:1500px) {
+	.eight-col {
+		left: 92%;
+		position: absolute;
+		background-color: white;
+		width: 7%;
+	}
+
+	table {
+		width: 1200px;
+	}
+}
+
+@media only screen and (max-width:1480px) and (min-width:1380px) {
+	.eight-col {
+		left: 92%;
+		position: absolute;
+		background-color: white;
+		width: 7%;
+	}
+
+}
+
+.pen {
+	color: #0a9d19 !important;
+}
+
+.fa-eye {
+	color: #ffbf00 !important;
+}

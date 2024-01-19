@@ -1,0 +1,140 @@
+<!-- Created By Riddhi Omar on 28/04/2022 -->
+
+<!-- Page Wrapper Start -->
+<div class="page-wrapper">
+
+    <!-- Page Content Start -->
+    <div class="content container-fluid">
+
+        <!-- Page Header Start -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Employee Directory</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                        <li class="breadcrumb-item active1">Employee</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 search_text" style="padding-top: 12px !important;">
+                </div>
+
+            </div>
+        </div>
+        <!-- Page Header End -->
+        <!-- Search Employees Start -->
+        <div class="row ">
+            <form [formGroup]="searchemployee">
+                <div class="col-xl-12">
+                    <!-- <div class="col col-xl-3 col-lg-6">
+                    <div class="form-group form-focus"> 
+                        <input type="text" class="form-control floating" placeholder="Employee ID" formControlName="employeeId">
+                        <label class="focus-label">Employee ID</label>
+                    </div>
+                </div> -->
+                    <div class="col col-xl-3 col-lg-6">
+                        <label class="focus-label">Employee Name</label>
+                        <div class="form-group form-focus">
+                            <input type="text" class="form-control floating" formControlName="employeename"
+                                placeholder="Employee Name">
+
+                        </div>
+                    </div>
+                    <div class=" col col-xl-3 col-lg-6">
+                        <label class="focus-label">Branch</label>
+                        <div class="form-group form-focus select-focus">
+                            <!-- <input type="text" class="form-control floating" placeholder="Select Designation"> -->
+
+                            <select class="form-select form-control dd" aria-label="Default select "
+                                formControlName="branch" [ngClass]="{'red-border-class': Submitted && fr.branch.errors}"
+                                required>
+                                <!-- <option value="">Select Your Option</option>  -->
+                                <option value="{{data.uniqueId}}" placeholder="Select branch"
+                                    *ngFor='let data of branch_dd'>{{data.name}}</option>
+                            </select>
+
+                            <!-- <label class="focus-label">Designation</label> -->
+                        </div>
+                    </div>
+                    <div class=" col col-xl-3 col-lg-6">
+                        <label class="focus-label">Department</label>
+                        <div class="form-group form-focus select-focus">
+                            <!-- <input type="text" class="form-control floating" placeholder="Select Designation"> -->
+
+                            <select class="form-select form-control dd" aria-label="Default select "
+                                formControlName="department"
+                                [ngClass]="{'red-border-class': Submitted && fr.organisation.errors}" required>
+                                <!-- <option value="">Select Your Option</option>  -->
+                                <option value="{{data.uniqueId}}" placeholder="Select branch"
+                                    *ngFor='let data of dept_dd'>{{data.name}}</option>
+                            </select>
+
+                            <!-- <label class="focus-label">Designation</label> -->
+                        </div>
+                    </div>
+                    <div class=" col col-xl-3 col-lg-6">
+                        <label class="focus-label">Designation</label>
+                        <div class="form-group form-focus select-focus">
+                            <!-- <input type="text" class="form-control floating" placeholder="Select Designation"> -->
+
+                            <select class="form-select form-control dd" aria-label="Default select "
+                                formControlName="designation"
+                                [ngClass]="{'red-border-class': Submitted && fr.designation.errors}" required>
+                                <!-- <option value="">Select Your Option</option>  -->
+                                <option value="{{data.uniqueId}}" placeholder="Select Designation"
+                                    *ngFor='let data of deslist'>{{data.name}}</option>
+                            </select>
+
+                            <!-- <label class="focus-label">Designation</label> -->
+                        </div>
+                    </div>
+                    <div class="col col-xl-3 col-lg-6">
+                        <button (click)="getserachemploye()"
+                            class="btn btn-success btn-block text-white">Search</button>
+                    </div>
+                    <div class="col col-xl-3 col-lg-6">
+                        <button (click)="reset()" class="btn btn-primary">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- Search Employees End -->
+        <!-- All Employees Details Start -->
+        <div class="row bg-light " style="margin-top: 20px;justify-content: space-evenly;">
+            <div class="directory card my-4 mx-2 " *ngFor='let data of allemployee'>
+
+                <!-- <img   src="assets/img/profiles/avatar-05.jpg"  alt="image" width="80" height="80"
+                    class="img-responsive d-block mx-auto mt-4 circle " *ngIf="data.profileImg ==''">
+                    <img   src="{{apiUrl+data.profileImg}}"  alt="image" width="80" height="80"
+                    class="img-responsive d-block mx-auto mt-4 circle " *ngIf="data.profileImg !=''">
+                     -->
+                <img src="assets/img/profile_female.png" alt="image" width="80" height="80"
+                    class="img-responsive d-block mx-auto mt-4 circle "
+                    *ngIf="data.profileImg ==''&&data.gender=='Female'">
+                <img src="assets/img/profile_male.png" alt="image" width="80" height="80"
+                    class="img-responsive d-block mx-auto mt-4 circle "
+                    *ngIf="data.profileImg ==''&&data.gender=='Male'">
+                <img src="{{apiUrl+data.profileImg}}" alt="image" width="80" height="80"
+                    class="img-responsive d-block mx-auto mt-4 circle " *ngIf="data.profileImg !=''">
+                <img src="assets/img/profiles/avatar-05.jpg" alt="image" width="80" height="80"
+                    class="img-responsive d-block mx-auto mt-4 circle " *ngIf="data.profileImg ==''&&data.gender ==''">
+                <div class="card-body text-center">
+                    <h6>{{data.name}}</h6>
+                    <div class=" card-text  text-muted">{{data.ref.designationId.name}}</div>
+                    <a class="text-dark">{{data.mobile}}</a><br>
+                    <a class="text-muted">{{data.email}}</a>
+                </div>
+                <div class="card-footer bg-white">
+                    <p class="card-text text-muted  text-center "><strong>Line Manager: {{data?.ref?.lineManager?.name}}</strong></p>
+                </div>
+
+            </div>
+
+
+
+        </div>
+        <!--All Employees Details End -->
+    </div>
+    <!--Page Content End -->
+</div>
+<!-- Page Wrapper End -->

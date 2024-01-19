@@ -1,0 +1,249 @@
+.name{
+    height:2em;
+    width:2em;
+    border-radius:50%;
+    background-color:yellow;
+    text-align:center;
+
+}
+.name1{
+    height:2em;
+    width:2em;
+    border-radius:50%;
+    background-color:yellow;
+    text-align:center;
+   
+}
+.name2{
+    height:2em;
+    width:2em;
+    border-radius:50%;
+    background-color:yellow;
+    text-align:center;
+}
+.array{
+    display:flex;
+}
+.base{
+    justify-content: space-between;
+    flex-wrap:nowrap;
+   
+}
+
+
+
+  
+ 
+.invite_popup{
+    display:flex;
+}
+.add_people{
+flex:1;
+text-align: center;
+margin-top:12px;
+flex-direction:column;
+display:flex;
+}
+.invite_link{
+    display:flex;
+
+    flex:1;
+    margin-top:1em;
+}
+.btn1{
+    margin-top:12px;
+}
+.btn2{
+    margin-top:12px;
+}
+.btn3{
+    margin-top:12px;
+}
+.invite_click{
+    margin-left: 6em;
+}
+.invite_txt{
+    font-size:10px;
+}
+.link_txt{
+    font-size:10px;
+}
+.send_button{
+    justify-content: center;
+}
+.add_card{
+    background-color: none;
+    border:none;
+    color:gray;
+    margin-top:12px;
+}
+.add_card:hover{
+    background-color: #ddd;
+  border: none;
+  color:black;
+
+}
+
+.cards_scroll_verticall{
+    display:flex;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+.cards_scroll_verticall::-webkit-scrollbar {
+    height: 5px;
+  }
+    
+  .cards_scroll_verticall::-webkit-scrollbar-thumb {
+    background-color: gray;
+  }
+  
+  .cards_scroll_verticall::-webkit-scrollbar-track-piece:end {
+    margin-right: 50px; 
+  }
+  
+  .cards_scroll_verticall::-webkit-scrollbar-track-piece:start {
+    margin-left: 50px;
+  }
+  .card_one_scroll{
+    overflow-y: scroll;
+    flex-wrap: nowrap;
+    width:2px;
+  }
+
+  .card_one_scroll::-webkit-scrollbar {
+    height: 3px;
+    
+  }
+    
+  .card_one_scroll::-webkit-scrollbar-thumb {
+    background-color: gray;
+
+  }
+  
+  .card_one_scroll::-webkit-scrollbar-track-piece:end {
+    margin-right: 50px; 
+  }
+  
+  .card_one_scroll::-webkit-scrollbar-track-piece:start {
+    margin-left: 50px;
+  }
+
+.card_two_scroll{
+    overflow-y: scroll;
+    flex-wrap: nowrap;
+    width:2px;
+  }
+
+  .card_two_scroll::-webkit-scrollbar {
+    height: 3px;
+    
+  }
+    
+  .card_two_scroll::-webkit-scrollbar-thumb {
+    background-color: gray;
+
+  }
+  
+  .card_two_scroll::-webkit-scrollbar-track-piece:end {
+    margin-right: 50px; 
+  }
+  
+  .card_two_scroll::-webkit-scrollbar-track-piece:start {
+    margin-left: 50px;
+  }
+
+
+  .card_three_scroll{
+    overflow-y: scroll;
+    flex-wrap: nowrap;
+    
+  }
+
+  .card_three_scroll::-webkit-scrollbar {
+    height: 3px;
+    
+  }
+    
+  .card_three_scroll::-webkit-scrollbar-thumb {
+    background-color: gray;
+
+  }
+  
+  .card_three_scroll::-webkit-scrollbar-track-piece:end {
+    margin-right: 50px; 
+  }
+  
+  .card_three_scroll::-webkit-scrollbar-track-piece:start {
+    margin-left: 50px;
+  }
+
+  .card_four_scroll{
+    overflow-y: scroll;
+    flex-wrap: nowrap;
+   
+  }
+
+  .card_four_scroll::-webkit-scrollbar {
+    height: 3px;
+    
+  }
+    
+  .card_four_scroll::-webkit-scrollbar-thumb {
+    background-color: gray;
+
+  }
+  
+  .card_four_scroll::-webkit-scrollbar-track-piece:end {
+    margin-right: 50px; 
+  }
+  
+  .card_four_scroll::-webkit-scrollbar-track-piece:start {
+    margin-left: 50px;
+  }
+
+  .card_five_scroll{
+    overflow-y: scroll;
+    flex-wrap: nowrap;
+    
+  }
+
+  .card_five_scroll::-webkit-scrollbar {
+    height: 3px;
+    
+  }
+    
+  .card_five_scroll::-webkit-scrollbar-thumb {
+    background-color: gray;
+
+  }
+  
+  .card_five_scroll::-webkit-scrollbar-track-piece:end {
+    margin-right: 50px; 
+  }
+  
+  .card_five_scroll::-webkit-scrollbar-track-piece:start {
+    margin-left: 50px;
+  }
+  .test{
+      text-decoration: underline;
+      color:blue;
+    cursor:pointer;
+      
+  }
+  .copy{
+    margin-top: 24px;
+    margin-left: 19px;
+  }
+
+  .add_card{
+      background-color:yellow;
+  }
+  
+  
+ 
+
+
+
+
+

@@ -1,0 +1,14 @@
+.payslip-title {
+    padding: 10px;
+    background: #34444c;
+    color: #fff;
+    text-decoration: none;
+}
+
+ 
+@media only screen and (max-width:990px){
+    .page-wrapper{
+		width: 100% !important;
+	}
+      
+}

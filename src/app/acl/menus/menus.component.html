@@ -1,0 +1,85 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <!-- Page Content -->
+    <div class="content container-fluid">
+                    
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">ACL</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Acl</a></li>
+                        <li class="breadcrumb-item active1">Menus</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-lg-3">
+                <h6>User Type</h6>
+            </div>
+            <div class="col-lg-3">
+                <h6>Modules</h6>
+            </div>
+            <div class="col-lg-6"> 
+                <h6>Menus</h6>
+            </div>
+        </div>
+       
+        <section>
+            <div class="rt-container">
+                <div class="col-rt-12">
+                    <div class="Scriptcontent">
+                        <section class="tabs-container">
+                            <label [ngClass]="{'active':i==0}"
+                            *ngFor="let data of dataList1;index as i" 
+                            (click)="getList2(data?.uniqueId)">{{data?.name| uppercase}} </label>
+                        </section>
+
+                        
+                        <section class="tab-content">
+                            <!-- inner tab menu-->
+                            <section>
+                                <div class="rt-container">
+                                    <div class="col-rt-12">
+                                        <div class="Scriptcontent">
+                                            <section class="tabs-container1">
+                                                <label *ngFor="let data of dataList2;index as i" [ngClass]="{'active':i==0}"
+                                                (click)="getList3(data?.moduleId)"> {{data?.ref?.module?.name | uppercase}} </label>
+                                            </section>
+                                            <section class="tab-content1">
+                                                <div class="container1">
+                                                    <div class="form-container">
+                                                        <div class="checkbox-container">
+                                                            <p>
+                                                                <button class="btn btn-xs btn-warning" 
+                                                                    (click)="checkAll()">Check All</button>&nbsp; 
+                                                                <button class="btn btn-xs btn-warning"
+                                                                    (click)="unCheckAll()">Un-Check All</button>
+                                                            </p>
+                                                            <p *ngFor="let data of dataList3?.module?.menus;index as i" style="padding: 2px;
+                                                            text-indent: 8px;">
+                                                                <input (click)="changeDept(i)" id="{{'ch' + i}}"
+                                                                    checked="{{(checkList[i].val=='Yes'?true:null)|| null}}"
+                                                                    type="checkbox"> &nbsp;
+                                                            <label for="{{'ch' + i}}">{{data?.name}}</label>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-warning" style="margin-left: 85%;" (click)="save()">Submit</button>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>    
+    </div>
+</div>

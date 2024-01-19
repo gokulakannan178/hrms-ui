@@ -1,0 +1,77 @@
+<!-- Created by Riddhi Omar on 27/04/2022 -->
+<body>
+    <div class=" page-details">
+      <div class="container-fluid card pl-5 py-5">
+        <div class="back">
+          <button type="button" class="btn btn-light back" onclick="history.back()"><i class="mr-2 fa fa-arrow-left" aria-hidden="true"></i>Back</button>
+        </div>
+        <!-- page header start -->
+        <div class="page-header">
+          <div class="row align-items-center">
+            <h3 class="page-title">Working Schedule</h3>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/policy/workschedule">Working Schdule</a></li>
+                <li class="breadcrumb-item active1">Working Schedule View</li>
+              </ul>
+          </div>
+        </div>
+        <!-- page header end -->
+        <!-- page-card start -->
+        <div class="">
+          <form [formGroup]="workScheduleforms">
+          <div class="form-group">
+            <label for="InputName" class="text-bold">Name<span class="required">*</span> </label>
+              <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter Name"
+              formControlName="name" disabled>
+          </div>
+          <!-- <div class="form-group">
+            <label for="InputDescription">Schedule<span class="required">*</span> </label>
+            <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter Schedule"
+              formControlName="schedule" disabled>
+          </div>
+          <div class="form-group">
+            <label for="InputDescription">Schedule Type<span class="required">*</span> </label>
+            <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter Schedule Type"
+              formControlName="scheduleType" disabled>
+          </div> -->
+          <div class="form-group">
+            <label for="InputDescription">Organization<span class="required">*</span> </label>
+            <input type="text" class="form-control" placeholder="Enter Working Hours"
+              formControlName="organisationId" disabled>
+          </div>
+          <div class="form-group">
+            <label for="InputName" class="text-bold">Paid (%)<span class="required">*</span> </label>
+              <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter the percentage"
+              formControlName="paid"  disabled>
+               
+          </div>
+          <div class="form-group">
+            <label for="InputName" class="text-bold">Partial Pay (%)<span class="required">*</span> </label>
+              <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter the percentage"
+              formControlName="partial_pay"  disabled>
+          </div>
+          <div class="form-group">
+            <label for="InputName" class="text-bold">Loss of Pay (%)<span class="required">*</span> </label>
+              <input type="text" class="form-control" id="InputName" size="50" placeholder="Enter the percentage"
+              formControlName="loss_of_pay"  disabled>
+              
+          </div>
+          <div class="form-group">
+            <label for="InputDescription">Working Hours In Days<span class="required">*</span> </label>
+            <input type="number" class="form-control" id="InputName" size="50" placeholder="Enter Working Hours"
+              formControlName="workingHoursInDays" disabled>
+          </div>
+          <div class="form-group">
+            <label for="InputDescription">Working Hours In Week<span class="required">*</span> </label>
+            <input type="number" class="form-control" id="InputName" size="50" placeholder="Enter Working Hours in Week"
+              formControlName="workingHoursInWeek" disabled>
+          </div>
+  
+          </form>
+        </div>
+        
+        <!-- page-card end -->
+      </div>
+    </div>
+  </body>
+  

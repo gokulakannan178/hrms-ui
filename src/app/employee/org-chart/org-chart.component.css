@@ -1,0 +1,144 @@
+#chart-container {
+  font-family: Arial;
+  height: 420px;
+  border: 2px dashed #aaa;
+  border-radius: 5px;
+  overflow: auto;
+  text-align: center;
+  width: 100%;
+}
+
+#github-link {
+  position: fixed;
+  top: 0px;
+  left: 10px;
+  font-size: 3em;
+}
+
+.orgchart {
+  background: #fff;
+}
+.rightEdge,
+.topEdge,
+.leftEdge {
+  display: none !important;
+}
+.orgchart {
+  box-sizing: border-box;
+  display: inline-block;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none !important;
+  background-size: 10px 10px;
+  border: 1px dashed transparent;
+  padding: 20px 20px 0 20px;
+}
+.orgchart .node .title .symbol {
+  display: none !important;
+  float: left;
+  margin-top: 12px;
+  margin-left: 2px;
+}
+.orgchart .node .title {
+  box-sizing: border-box;
+  padding: 2px;
+  width: 130px;
+  text-align: center;
+  font-size: .75rem;
+  font-weight: 700;
+  height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-color: white !important;
+  color: black !important;
+  border-radius: 4px 4px 0 0;
+}
+
+
+.page-wrapper {
+  width: calc(100% - 230px) !important;
+  
+}
+
+.active {
+  background: white;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.nav>li>a:focus,
+.nav>li>a:hover {
+  background-color: #567507 !important;
+  border-color: green !important;
+  color: white;
+}
+
+.emp {
+  color: #007bff;
+}
+
+.end {
+  justify-content: end;
+}
+
+.border {
+  border: none;
+}
+
+.multi {
+  margin-top: 1em;
+}
+
+.btn {
+  /* background-color: #ff9b44; */
+  border: none;
+}
+
+/* button:hover {
+  /* background-color: #f88622; */
+  /* border: 2px; */
+/* } */ */
+
+.col {
+  float: left;
+}
+
+.card {
+  width: 12em;
+  font-size: 12px;
+  position: relative;
+  float: left;
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.child-loop{
+  font-size: 17px;
+  color: rgb(250, 248, 245);
+  border: none;
+  background-color: white;
+  background-color: #f8c274;
+  width: 19px;
+  margin: auto;
+  line-height: 1;
+}
+.btun:hover{
+  color:#f37908
+}
+
+.orgchart .node img {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+@media only screen and (max-width: 950px){
+  .page-wrapper {
+    width: 100%!important;
+    
+  }
+}

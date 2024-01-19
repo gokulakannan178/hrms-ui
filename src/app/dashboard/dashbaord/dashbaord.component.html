@@ -1,0 +1,663 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+
+	<!-- Page Content -->
+	<div class="content container-fluid">
+
+		<!-- Page Header -->
+		<div class="page-header">
+			<div class="row">
+				<div class="col-sm-12">
+					<h3 class="page-title">Welcome Admin!</h3>
+					<h6 class="mb-0">{{myDate | date: 'fullDate' }}</h6>
+
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item active">Dashboard</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /Page Header -->
+
+		<div class="row" style="    width: 106%;
+		margin-left: -30px;">
+			<div class="col-lg-12">
+				<div class=" col col-xl-3 col-lg-6 col-md-6">
+					<div class="card dash-widget">
+						<div class="card-body">
+							<span class="dash-widget-icon"><i class="fa fa-building"></i></span>
+							<div class="dash-widget-info">
+								<h3>{{orgcount?orgcount[0].active:'00'}}</h3>
+								<!-- value="{{emplyoee?.emergencyContact?.primary?emplyoee?.emergencyContact?.primary?.relationship:'NA'}}"> -->
+
+								<span>Organization</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class=" col col-xl-3 col-lg-6 col-md-6">
+					<div class="card dash-widget">
+						<div class="card-body">
+							<span class="dash-widget-icon"><i class="fa fa-folder"></i></span>
+							<div class="dash-widget-info">
+								<h3>20</h3>
+								<span>Projects</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class=" col col-xl-3 col-lg-6 col-md-6">
+					<div class="card dash-widget">
+						<div class="card-body">
+							<span class="dash-widget-icon"><i class="fa fa-tasks"></i></span>
+							<div class="dash-widget-info">
+								<h3>180/500</h3>
+								<span>Tasks</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class=" col col-xl-3 col-lg-6 col-md-6">
+					<div class="card dash-widget">
+						<div class="card-body">
+							<span class="dash-widget-icon"><i class="fa fa-user"></i></span>
+							<div class="dash-widget-info">
+								<h3>{{employeecount?employeecount[0].count:'00'}}</h3>
+								<span>Employees</span>
+							
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="row" style="    width: 106%;
+		margin-left: -30px;">
+			<div class="col-lg-12">
+				<div class=" col col-xl-3 col-lg-6 col-md-6">
+					<div class="card dash-widget">
+						<div class="card-body">
+							<span class="dash-widget-icon"><i class="fa fa-building"></i></span>
+							<div class="dash-widget-info">
+								<h3>{{attendancedata?attendancedata.todayPresent:"00"}}</h3>
+								<span>Today Present</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class=" col col-xl-3 col-lg-6 col-md-6">
+					<div class="card dash-widget">
+						<div class="card-body">
+							<span class="dash-widget-icon"><i class="fa fa-building"></i></span>
+							<div class="dash-widget-info">
+								<h3>{{attendancedata?attendancedata.planned:"00"}}</h3>
+								<span>Planned Leave</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class=" col col-xl-3 col-lg-6 col-md-6">
+					<div class="card dash-widget">
+						<div class="card-body">
+							<span class="dash-widget-icon"><i class="fa fa-building"></i></span>
+							<div class="dash-widget-info" >
+								<h3>{{attendancedata?attendancedata.unPlanned:"00"}}</h3>
+								<span style="font-size: 15px;">Unplanned Leave</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class=" col col-xl-3 col-lg-6 col-md-6">
+					<div class="card dash-widget">
+						<div class="card-body">
+							<span class="dash-widget-icon"><i class="fa fa-building"></i></span>
+							<div class="dash-widget-info">
+								<h3>{{attendancedata?attendancedata.pendingTimeOff:"00"}}</h3>
+								<span style="font-size: 15px;">Pending Request
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+		<!-- <div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-6 text-center">
+						<div class="card">
+							<div class="card-body">
+								<h3 class="card-title">Total Expenses</h3>
+								<div id="bar-charts"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 text-center">
+						<div class="card">
+							<div class="card-body">
+								<h3 class="card-title">Total Assets</h3>
+								<div id="line-charts"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+
+		<!-- <div class="row">
+			<div class="col-md-12">
+				<div class="card-group m-b-30">
+					<div class="card">
+						<div class="card-body">
+							<div class="d-flex justify-content-between mb-3">
+								<div>
+									<span class="d-block">New Employees</span>
+								</div>
+								<div>
+									<span class="text-success">+10%</span>
+								</div>
+							</div>
+							<h3 class="mb-3">10</h3>
+							<div class="progress mb-2" style="height: 5px;">
+								<div class="progress-bar bg-primary" role="progressbar" style="width: 70%;"
+									aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+							<p class="mb-0">Overall Employees 218</p>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-body">
+							<div class="d-flex justify-content-between mb-3">
+								<div>
+									<span class="d-block">Earnings</span>
+								</div>
+								<div>
+									<span class="text-success">+12.5%</span>
+								</div>
+							</div>
+							<h3 class="mb-3">Rs 1,42,300</h3>
+							<div class="progress mb-2" style="height: 5px;">
+								<div class="progress-bar bg-primary" role="progressbar" style="width: 70%;"
+									aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+							<p class="mb-0">Previous Month <span class="text-muted">Rs 1,15,852</span></p>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-body">
+							<div class="d-flex justify-content-between mb-3">
+								<div>
+									<span class="d-block">Expenses</span>
+								</div>
+								<div>
+									<span class="text-danger">-2.8%</span>
+								</div>
+							</div>
+							<h3 class="mb-3">Rs 8,500</h3>
+							<div class="progress mb-2" style="height: 5px;">
+								<div class="progress-bar bg-primary" role="progressbar" style="width: 70%;"
+									aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+							<p class="mb-0">Previous Month <span class="text-muted">Rs 7,500</span></p>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-body">
+							<div class="d-flex justify-content-between mb-3">
+								<div>
+									<span class="d-block">Profit</span>
+								</div>
+								<div>
+									<span class="text-danger">-75%</span>
+								</div>
+							</div>
+							<h3 class="mb-3">Rs 1,12,000</h3>
+							<div class="progress mb-2" style="height: 5px;">
+								<div class="progress-bar bg-primary" role="progressbar" style="width: 70%;"
+									aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+							<p class="mb-0">Previous Month <span class="text-muted">Rs 1,42,000</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+
+		<!-- Statistics Widget -->
+		<div class="row">
+			<!-- <div class="col-md-12 col-lg-12 col-xl-4 d-flex">
+				<div class="card flex-fill dash-statistics">
+					<div class="card-body">
+						<h5 class="card-title">Statistics</h5>
+						<div class="stats-list">
+							<div class="stats-info">
+								<p>Today Leave <strong>4 <small>/ 65</small></strong></p>
+								<div class="progress">
+									<div class="progress-bar bg-primary" role="progressbar" style="width: 31%"
+										aria-valuenow="31" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
+							</div>
+							<div class="stats-info">
+								<p>Pending Invoice <strong>15 <small>/ 92</small></strong></p>
+								<div class="progress">
+									<div class="progress-bar bg-warning" role="progressbar" style="width: 31%"
+										aria-valuenow="31" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
+							</div>
+							<div class="stats-info">
+								<p>Completed Projects <strong>85 <small>/ 112</small></strong></p>
+								<div class="progress">
+									<div class="progress-bar bg-success" role="progressbar" style="width: 62%"
+										aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
+							</div>
+							<div class="stats-info">
+								<p>Open Tickets <strong>190 <small>/ 212</small></strong></p>
+								<div class="progress">
+									<div class="progress-bar bg-danger" role="progressbar" style="width: 62%"
+										aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
+							</div>
+							<div class="stats-info">
+								<p>Closed Tickets <strong>22 <small>/ 212</small></strong></p>
+								<div class="progress">
+									<div class="progress-bar bg-info" role="progressbar" style="width: 22%"
+										aria-valuenow="22" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-12 col-lg-6 col-xl-4 d-flex">
+				<div class="card flex-fill">
+					<div class="card-body">
+						<h4 class="card-title">Task Statistics</h4>
+						<div class="statistics">
+							<div class="row">
+								<div class="col-md-6 col-6 text-center">
+									<div class="stats-box mb-4">
+										<p>Total Tasks</p>
+										<h3>385</h3>
+									</div>
+								</div>
+								<div class="col-md-6 col-6 text-center">
+									<div class="stats-box mb-4">
+										<p>Overdue Tasks</p>
+										<h3>19</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="progress mb-4">
+							<div class="progress-bar bg-purple" role="progressbar" style="width: 30%" aria-valuenow="30"
+								aria-valuemin="0" aria-valuemax="100">30%</div>
+							<div class="progress-bar bg-warning" role="progressbar" style="width: 22%"
+								aria-valuenow="18" aria-valuemin="0" aria-valuemax="100">22%</div>
+							<div class="progress-bar bg-success" role="progressbar" style="width: 24%"
+								aria-valuenow="12" aria-valuemin="0" aria-valuemax="100">24%</div>
+							<div class="progress-bar bg-danger" role="progressbar" style="width: 26%" aria-valuenow="14"
+								aria-valuemin="0" aria-valuemax="100">21%</div>
+							<div class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="14"
+								aria-valuemin="0" aria-valuemax="100">10%</div>
+						</div>
+						<div>
+							<p><i class="fa fa-dot-circle-o text-purple mr-2"></i>Completed Tasks <span
+									class="float-right">166</span></p>
+							<p><i class="fa fa-dot-circle-o text-warning mr-2"></i>Inprogress Tasks <span
+									class="float-right">115</span></p>
+							<p><i class="fa fa-dot-circle-o text-success mr-2"></i>On Hold Tasks <span
+									class="float-right">31</span></p>
+							<p><i class="fa fa-dot-circle-o text-danger mr-2"></i>Pending Tasks <span
+									class="float-right">47</span></p>
+							<p class="mb-0"><i class="fa fa-dot-circle-o text-info mr-2"></i>Review Tasks <span
+									class="float-right">5</span></p>
+						</div>
+					</div>
+				</div>
+			</div> -->
+
+			<div class="col-md-12 col-lg-6 col-xl-4 d-flex">
+				<div class="card flex-fill">
+					<div class="card-body" >
+						<h4 class="card-title">Today Absent <span class="badge bg-inverse-danger ml-2"></span></h4>
+						<div class="leave-info-box" *ngFor= "let data of timeoff; let i=index">
+							<div class="media align-items-center">
+								<img *ngIf='data.employeeId.profileImg != ""' src="{{apiService.APIURL + data.employeeId.profileImg}}" style="height: 40px;
+								width: 40px;" >		
+								<span style="color:black;text-align: center;" *ngIf='data.employeeId.profileImg == ""'><img src="../../../assets/img/icon.png"
+									style="height: 40px; width: 40px;" >		</span>					
+										<div class="media-body" style="margin:12px;">
+
+									<div class="text-sm my-0">{{data.employeeId.name}}</div>
+									
+								</div>
+							</div>
+							<div class="row align-items-center mt-3">
+								<div class="col-6">
+									<h6 class="mb-0">{{myDate | date: 'mediumDate' }}</h6>
+									<span class="text-sm text-muted">Leave Date</span>
+								</div>
+								<!-- <div class="col-6 text-right">
+									<span class="badge bg-inverse-danger">Pending</span>
+								</div> -->
+							</div>
+					
+							
+					</div>
+					<div class="load-more text-center" style="display:flex;justify-content:center"  *ngIf='timeoffshow'>
+						<button  class="btn add-btn" routerLink="/employee/leaverequest_admin" href="javascript:void(0);">See All</button>
+					</div>
+				
+					<div class="load-more text-center" *ngIf='timeoffnull'>
+						<span href="javascript:void(0);">No one is Absent Today!</span>
+					</div>
+					
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<!-- /Statistics Widget -->
+
+		<!-- <div class="row">
+			<div class="col-md-6 d-flex">
+				<div class="card card-table flex-fill">
+					<div class="card-header">
+						<h3 class="card-title mb-0">Invoices</h3>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-nowrap custom-table mb-0">
+								<thead>
+									<tr>
+										<th>Invoice ID</th>
+										<th>Client</th>
+										<th>Due Date</th>
+										<th>Total</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><a href="invoice-view.html">#INV-0001</a></td>
+										<td>
+											<h2><a href="#">Bihar Government</a></h2>
+										</td>
+										<td>11 Mar 2021</td>
+										<td>Rs 380</td>
+										<td>
+											<span class="badge bg-inverse-warning">Partially Paid</span>
+										</td>
+									</tr>
+									<tr>
+										<td><a href="invoice-view.html">#INV-0002</a></td>
+										<td>
+											<h2><a href="#">MP Government</a></h2>
+										</td>
+										<td>8 Feb 2021</td>
+										<td>Rs 500</td>
+										<td>
+											<span class="badge bg-inverse-success">Paid</span>
+										</td>
+									</tr>
+									<tr>
+										<td><a href="invoice-view.html">#INV-0003</a></td>
+										<td>
+											<h2><a href="#">Rajasthan Government</a></h2>
+										</td>
+										<td>23 Jan 2021</td>
+										<td>Rs 60</td>
+										<td>
+											<span class="badge bg-inverse-danger">Unpaid</span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="card-footer">
+						<a href="#">View all invoices</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 d-flex" >
+				<div class="card card-table flex-fill">
+					<div class="card-header">
+						<h3 class="card-title mb-0">Payments</h3>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table custom-table table-nowrap mb-0">
+								<thead>
+									<tr>
+										<th>Invoice ID</th>
+										<th>Client</th>
+										<th>Payment Type</th>
+										<th>Paid Date</th>
+										<th>Paid Amount</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><a href="invoice-view.html">#INV-0001</a></td>
+										<td>
+											<h2><a href="#">Bihar Government</a></h2>
+										</td>
+										<td>Cash</td>
+										<td>11 Mar 2021</td>
+										<td>Rs 380</td>
+									</tr>
+									<tr>
+										<td><a href="invoice-view.html">#INV-0002</a></td>
+										<td>
+											<h2><a href="#">MP Government</a></h2>
+										</td>
+										<td>Cheque</td>
+										<td>8 Feb 2021</td>
+										<td>Rs 500</td>
+									</tr>
+									<tr>
+										<td><a href="invoice-view.html">#INV-0003</a></td>
+										<td>
+											<h2><a href="#">Rajasthan Government</a></h2>
+										</td>
+										<td>Bank Deposit</td>
+										<td>23 Jan 2021</td>
+										<td>Rs 60</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="card-footer">
+						<a href="#">View all payments</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+
+			<div class="col-md-6 d-flex">
+				<div class="card card-table flex-fill">
+					<div class="card-header">
+						<h3 class="card-title mb-0">Recent Projects</h3>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table custom-table mb-0">
+								<thead>
+									<tr>
+										<th>Project Name </th>
+										<th>Progress</th>
+										<th class="text-right">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<h2><a href="#">Harit Maha City Compost</a></h2>
+											<small class="block text-ellipsis">
+												<span>1 </span> <span class="text-muted">open tasks, </span>
+												<span>9 </span> <span class="text-muted">tasks completed, </span>
+												<span>1 </span> <span class="text-muted">Bugs, </span>
+
+											</small>
+										</td>
+										<td>
+											<div class="progress progress-xs progress-striped">
+												<div class="progress-bar" role="progressbar" data-toggle="tooltip"
+													title="65%" style="width: 65%"></div>
+											</div>
+										</td>
+										<td class="text-right">
+											<div class="dropdown dropdown-action">
+												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+													aria-expanded="false"><i class="material-icons">more_vert</i></a>
+												<div class="dropdown-menu dropdown-menu-right">
+													<a class="dropdown-item" href="javascript:void(0)"><i
+															class="fa fa-pencil m-r-5"></i> Edit</a>
+													<a class="dropdown-item" href="javascript:void(0)"><i
+															class="fa fa-trash-o m-r-5"></i> Delete</a>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h2><a href="#">Kochas Nagar Panchayat</a></h2>
+											<small class="block text-ellipsis">
+												<span>1 </span> <span class="text-muted">open tasks, </span>
+												<span>9 </span> <span class="text-muted">tasks completed, </span>
+												<span>1 </span> <span class="text-muted">Bugs, </span>
+											</small>
+										</td>
+										<td>
+											<div class="progress progress-xs progress-striped">
+												<div class="progress-bar" role="progressbar" data-toggle="tooltip"
+													title="15%" style="width: 15%"></div>
+											</div>
+										</td>
+										<td class="text-right">
+											<div class="dropdown dropdown-action">
+												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+													aria-expanded="false"><i class="material-icons">more_vert</i></a>
+												<div class="dropdown-menu dropdown-menu-right">
+													<a class="dropdown-item" href="javascript:void(0)"><i
+															class="fa fa-pencil m-r-5"></i> Edit</a>
+													<a class="dropdown-item" href="javascript:void(0)"><i
+															class="fa fa-trash-o m-r-5"></i> Delete</a>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h2><a href="#">NiceSSM</a></h2>
+											<small class="block text-ellipsis">
+												<span>1 </span> <span class="text-muted">open tasks, </span>
+												<span>9 </span> <span class="text-muted">tasks completed, </span>
+												<span>1 </span> <span class="text-muted">Bugs, </span>
+											</small>
+										</td>
+										<td>
+											<div class="progress progress-xs progress-striped">
+												<div class="progress-bar" role="progressbar" data-toggle="tooltip"
+													title="49%" style="width: 49%"></div>
+											</div>
+										</td>
+										<td class="text-right">
+											<div class="dropdown dropdown-action">
+												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+													aria-expanded="false"><i class="material-icons">more_vert</i></a>
+												<div class="dropdown-menu dropdown-menu-right">
+													<a class="dropdown-item" href="javascript:void(0)"><i
+															class="fa fa-pencil m-r-5"></i> Edit</a>
+													<a class="dropdown-item" href="javascript:void(0)"><i
+															class="fa fa-trash-o m-r-5"></i> Delete</a>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h2><a href="#">MPWCD</a></h2>
+											<small class="block text-ellipsis">
+												<span>1 </span> <span class="text-muted">open tasks, </span>
+												<span>9 </span> <span class="text-muted">tasks completed, </span>
+												<span>1 </span> <span class="text-muted">Bugs, </span>
+
+											</small>
+										</td>
+										<td>
+											<div class="progress progress-xs progress-striped">
+												<div class="progress-bar" role="progressbar" data-toggle="tooltip"
+													title="88%" style="width: 88%"></div>
+											</div>
+										</td>
+										<td class="text-right">
+											<div class="dropdown dropdown-action">
+												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+													aria-expanded="false"><i class="material-icons">more_vert</i></a>
+												<div class="dropdown-menu dropdown-menu-right">
+													<a class="dropdown-item" href="javascript:void(0)"><i
+															class="fa fa-pencil m-r-5"></i> Edit</a>
+													<a class="dropdown-item" href="javascript:void(0)"><i
+															class="fa fa-trash-o m-r-5"></i> Delete</a>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h2><a href="#">iSmart Logikoof</a></h2>
+											<small class="block text-ellipsis">
+												<span>1 </span> <span class="text-muted">open tasks, </span>
+												<span>9 </span> <span class="text-muted">tasks completed, </span>
+												<span>1 </span> <span class="text-muted">Bugs, </span>
+
+											</small>
+										</td>
+										<td>
+											<div class="progress progress-xs progress-striped">
+												<div class="progress-bar" role="progressbar" data-toggle="tooltip"
+													title="100%" style="width: 100%"></div>
+											</div>
+										</td>
+										<td class="text-right">
+											<div class="dropdown dropdown-action">
+												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+													aria-expanded="false"><i class="material-icons">more_vert</i></a>
+												<div class="dropdown-menu dropdown-menu-right">
+													<a class="dropdown-item" href="javascript:void(0)"><i
+															class="fa fa-pencil m-r-5"></i> Edit</a>
+													<a class="dropdown-item" href="javascript:void(0)"><i
+															class="fa fa-trash-o m-r-5"></i> Delete</a>
+												</div>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="card-footer">
+						<a href="#">View all projects</a>
+					</div>
+				</div>
+			</div>
+		</div> -->
+
+	</div>
+	<!-- /Page Content -->
+
+</div>
+<!-- /Page Wrapper -->
